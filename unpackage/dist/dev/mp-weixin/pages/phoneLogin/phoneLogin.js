@@ -103,6 +103,10 @@ var render = function() {
     _vm.e0 = function($event) {
       _vm.iskeyBoardShow = true
     }
+
+    _vm.e1 = function($event) {
+      _vm.isResetPwdShow = true
+    }
   }
 }
 var recyclableRender = false
@@ -137,7 +141,20 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var keyBoard = function keyBoard() {__webpack_require__.e(/*! require.ensure | components/keyBoard */ "components/keyBoard").then((function () {return resolve(__webpack_require__(/*! @/components/keyBoard.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var phoneValidcode = function phoneValidcode() {__webpack_require__.e(/*! require.ensure | pages/phoneLogin/components/phoneValidcode/phoneValidcode */ "pages/phoneLogin/components/phoneValidcode/phoneValidcode").then((function () {return resolve(__webpack_require__(/*! @/pages/phoneLogin/components/phoneValidcode/phoneValidcode.vue */ 50));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popup = function popup() {__webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {return resolve(__webpack_require__(/*! @/components/popup.vue */ 36));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var keyBoard = function keyBoard() {__webpack_require__.e(/*! require.ensure | components/keyBoard */ "components/keyBoard").then((function () {return resolve(__webpack_require__(/*! @/components/keyBoard.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var phoneValidcode = function phoneValidcode() {__webpack_require__.e(/*! require.ensure | pages/phoneLogin/components/phoneValidcode/phoneValidcode */ "pages/phoneLogin/components/phoneValidcode/phoneValidcode").then((function () {return resolve(__webpack_require__(/*! @/pages/phoneLogin/components/phoneValidcode/phoneValidcode.vue */ 50));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var phonePassword = function phonePassword() {__webpack_require__.e(/*! require.ensure | pages/phoneLogin/components/phonePassword/phonePassword */ "pages/phoneLogin/components/phonePassword/phonePassword").then((function () {return resolve(__webpack_require__(/*! @/pages/phoneLogin/components/phonePassword/phonePassword.vue */ 57));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var resetPassword = function resetPassword() {__webpack_require__.e(/*! require.ensure | pages/phoneLogin/components/resetPassword/resetPassword */ "pages/phoneLogin/components/resetPassword/resetPassword").then((function () {return resolve(__webpack_require__(/*! @/pages/phoneLogin/components/resetPassword/resetPassword.vue */ 72));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popup = function popup() {__webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {return resolve(__webpack_require__(/*! @/components/popup.vue */ 36));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -172,15 +189,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 {
   components: {
     keyBoard: keyBoard,
+    popup: popup,
     phoneValidcode: phoneValidcode,
-    popup: popup },
+    phonePassword: phonePassword,
+    resetPassword: resetPassword },
 
   data: function data() {
     return {
-      phone: "1",
-      iskeyBoardShow: false,
-      isValidcodeShow: false };
-
+      phone: "",
+      iskeyBoardShow: false, // 键盘
+      isValidcodeShow: false, // 手机验证码
+      isPasswordShow: false, // 输入密码
+      isResetPwdShow: false //重设密码
+    };
   },
   methods: {
     next: function next() {
@@ -201,6 +222,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       if (obj.index == 11) {
         this.phone = this.phone.slice(0, this.phone.length - 1);
       }
+    },
+    pwdLogin: function pwdLogin() {
+      this.isPasswordShow = true;
     } } };exports.default = _default;
 
 /***/ }),

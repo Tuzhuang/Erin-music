@@ -11,6 +11,7 @@
 				<view class="phone">
 					<p class="num" v-for="(item,index) in phone" :key="index">{{item}}</p>
 					<p v-if="iskeyBoardShow" class="cursor-line"></p>
+					<p class="placeholder" v-if="!phone.length">输入手机号</p>
 				</view>
 			</view>
 			<view class="clear" @click="clear">
@@ -18,10 +19,20 @@
 			</view>
 		</view>
 		<p :class="['next',{'comp':phone.length}]" @click="next">下一步</p>
-		<keyBoard :isShow.sync="iskeyBoardShow" @boardItem="boardItem" />
-		<!-- 输入密码 -->
-		<popup :isPopup.sync="isValidcodeShow" height="1000" bgColor="#151515">
+		<p :class="['pwd-login',{'comp':phone.length}]" @click="pwdLogin">密码登录</p>
+		<!-- 键盘 -->
+		<key-board :isShow.sync="iskeyBoardShow" @boardItem="boardItem" />
+		<!-- 输入验证码 -->
+		<popup :isPopup.sync="isValidcodeShow" height="1200" bgColor="#151515">
 			<phone-validcode :isInCompon.sync="isValidcodeShow" @changeValidShow="iskeyBoardShow=true" slot="content" />
+		</popup>
+		<!-- 输入密码 -->
+		<popup :isPopup.sync="isPasswordShow" height="1200" bgColor="#151515">
+			<phone-password :isInCompon.sync="isPasswordShow" @forgetPwd="isResetPwdShow=true" slot="content" />
+		</popup>
+		<!-- 重设密码 -->
+		<popup :isPopup.sync="isResetPwdShow" height="1200" bgColor="#151515">
+			<reset-password :isInCompon.sync="isResetPwdShow" slot="content" />
 		</popup>
 	</view>
 </template>
@@ -29,18 +40,24 @@
 <script>
 	import keyBoard from '@/components/keyBoard.vue'
 	import phoneValidcode from '@/pages/phoneLogin/components/phoneValidcode/phoneValidcode.vue'
+	import phonePassword from '@/pages/phoneLogin/components/phonePassword/phonePassword.vue'
+	import resetPassword from '@/pages/phoneLogin/components/resetPassword/resetPassword.vue'
 	import popup from '@/components/popup.vue'
 	export default {
 		components: {
 			keyBoard,
+			popup,
 			phoneValidcode,
-			popup
+			phonePassword,
+			resetPassword,
 		},
 		data() {
 			return {
-				phone: "1",
-				iskeyBoardShow: false,
-				isValidcodeShow: false
+				phone: "",
+				iskeyBoardShow: false, // 键盘
+				isValidcodeShow: false, // 手机验证码
+				isPasswordShow: false, // 输入密码
+				isResetPwdShow: false, //重设密码
 			}
 		},
 		methods: {
@@ -63,6 +80,9 @@
 					this.phone = this.phone.slice(0, this.phone.length - 1);
 				}
 			},
+			pwdLogin() {
+				this.isPasswordShow = true;
+			}
 		}
 	}
 </script>
@@ -121,11 +141,13 @@
 			}
 
 			.phone {
+				flex: 1;
 				font-size: 28rpx;
 				margin-left: 20rpx;
 				color: #fff;
 				display: flex;
 				align-items: center;
+				position: relative;
 			}
 
 			.cursor-line {
@@ -134,6 +156,13 @@
 				background-color: #fff;
 				margin-left: 2rpx;
 				animation: cursor 800ms infinite;
+			}
+
+			.placeholder {
+				width: 100%;
+				color: #444444;
+				position: absolute;
+				left: 8rpx;
 			}
 
 			.clear {
@@ -149,7 +178,8 @@
 
 		}
 
-		.next {
+		.next,
+		.pwd-login {
 			width: 100%;
 			height: 70rpx;
 			background: linear-gradient(to right, #562b2a, #521814);
@@ -161,9 +191,20 @@
 			line-height: 70rpx;
 			transition: .2s;
 
-			&.comp {
+			&.pwd-login {
+				margin-top: 20rpx;
+				color: #e83c2a;
+				background: #fff;
+				opacity: .4;
+			}
+
+			&.next.comp {
 				background: linear-gradient(to right, #f3605b, #e83c2a);
 				color: #fff;
+			}
+
+			&.pwd-login.comp {
+				opacity: 1;
 			}
 		}
 

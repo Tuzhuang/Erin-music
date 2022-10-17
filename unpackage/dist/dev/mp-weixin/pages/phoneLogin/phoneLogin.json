@@ -3,7 +3,9 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "key-board": "/components/keyBoard",
+    "popup": "/components/popup",
     "phone-validcode": "/pages/phoneLogin/components/phoneValidcode/phoneValidcode",
-    "popup": "/components/popup"
+    "phone-password": "/pages/phoneLogin/components/phonePassword/phonePassword",
+    "reset-password": "/pages/phoneLogin/components/resetPassword/resetPassword"
   }
 }
