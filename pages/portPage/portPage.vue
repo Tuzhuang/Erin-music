@@ -3,10 +3,10 @@
 		<p class="exper">不想登录？那就立即体验吧</p>
 		<image class="logo-img" src="/static/images/pages/portPage/logo.png"></image>
 		<view class="login-con">
-			<view class="phone-login">手机号登录</view>
+			<view class="phone-login" @click="phoneLogin">手机号登录</view>
 			<view class="wx-login">微信登录</view>
 			<view class="agreement">
-				<view :class="['round',isAgree?'active':'']" @click="agree">
+				<view :class="['round',{'active':isAgree}]" @click="agree">
 					<img v-if="isAgree" class="tick-icon" src="/static/images/pages/portPage/tick.png">
 				</view>
 				<view class="agree">
@@ -18,17 +18,17 @@
 			</view>
 		</view>
 		<view class="login-type">
-			<view class="item" v-for="item in loginType" :key="item">
+			<view class="item" v-for="item in loginTypeList" :key="item">
 				<image :src="'/static/images/pages/portPage/'+item+'.png'" class="type-img"></image>
 			</view>
 		</view>
-		<popup ref="popup" :isPopup.sync="isAgreeShow" height="340" bgColor="#282828" @update:changePopup="changePopup">
+		<popup :isPopup.sync="isAgreeShow" height="340" bgColor="#282828">
 			<view slot="content" class="service-agree">
 				<p class="title">服务协议和隐私政策等指引</p>
 				<view class="desc">
 					<span class="text">进入下一步前，请先阅读并同意网易云音乐的</span>
-					<span class="agree">《服务条款》</span>、
-					<span class="agree">《隐私政策》</span>
+					<span class="agree" @click="agreeCheck">《服务条款》</span>、
+					<span class="agree" @click="agreeCheck">《隐私政策》</span>
 				</view>
 				<view class="btn-con">
 					<p class="btn" @click="agreeCont('no')">不同意</p>
@@ -47,25 +47,36 @@
 		},
 		data() {
 			return {
-				loginType: ["wechart", "qq", "weibo", "yi"],
+				loginTypeList: ["wechart", "qq", "weibo", "yi"],
 				isAgree: false,
 				isAgreeShow: false,
+				loginType: "",
 			}
 		},
 		methods: {
 			agree() {
-				console.log('1234567')
-				this.isAgreeShow = true;
+				this.isAgree = !this.isAgree;
 			},
 			agreeCheck() {
-				console.log('0000')
+				console.log('暂不支持查看协议~');
 			},
-			changePopup() {
+			agreeCont(state) {
+				this.isAgree = state == 'yes' ? true : false;
 				this.isAgreeShow = false;
+				if (this.loginType == 'phone' && this.isAgree) {
+					uni.navigateTo({
+						url: "/pages/phoneLogin/phoneLogin"
+					})
+				}
 			},
-			agreeCont(type) {
-				this.isAgree = type == 'yes' ? true : false;
-				this.isAgreeShow = false;
+			phoneLogin() {
+				this.loginType = 'phone';
+				if (!this.isAgree) {
+					this.isAgreeShow = true;
+				}
+				if (this.isAgree) {
+					this.agreeCont('yes');
+				}
 			}
 		}
 	}

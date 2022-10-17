@@ -1,6 +1,6 @@
 <template>
 	<view class="popup">
-		<view :class="['mask',!isPopup?'hide':'']" @click="hidePopup">
+		<view :class="['mask',{'hide':!isPopup}]" @click="hidePopup">
 			<view class="content" :style="{height:height+'rpx',bottom:isPopup?'0':-height+'rpx',background:bgColor}" @click.stop>
 				<slot name="content">
 					<view></view>
@@ -13,13 +13,18 @@
 <script>
 	export default {
 		name: "popup",
+		/**
+		 * isPopup  是否展示弹出层
+		 * height  高度
+		 * bgColor  背景色
+		 * 
+		 * @hidePopup 隐藏弹出层
+		 */
 		props: {
-			// 是否展示弹出层
 			isPopup: {
 				type: Boolean,
 				default: false
 			},
-			// 内容高度
 			height: {
 				type: String,
 				default: '200'
@@ -29,14 +34,9 @@
 				default: "#fff"
 			}
 		},
-		data() {
-			return {
-				
-			};
-		},
 		methods: {
 			hidePopup() {
-				this.$emit("update:changePopup");
+				this.$emit("update:isPopup",false);
 			}
 		}
 	}
@@ -62,8 +62,9 @@
 			.content {
 				width: 100%;
 				background-color: #000;
-				border-top-left-radius: 50rpx;
-				border-top-right-radius: 50rpx;
+				border-top-left-radius: 40rpx;
+				border-top-right-radius: 40rpx;
+				overflow: hidden;
 				position: absolute;
 				bottom: 0;
 				transition: .3s;

@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/portPage/portPage"
+    "pages/portPage/portPage",
+    "pages/phoneLogin/phoneLogin"
   ],
   "subPackages": [],
   "window": {

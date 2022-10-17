@@ -5,18 +5,21 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+		}, {
+			"path": "pages/portPage/portPage",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/phoneLogin/phoneLogin",
+			"style": {
+				"navigationBarTitleText": "手机号登录",
+				"enablePullDownRefresh": false
+			}
 		}
-	    ,{
-            "path" : "pages/portPage/portPage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false,
-					 "navigationStyle": "custom"
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

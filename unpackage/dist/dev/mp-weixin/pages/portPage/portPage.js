@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var popup = function popup() {__webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {return resolve(__webpack_require__(/*! @/components/popup.vue */ 28));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var popup = function popup() {__webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {return resolve(__webpack_require__(/*! @/components/popup.vue */ 36));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -181,26 +181,38 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      loginType: ["wechart", "qq", "weibo", "yi"],
+      loginTypeList: ["wechart", "qq", "weibo", "yi"],
       isAgree: false,
-      isAgreeShow: false };
+      isAgreeShow: false,
+      loginType: "" };
 
   },
   methods: {
     agree: function agree() {
-      console.log('1234567');
-      this.isAgreeShow = true;
+      this.isAgree = !this.isAgree;
     },
     agreeCheck: function agreeCheck() {
-      console.log('0000');
+      console.log('暂不支持查看协议~');
     },
-    changePopup: function changePopup() {
+    agreeCont: function agreeCont(state) {
+      this.isAgree = state == 'yes' ? true : false;
       this.isAgreeShow = false;
+      if (this.loginType == 'phone' && this.isAgree) {
+        uni.navigateTo({
+          url: "/pages/phoneLogin/phoneLogin" });
+
+      }
     },
-    agreeCont: function agreeCont(type) {
-      this.isAgree = type == 'yes' ? true : false;
-      this.isAgreeShow = false;
+    phoneLogin: function phoneLogin() {
+      this.loginType = 'phone';
+      if (!this.isAgree) {
+        this.isAgreeShow = true;
+      }
+      if (this.isAgree) {
+        this.agreeCont('yes');
+      }
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

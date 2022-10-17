@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "手机号登录",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "key-board": "/components/keyBoard",
+    "phone-validcode": "/pages/phoneLogin/components/phoneValidcode/phoneValidcode",
+    "popup": "/components/popup"
+  }
+}
