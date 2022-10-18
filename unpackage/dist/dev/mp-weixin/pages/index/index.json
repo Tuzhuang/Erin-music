@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "uni-app",
-  "usingComponents": {}
+  "navigationBarTitleText": "ikun",
+  "usingComponents": {
+    "found": "/pages/tabbar/found/found"
+  }
 }

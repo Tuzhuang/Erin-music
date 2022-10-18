@@ -41,11 +41,8 @@
 .popup .mask .content.data-v-6913c681 {
   width: 100%;
   background-color: #000;
-  border-top-left-radius: 40rpx;
-  border-top-right-radius: 40rpx;
   overflow: hidden;
   position: absolute;
-  bottom: 0;
   transition: .3s;
   z-index: 99;
   padding: 20rpx;

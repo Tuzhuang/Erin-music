@@ -74,13 +74,14 @@
 		}
 
 		.forget-pwd {
+			width: 160rpx;
 			height: 60rpx;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			font-size: 24rpx;
 			color: #7d7d7d;
-			margin-top: 50rpx;
+			margin: 50rpx auto;
 
 			.arrow-icon {
 				width: 28rpx;

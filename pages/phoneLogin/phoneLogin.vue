@@ -23,15 +23,15 @@
 		<!-- 键盘 -->
 		<key-board :isShow.sync="iskeyBoardShow" @boardItem="boardItem" />
 		<!-- 输入验证码 -->
-		<popup :isPopup.sync="isValidcodeShow" height="1200" bgColor="#151515">
+		<popup :isPopup.sync="isValidcodeShow" height="80" bgColor="#151515">
 			<phone-validcode :isInCompon.sync="isValidcodeShow" @changeValidShow="iskeyBoardShow=true" slot="content" />
 		</popup>
 		<!-- 输入密码 -->
-		<popup :isPopup.sync="isPasswordShow" height="1200" bgColor="#151515">
+		<popup :isPopup.sync="isPasswordShow" height="80" bgColor="#151515">
 			<phone-password :isInCompon.sync="isPasswordShow" @forgetPwd="isResetPwdShow=true" slot="content" />
 		</popup>
 		<!-- 重设密码 -->
-		<popup :isPopup.sync="isResetPwdShow" height="1200" bgColor="#151515">
+		<popup :isPopup.sync="isResetPwdShow" height="80" bgColor="#151515">
 			<reset-password :isInCompon.sync="isResetPwdShow" slot="content" />
 		</popup>
 	</view>

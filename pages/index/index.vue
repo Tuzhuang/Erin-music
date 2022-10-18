@@ -1,52 +1,131 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+	<view class="index-home">
+		<!-- 发现页面 -->
+		<found v-if="curTabBar=='found'"></found>
+
+		<!-- 底部标签栏 -->
+		<view class="tab-bar">
+			<view class="item-bar" @click="switchBar('found')">
+				<view :class="['icon-con',{'active':curTabBar=='found'}]">
+					<img :class="['bar-icon',{'active':curTabBar=='found'}]"
+						src="/static/images/pages/tabbar/found.png">
+				</view>
+				<p :class="['title',{'active':curTabBar=='found'}]">发现</p>
+			</view>
+			<view class="item-bar" @click="switchBar('podcast')">
+				<view :class="['icon-con',{'active':curTabBar=='podcast'}]">
+					<img :class="['bar-icon',{'active':curTabBar=='podcast'}]"
+						src="/static/images/pages/tabbar/podcast.png">
+				</view>
+				<p :class="['title',{'active':curTabBar=='podcast'}]">播客</p>
+			</view>
+			<view class="item-bar" @click="switchBar('mine')">
+				<view :class="['icon-con',{'active':curTabBar=='mine'}]">
+					<img :class="['bar-icon',{'active':curTabBar=='mine'}]" src="/static/images/pages/tabbar/mine.png">
+				</view>
+				<p :class="['title',{'active':curTabBar=='mine'}]">我的</p>
+			</view>
+			<view class="item-bar" @click="switchBar('focuson')">
+				<view :class="['icon-con','focuson',{'active':curTabBar=='focuson'}]">
+					<img :class="['bar-icon','focuson',{'active':curTabBar=='focuson'}]"
+						src="/static/images/pages/tabbar/cng.png">
+				</view>
+				<p :class="['title',{'active':curTabBar=='focuson'}]">关注</p>
+			</view>
+			<view class="item-bar" @click="switchBar('cloudVill')">
+				<view :class="['icon-con','cloud',{'active':curTabBar=='cloudVill'}]">
+					<img v-if="curTabBar!='cloudVill'" :class="['bar-icon','cloud',{'active':curTabBar=='cloudVill'}]"
+						src="/static/images/pages/tabbar/cloud_vill.png" />
+					<img v-else :class="['bar-icon','cloud',{'active':curTabBar=='cloudVill'}]"
+						src="/static/images/pages/tabbar/cloud_vill_active.png" />
+				</view>
+				<p :class="['title',{'active':curTabBar=='cloudVill'}]">云村</p>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import found from '@/pages/tabbar/found/found.vue'
 	export default {
+		components: {
+			found
+		},
 		data() {
 			return {
-				title: 'Hello'
+				curTabBar: 'found',
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
-
+			switchBar(barName) {
+				this.curTabBar = barName;
+			}
 		}
 	}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+<style lang="scss" scoped>
+	.index-home {
+		.tab-bar {
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			height: 160rpx;
+			display: flex;
+			justify-content: space-around;
+			background-color: #0d0d0d;
+			padding-top: 16rpx;
+			box-sizing: border-box;
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
+			.item-bar {
+				.icon-con {
+					width: 60rpx;
+					height: 60rpx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					position: relative;
+					transition: .2s;
 
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
+					.bar-icon {
+						width: 60rpx;
+						height: 60rpx;
+						transition: .2s;
 
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+						&.focuson {
+							transform: scale(1.1);
+							position: absolute;
+							left: 1rpx;
+						}
+
+						&.active {
+							transform: scale(.7);
+						}
+					}
+
+					&.active {
+						background: linear-gradient(to bottom, #651f1c, #541d19);
+						border-radius: 50%;
+					}
+
+					&.focuson.active,
+					&.cloud.active {
+						background: #fff;
+					}
+				}
+
+				.title {
+					font-size: 24rpx;
+					color: #3e3e3f;
+					text-align: center;
+					margin-top: 10rpx;
+					transition: .4s;
+
+					&.active {
+						color: #651f1c;
+					}
+				}
+			}
+		}
 	}
 </style>
