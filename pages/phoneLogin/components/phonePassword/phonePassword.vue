@@ -4,7 +4,7 @@
 		<view class="password-con">
 			<input type="text" v-model="password" placeholder="输入密码">
 		</view>
-		<p :class="['login',{'comp':password.length}]">立即登录</p>
+		<p :class="['login',{'comp':password.length}]" @click="loginIn">立即登录</p>
 		<view class="forget-pwd" @click="forgetPwd">
 			<p>忘记密码</p>
 			<img src="/static/images/pages/phoneLogin/right-arrow.svg" class="arrow-icon" />
@@ -13,6 +13,9 @@
 </template>
 
 <script>
+	import {
+		login
+	} from '@/api/login.js';
 	export default {
 		props: {
 			isInCompon: {
@@ -29,6 +32,18 @@
 			forgetPwd() {
 				this.$emit('update:isInCompon', false);
 				this.$emit('forgetPwd');
+			},
+			async loginIn() {
+				let obj = {
+					phone: '15893336752',
+					password: 'gui15893336752'
+				}
+				let res = await login(obj);
+				if (res && res.code == 200) {
+					console.log('res', res)
+				}
+
+
 			}
 		}
 	}

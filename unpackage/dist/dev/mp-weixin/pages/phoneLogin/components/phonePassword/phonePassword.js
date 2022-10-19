@@ -114,21 +114,24 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 93));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _login = __webpack_require__(/*! @/api/login.js */ 96);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
+
+
 {
   props: {
     isInCompon: {
@@ -145,6 +148,18 @@ var _default =
     forgetPwd: function forgetPwd() {
       this.$emit('update:isInCompon', false);
       this.$emit('forgetPwd');
+    },
+    loginIn: function loginIn() {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var obj, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                obj = {
+                  phone: '15893336752',
+                  password: 'gui15893336752' };_context.next = 3;return (
+
+                  (0, _login.login)(obj));case 3:res = _context.sent;
+                if (res && res.code == 200) {
+                  console.log('res', res);
+                }case 5:case "end":return _context.stop();}}}, _callee);}))();
+
+
     } } };exports.default = _default;
 
 /***/ }),
