@@ -15,8 +15,9 @@
 		<popup :isPopup.sync="menuShow" mode="left" width="80" bgColor="#151515">
 			<view class="menu-con" slot="content">
 				<view class="user-info">
-					<img class="avatar" src="/static/images/pages/found/avatar.png">
-					<p class="username">立即登录</p>
+					<img class="avatar" v-if="userInfoObj.avatarUrl" :src="userInfoObj.avatarUrl">
+					<img class="avatar" v-else src="/static/images/pages/found/avatar.png">
+					<p class="username">{{userInfoObj.nickname || '立即登录'}}</p>
 					<img class="arrow" src="/static/images/pages/found/arrow_fff.png">
 					<img class="scan" src="/static/images/pages/found/scan.svg">
 				</view>
@@ -26,6 +27,7 @@
 						<p class="title">消息中心</p>
 						<img class="more-icon" src="/static/images/pages/phoneLogin/right-arrow.svg">
 					</view>
+					<p class="tips">下面的部分我还没有想好要写一些什么东西，就请期待吧~</p>
 				</view>
 			</view>
 		</popup>
@@ -35,6 +37,9 @@
 <script>
 	import topBar from '@/components/topBar.vue';
 	import popup from '@/components/popup.vue';
+	import {
+		mapState
+	} from 'vuex';
 	export default {
 		components: {
 			topBar,
@@ -43,7 +48,15 @@
 		data() {
 			return {
 				menuShow: true,
+				userInfoObj:{}, // 用户信息
 			}
+		},
+		computed:{
+			...mapState(["userInfo"]),
+		},
+		created(){
+			this.userInfoObj = JSON.parse(this.userInfo);
+			console.log(JSON.parse(this.userInfo));
 		},
 		methods: {
 			openMenuShow(val) {
@@ -116,7 +129,7 @@
 				height: 80rpx;
 				padding: 0 10rpx;
 				box-sizing: border-box;
-				background-color: skyblue;
+				// background-color: skyblue;
 				display: flex;
 				align-items: center;
 				position: relative;
@@ -177,6 +190,10 @@
 					width: 40rpx;
 					height: 40rpx;
 				}
+			}
+			.tips {
+				color: #fff;
+				margin-top: 40rpx;
 			}
 		}
 	}

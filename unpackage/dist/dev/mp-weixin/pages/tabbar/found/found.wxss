@@ -76,7 +76,6 @@
   height: 80rpx;
   padding: 0 10rpx;
   box-sizing: border-box;
-  background-color: skyblue;
   display: flex;
   align-items: center;
   position: relative;
@@ -128,5 +127,9 @@
 .found .plate .item-con .more-icon.data-v-556fc8bd {
   width: 40rpx;
   height: 40rpx;
+}
+.found .plate .tips.data-v-556fc8bd {
+  color: #fff;
+  margin-top: 40rpx;
 }
 

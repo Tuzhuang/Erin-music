@@ -16,6 +16,9 @@
 	import {
 		login
 	} from '@/api/login.js';
+	import {
+		mapMutations
+	} from 'vuex';
 	export default {
 		props: {
 			isInCompon: {
@@ -29,6 +32,7 @@
 			}
 		},
 		methods: {
+			...mapMutations(["setLoginToken","setUserInfo"]),
 			forgetPwd() {
 				this.$emit('update:isInCompon', false);
 				this.$emit('forgetPwd');
@@ -41,9 +45,13 @@
 				let res = await login(obj);
 				if (res && res.code == 200) {
 					console.log('res', res)
+					this.setLoginToken(res.token);
+					// 保存用户登录信息
+					this.setUserInfo(res.profile);
+					uni.reLaunch({
+						url:'/pages/index/index'
+					})
 				}
-
-
 			}
 		}
 	}
