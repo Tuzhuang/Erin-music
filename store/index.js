@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
 		loginToken: uni.getStorageSync('loginToken') || "",
-		userInfo: uni.getStorageSync('userInfo') || {},
+		userInfo: uni.getStorageSync('userInfo') ? JSON.parse(uni.getStorageSync('userInfo')) : {}, // 防止为空值
 	},
 	mutations: {
 		// 设置token

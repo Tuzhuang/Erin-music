@@ -1,7 +1,7 @@
 <template>
 	<view class="index-home">
 		<!-- 发现页面 -->
-		<found v-if="curTabBar=='found'"></found>
+		<found v-if="curTabBar=='found'" :isHomeBarBg="homeBarBg"></found>
 
 		<!-- 底部标签栏 -->
 		<view class="tab-bar">
@@ -54,11 +54,21 @@
 		data() {
 			return {
 				curTabBar: 'found',
+				homeBarBg: false, // 判断首页的时候当往下滚动的时候就展示背景色
 			}
 		},
 		methods: {
 			switchBar(barName) {
 				this.curTabBar = barName;
+			}
+		},
+		onPageScroll(e) {
+			if (this.curTabBar == 'found') {
+				if (e.scrollTop > 0) {
+					this.homeBarBg = true;
+				} else {
+					this.homeBarBg = false;
+				}
 			}
 		}
 	}
@@ -127,5 +137,7 @@
 				}
 			}
 		}
+
+
 	}
 </style>

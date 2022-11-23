@@ -30,9 +30,9 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 99;
+  z-index: 999;
   background: rgba(0, 0, 0, 0.4);
-  transition: .5s;
+  transition: .3s;
 }
 .popup .mask.hide.data-v-6913c681 {
   background: transparent;
@@ -44,7 +44,7 @@
   overflow: hidden;
   position: absolute;
   transition: .3s;
-  z-index: 99;
+  z-index: 999;
   padding: 20rpx;
   box-sizing: border-box;
 }

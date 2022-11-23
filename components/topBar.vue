@@ -1,5 +1,5 @@
 <template>
-	<view class="top-bar">
+	<view class="top-bar" :style="{background:bgColor}">
 		<view class="left">
 			<view class="menu" @click="openMenu">
 				<p class="one"></p>
@@ -25,6 +25,12 @@
 
 			}
 		},
+		props: {
+			bgColor: {
+				type: String,
+				default: 'transparent'
+			}
+		},
 		methods: {
 			openMenu() {
 				this.$emit("openMenuShow", true);
@@ -37,17 +43,22 @@
 	.top-bar {
 		width: 100%;
 		height: 100rpx;
-		background-color: #171515;
-		padding: 0 20rpx;
+		padding: 0 10rpx;
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
+		position: fixed;
+		top: 0;
+		z-index: 20;
+		transition: .2s;
 
 		.left {
 			width: 70rpx;
 			height: 100%;
 			display: flex;
 			justify-content: center;
+			padding-left: 10rpx;
+			box-sizing: border-box;
 
 			.menu {
 				width: 70rpx;

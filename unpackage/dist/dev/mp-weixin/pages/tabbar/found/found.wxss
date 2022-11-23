@@ -25,14 +25,15 @@
 /* 透明度 */
 /* 文章场景相关 */
 .found.data-v-556fc8bd {
+  width: 100%;
   min-height: 100vh;
-  padding: 100rpx 0 160rpx;
+  padding-bottom: 160rpx;
+  padding-top: 100rpx;
   box-sizing: border-box;
+  background: #0e0e0e;
 }
 .found .tab-bar.data-v-556fc8bd {
   width: 100%;
-  position: fixed;
-  top: 0;
 }
 .found .tab-bar .search-con.data-v-556fc8bd {
   width: 100%;
@@ -131,5 +132,40 @@
 .found .plate .tips.data-v-556fc8bd {
   color: #fff;
   margin-top: 40rpx;
+}
+.found .banner-con.data-v-556fc8bd {
+  height: 310rpx;
+  padding-top: 0rpx;
+  overflow: hidden;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 10;
+}
+.found .banner-con .banner.data-v-556fc8bd {
+  width: 100%;
+  height: 288rpx;
+}
+.found .banner-con .banner .swiper-item.data-v-556fc8bd {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.found .banner-con .banner .banner-img.data-v-556fc8bd {
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+.found .banner-bg.data-v-556fc8bd {
+  width: 100%;
+  height: 240rpx;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: .5s;
+  -webkit-filter: blur(60px);
+          filter: blur(60px);
 }
 

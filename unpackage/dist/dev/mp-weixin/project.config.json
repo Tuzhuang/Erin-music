@@ -6,7 +6,11 @@
     },
     "setting": {
         "urlCheck": false,
-        "ignoreUploadUnusedFiles": true,
+        "es6": false,
+        "postcss": false,
+        "minified": false,
+        "newFeature": true,
+        "bigPackageSizeSupport": true,
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
@@ -14,7 +18,7 @@
         }
     },
     "compileType": "miniprogram",
-    "libVersion": "2.26.2",
+    "libVersion": "2.27.3",
     "appid": "wx08b6c0d072e82d9c",
     "projectname": "erin-music",
     "condition": {

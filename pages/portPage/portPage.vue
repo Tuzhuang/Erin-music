@@ -1,6 +1,6 @@
 <template>
 	<view class="port-page">
-		<p class="exper">不想登录？那就立即体验吧</p>
+		<p class="exper" @click="tourist">不想登录？那就立即体验吧</p>
 		<image class="logo-img" src="/static/images/pages/portPage/logo.png"></image>
 		<view class="login-con">
 			<view class="phone-login" @click="phoneLogin">手机号登录</view>
@@ -22,7 +22,7 @@
 				<image :src="'/static/images/pages/portPage/'+item+'.png'" class="type-img"></image>
 			</view>
 		</view>
-		<popup :isPopup.sync="isAgreeShow" height="340" bgColor="#282828">
+		<popup :isPopup.sync="isAgreeShow" height="20" bgColor="#282828">
 			<view slot="content" class="service-agree">
 				<p class="title">服务协议和隐私政策等指引</p>
 				<view class="desc">
@@ -77,6 +77,11 @@
 				if (this.isAgree) {
 					this.agreeCont('yes');
 				}
+			},
+			tourist(){
+				uni.reLaunch({
+					url:'/pages/index/index'
+				})
 			}
 		}
 	}

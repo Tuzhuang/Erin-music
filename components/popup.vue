@@ -1,6 +1,6 @@
 <template>
 	<view class="popup">
-		<view :class="['mask',{'hide':!isPopup}]" @click="hidePopup">
+		<view :class="['mask',{'hide':!isPopup}]" @click="hidePopup" :catchtouchmove="isPopup?true:false">
 			<!-- <view class="content"
 				:style="{width:width+'%',height:height+'rpx',left:isPopup?'0':-width+'%',bottom:isPopup?'0':-height+'rpx',background:bgColor}"
 				@click.stop> -->
@@ -96,9 +96,9 @@
 			right: 0;
 			bottom: 0;
 			left: 0;
-			z-index: 99;
+			z-index: 999;
 			background: rgba(#000, .4);
-			transition: .5s;
+			transition: .3s;
 
 			&.hide {
 				background: transparent;
@@ -108,13 +108,10 @@
 			.content {
 				width: 100%;
 				background-color: #000;
-				// border-top-left-radius: 40rpx;
-				// border-top-right-radius: 40rpx;
 				overflow: hidden;
 				position: absolute;
-				// bottom: 0;
 				transition: .3s;
-				z-index: 99;
+				z-index: 999;
 				padding: 20rpx;
 				box-sizing: border-box;
 			}

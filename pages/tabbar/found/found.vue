@@ -1,6 +1,6 @@
 <template>
 	<view class="found">
-		<top-bar class="tab-bar" @openMenuShow="openMenuShow">
+		<top-bar class="tab-bar" :bgColor="isHomeBarBg?'#171515':''" @openMenuShow="openMenuShow">
 			<view class="search-con" slot="content">
 				<view class="search-bar">
 					<img class="search-icon" src="/static/images/pages/found/search.svg">
@@ -15,9 +15,9 @@
 		<popup :isPopup.sync="menuShow" mode="left" width="80" bgColor="#151515">
 			<view class="menu-con" slot="content">
 				<view class="user-info">
-					<img class="avatar" v-if="userInfoObj.avatarUrl" :src="userInfoObj.avatarUrl">
+					<img class="avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl">
 					<img class="avatar" v-else src="/static/images/pages/found/avatar.png">
-					<p class="username">{{userInfoObj.nickname || '立即登录'}}</p>
+					<p class="username">{{userInfo.nickname || '立即登录'}}</p>
 					<img class="arrow" src="/static/images/pages/found/arrow_fff.png">
 					<img class="scan" src="/static/images/pages/found/scan.svg">
 				</view>
@@ -31,6 +31,22 @@
 				</view>
 			</view>
 		</popup>
+		<view class="banner-con">
+			<view class="banner">
+				<swiper class="swiper" circular indicator-dots indicator-color="#d5d5d6"
+					indicator-active-color="#ffffff" autoplay interval="2500" duration="1000" @change="bannerChange">
+					<swiper-item class="swiper-item" v-for="(item,index) in bannerList" :key="index">
+						<image :src="item" class="banner-img" />
+					</swiper-item>
+				</swiper>
+			</view>
+		</view>
+		<view class="banner-bg" v-show="!isHomeBarBg" :style="{backgroundImage:'url('+bannerList[curBannerIdx]+')'}">
+		</view>
+		<view class="sub-menu">
+			
+		</view>
+
 	</view>
 </template>
 
@@ -41,27 +57,46 @@
 		mapState
 	} from 'vuex';
 	export default {
+		props: {
+			isHomeBarBg: { // tabbar是否展示背景色
+				type: Boolean,
+				default: false
+			}
+		},
 		components: {
 			topBar,
 			popup
 		},
 		data() {
 			return {
-				menuShow: true,
-				userInfoObj:{}, // 用户信息
+				menuShow: false,
+				bannerList: [
+					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2021/08/12/184/ias_67f14f070915b4a91b6ba98698c35d3c_1135x545_85.jpg",
+					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/07/171/ias_5650bb3a31a524d231ad162e6bba8c5e_1135x545_85.jpg",
+					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/24/45/ias_b51fe08570913f541d489768bbb307a4_1135x545_85.jpg",
+					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/10/27/150/ias_1bd44839bfd63ed49d233f8a2ff64d27_1135x545_85.jpg",
+					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/10/21/130/ias_f0f74d36980fbc8835667fe291773d7b_1135x545_85.jpg",
+					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/07/169/ias_80c6070fb28ff034b7c7a73702069146_1135x545_85.jpg",
+				],
+				curBannerIdx: 0,
 			}
 		},
-		computed:{
+		computed: {
 			...mapState(["userInfo"]),
+			isRollTop() {
+				console.log()
+			}
 		},
-		created(){
-			this.userInfoObj = JSON.parse(this.userInfo);
-			console.log(JSON.parse(this.userInfo));
+		created() {
+			
 		},
 		methods: {
 			openMenuShow(val) {
 				console.log('val', val)
 				this.menuShow = true;
+			},
+			bannerChange(e) {
+				this.curBannerIdx = e.detail.current;
 			}
 		}
 	}
@@ -69,15 +104,15 @@
 
 <style lang="scss" scoped>
 	.found {
-		// 	width: 100%;
+		width: 100%;
 		min-height: 100vh;
-		padding: 100rpx 0 160rpx;
+		padding-bottom: 160rpx;
+		padding-top: 100rpx;
 		box-sizing: border-box;
+		background: #0e0e0e;
 
 		.tab-bar {
 			width: 100%;
-			position: fixed;
-			top: 0;
 
 			.search-con {
 				width: 100%;
@@ -129,7 +164,6 @@
 				height: 80rpx;
 				padding: 0 10rpx;
 				box-sizing: border-box;
-				// background-color: skyblue;
 				display: flex;
 				align-items: center;
 				position: relative;
@@ -191,10 +225,54 @@
 					height: 40rpx;
 				}
 			}
+
 			.tips {
 				color: #fff;
 				margin-top: 40rpx;
 			}
 		}
+
+		.banner-con {
+			height: 310rpx;
+			padding-top: 0rpx;
+			overflow: hidden;
+			position: sticky;
+			z-index: 10;
+
+			.banner {
+				width: 100%;
+				height: 288rpx;
+
+				.swiper-item {
+					padding: 0 20rpx;
+					box-sizing: border-box;
+				}
+
+				.banner-img {
+					width: 100%;
+					height: 100%;
+					border-radius: 20rpx;
+				}
+			}
+		}
+
+		.banner-bg {
+			width: 100%;
+			height: 240rpx;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			// z-index: -1;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			transition: .5s;
+			filter: blur(60px);
+		}
+
+		
+
+
 	}
 </style>
