@@ -49,7 +49,7 @@
 		align-items: center;
 		position: fixed;
 		top: 0;
-		z-index: 20;
+		z-index: 99;
 		transition: .2s;
 
 		.left {

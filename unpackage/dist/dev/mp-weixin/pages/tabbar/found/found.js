@@ -81,6 +81,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.subMenu, function(item, index) {
+    var $orig = _vm.__get_orig(item)
+
+    var g0 = [4, 5, 6].includes(index)
+    return {
+      $orig: $orig,
+      g0: g0
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -169,7 +187,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var topBar = function topBar() {__webpack_require__.e(/*! require.ensure | components/topBar */ "components/topBar").then((function () {return resolve(__webpack_require__(/*! @/components/topBar.vue */ 85));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popup = function popup() {__webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {return resolve(__webpack_require__(/*! @/components/popup.vue */ 45));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var topBar = function topBar() {__webpack_require__.e(/*! require.ensure | components/topBar */ "components/topBar").then((function () {return resolve(__webpack_require__(/*! @/components/topBar.vue */ 85));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popup = function popup() {__webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {return resolve(__webpack_require__(/*! @/components/popup.vue */ 45));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loading */ "components/loading").then((function () {return resolve(__webpack_require__(/*! @/components/loading.vue */ 92));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var leftMenu = function leftMenu() {__webpack_require__.e(/*! require.ensure | pages/tabbar/menu/menu */ "pages/tabbar/menu/menu").then((function () {return resolve(__webpack_require__(/*! @/pages/tabbar/menu/menu.vue */ 111));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 {
@@ -181,7 +209,9 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
 
   components: {
     topBar: topBar,
-    popup: popup },
+    popup: popup,
+    loading: loading,
+    leftMenu: leftMenu },
 
   data: function data() {
     return {
@@ -194,18 +224,50 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
       "https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/10/21/130/ias_f0f74d36980fbc8835667fe291773d7b_1135x545_85.jpg",
       "https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/07/169/ias_80c6070fb28ff034b7c7a73702069146_1135x545_85.jpg"],
 
-      curBannerIdx: 0 };
+      curBannerIdx: 0,
+      subMenu: [{
+        icon: 'recom',
+        name: '每日推荐' },
 
+      {
+        icon: 'private',
+        name: '私人FM' },
+
+      {
+        icon: 'playlist',
+        name: '歌单' },
+
+      {
+        icon: 'leader',
+        name: '排行榜' },
+
+      {
+        icon: 'songmeet',
+        name: '一歌一遇' },
+
+      {
+        icon: 'album',
+        name: '数字专辑' },
+
+      {
+        icon: 'audiobook',
+        name: '有声书' },
+
+      {
+        icon: 'cd',
+        name: '关注新歌' },
+
+      {
+        icon: 'birthday',
+        name: '生日专区' }],
+
+
+      curDay: new Date().getDate() // 当前日期
+    };
   },
-  computed: _objectSpread(_objectSpread({},
-  (0, _vuex.mapState)(["userInfo"])), {}, {
-    isRollTop: function isRollTop() {
-      console.log();
-    } }),
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(["userInfo"])),
 
-  created: function created() {
-
-  },
   methods: {
     openMenuShow: function openMenuShow(val) {
       console.log('val', val);

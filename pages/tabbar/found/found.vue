@@ -11,26 +11,7 @@
 				<img class="song-icon" src="/static/images/pages/found/gene_song.png">
 			</view>
 		</top-bar>
-		<!-- 点击菜单左侧弹出层 -->
-		<popup :isPopup.sync="menuShow" mode="left" width="80" bgColor="#151515">
-			<view class="menu-con" slot="content">
-				<view class="user-info">
-					<img class="avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl">
-					<img class="avatar" v-else src="/static/images/pages/found/avatar.png">
-					<p class="username">{{userInfo.nickname || '立即登录'}}</p>
-					<img class="arrow" src="/static/images/pages/found/arrow_fff.png">
-					<img class="scan" src="/static/images/pages/found/scan.svg">
-				</view>
-				<view class="plate">
-					<view class="item-con">
-						<img class="icon" src="">
-						<p class="title">消息中心</p>
-						<img class="more-icon" src="/static/images/pages/phoneLogin/right-arrow.svg">
-					</view>
-					<p class="tips">下面的部分我还没有想好要写一些什么东西，就请期待吧~</p>
-				</view>
-			</view>
-		</popup>
+
 		<view class="banner-con">
 			<view class="banner">
 				<swiper class="swiper" circular indicator-dots indicator-color="#d5d5d6"
@@ -43,16 +24,45 @@
 		</view>
 		<view class="banner-bg" v-show="!isHomeBarBg" :style="{backgroundImage:'url('+bannerList[curBannerIdx]+')'}">
 		</view>
-		<view class="sub-menu">
-			
+		<scroll-view scroll-x>
+			<view class="sub-menu">
+				<view class="sub-item" v-for="(item,index) in subMenu" :key="index">
+					<view class="icon-con">
+						<img :class="['icon',{'big':[4,5,6].includes(index)}]"
+							:src="'/static/images/pages/found/'+item.icon+'.png'" alt="图片无法展示噢~">
+						<tetx class="day" v-if="index==0">{{curDay}}</tetx>
+					</view>
+					<p class="sub-tit">{{item.name}}</p>
+				</view>
+
+			</view>
+		</scroll-view>
+		<view class="line"></view>
+		<view class="recommend">
+			<view class="top-con">
+				<h2 class="title">推荐歌单</h2>
+				<view class="more-con">
+					<text class="more">更多</text>
+					<img class="more-icon" src="/static/images/pages/found/arrow_fff.png" alt="">
+				</view>
+			</view>
 		</view>
 
+		<!-- 点击菜单左侧菜单弹出层 -->
+		<popup :isPopup.sync="menuShow" mode="left" width="80" bgColor="#151515">
+			<view slot="content">
+				<leftMenu :userInfo.sync="userInfo" />
+			</view>
+		</popup>
+		<loading ref="loading" />
 	</view>
 </template>
 
 <script>
 	import topBar from '@/components/topBar.vue';
 	import popup from '@/components/popup.vue';
+	import loading from '@/components/loading.vue';
+	import leftMenu from '@/pages/tabbar/menu/menu.vue';
 	import {
 		mapState
 	} from 'vuex';
@@ -65,7 +75,9 @@
 		},
 		components: {
 			topBar,
-			popup
+			popup,
+			loading,
+			leftMenu,
 		},
 		data() {
 			return {
@@ -79,16 +91,48 @@
 					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/07/169/ias_80c6070fb28ff034b7c7a73702069146_1135x545_85.jpg",
 				],
 				curBannerIdx: 0,
+				subMenu: [{
+						icon: 'recom',
+						name: '每日推荐',
+					},
+					{
+						icon: 'private',
+						name: '私人FM',
+					},
+					{
+						icon: 'playlist',
+						name: '歌单',
+					},
+					{
+						icon: 'leader',
+						name: '排行榜',
+					},
+					{
+						icon: 'songmeet',
+						name: '一歌一遇',
+					},
+					{
+						icon: 'album',
+						name: '数字专辑',
+					},
+					{
+						icon: 'audiobook',
+						name: '有声书',
+					},
+					{
+						icon: 'cd',
+						name: '关注新歌',
+					},
+					{
+						icon: 'birthday',
+						name: '生日专区',
+					},
+				],
+				curDay: new Date().getDate(), // 当前日期
 			}
 		},
 		computed: {
 			...mapState(["userInfo"]),
-			isRollTop() {
-				console.log()
-			}
-		},
-		created() {
-			
 		},
 		methods: {
 			openMenuShow(val) {
@@ -97,7 +141,7 @@
 			},
 			bannerChange(e) {
 				this.curBannerIdx = e.detail.current;
-			}
+			},
 		}
 	}
 </script>
@@ -158,80 +202,6 @@
 			}
 		}
 
-		.menu-con {
-			.user-info {
-				width: 100%;
-				height: 80rpx;
-				padding: 0 10rpx;
-				box-sizing: border-box;
-				display: flex;
-				align-items: center;
-				position: relative;
-
-				.avatar {
-					width: 60rpx;
-					height: 60rpx;
-					border-radius: 50%;
-					overflow: hidden;
-					margin-right: 20rpx;
-				}
-
-				.username {
-					font-size: 32rpx;
-					color: #fff;
-				}
-
-				.arrow {
-					width: 30rpx;
-					height: 30rpx;
-				}
-
-				.scan {
-					width: 60rpx;
-					height: 60rpx;
-					position: absolute;
-					right: 0;
-				}
-			}
-		}
-
-		.plate {
-			width: 100%;
-			background: #202020;
-			padding: 20rpx;
-			box-sizing: border-box;
-			border-radius: 20rpx;
-			margin-top: 30rpx;
-
-			.item-con {
-				width: 100%;
-				height: 70rpx;
-				border-bottom: 1px solid #2f2f2f;
-				display: flex;
-				align-items: center;
-
-				.icon {
-					width: 40rpx;
-					height: 40rpx;
-				}
-
-				.title {
-					font-size: 30rpx;
-					color: #fff;
-				}
-
-				.more-icon {
-					width: 40rpx;
-					height: 40rpx;
-				}
-			}
-
-			.tips {
-				color: #fff;
-				margin-top: 40rpx;
-			}
-		}
-
 		.banner-con {
 			height: 310rpx;
 			padding-top: 0rpx;
@@ -271,8 +241,97 @@
 			filter: blur(60px);
 		}
 
-		
+		.sub-menu {
+			width: 100%;
+			height: 180rpx;
+			display: flex;
+			margin-top: -10rpx;
 
+			.sub-item {
+				width: 150rpx;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: 0 30rpx;
 
+				.icon-con {
+					width: 100rpx;
+					height: 100rpx;
+					border-radius: 50%;
+					background: #2a1919;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					position: relative;
+
+					.icon {
+						width: 70rpx;
+						height: 70rpx;
+
+						&.big {
+							width: 90rpx;
+							height: 90rpx;
+						}
+					}
+
+					.day {
+						font-size: 22rpx;
+						font-weight: 600;
+						color: #2a1919;
+						position: absolute;
+						top: 44rpx;
+					}
+				}
+
+				.sub-tit {
+					font-size: 24rpx;
+					color: #cbcbcb;
+					margin-top: 10rpx;
+				}
+			}
+		}
+
+		.line {
+			width: 100%;
+			height: 1rpx;
+			background: #292929;
+		}
+
+		.recommend {
+			padding: 20rpx 30rpx;
+			box-sizing: border-box;
+
+			.top-con {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				color: #fff;
+
+				.title {
+					font-size: 30rpx;
+				}
+
+				.more-con {
+					padding: 10rpx 20rpx;
+					border: 1px solid #404040;
+					border-radius: 100rpx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					.more {
+						font-size: 22rpx;
+
+					}
+
+					.more-icon {
+						width: 24rpx;
+						height: 22rpx;
+					}
+				}
+			}
+		}
 	}
 </style>
