@@ -72,6 +72,11 @@
   -webkit-filter: brightness(60%);
           filter: brightness(60%);
 }
+.found .top-card.data-v-556fc8bd {
+  background: #151515;
+  border-bottom-right-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+}
 .found .banner-con.data-v-556fc8bd {
   height: 310rpx;
   padding-top: 0rpx;
@@ -158,14 +163,18 @@
   background: #292929;
 }
 .found .recommend.data-v-556fc8bd {
-  padding: 20rpx 30rpx;
+  height: 380rpx;
+  padding: 20rpx 0;
   box-sizing: border-box;
+  position: relative;
 }
 .found .recommend .top-con.data-v-556fc8bd {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
+  padding: 0 30rpx;
+  box-sizing: border-box;
 }
 .found .recommend .top-con .title.data-v-556fc8bd {
   font-size: 30rpx;
@@ -184,5 +193,223 @@
 .found .recommend .top-con .more-con .more-icon.data-v-556fc8bd {
   width: 24rpx;
   height: 22rpx;
+}
+.found .recommend .recom-con.data-v-556fc8bd {
+  width: 100%;
+  height: 290rpx;
+  margin: 20rpx 30rpx 0;
+  display: flex;
+  margin-right: 30rpx !important;
+}
+.found .recommend .recom-con .roll-con.data-v-556fc8bd {
+  width: 100%;
+  height: 100%;
+  margin-right: 20rpx;
+}
+.found .recommend .recom-con .roll-con .roll-swiper.data-v-556fc8bd {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  position: relative;
+  pointer-events: none;
+}
+.found .recommend .recom-con .recom-item.data-v-556fc8bd {
+  min-width: 200rpx;
+  height: 290rpx;
+  margin-right: 20rpx;
+  position: relative;
+}
+.found .recommend .recom-con .recom-item.data-v-556fc8bd:last-child {
+  padding-right: 30rpx;
+}
+.found .recommend .recom-con .recom-item:last-child .play-count.data-v-556fc8bd {
+  right: 38rpx;
+}
+.found .recommend .recom-con .recom-item .logo-icon.data-v-556fc8bd {
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  z-index: 2;
+  width: 32rpx;
+  height: 32rpx;
+  padding: 2rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+}
+.found .recommend .recom-con .recom-item .play-count.data-v-556fc8bd {
+  padding: 4rpx 12rpx;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10rpx;
+  right: 8rpx;
+  z-index: 2;
+}
+.found .recommend .recom-con .recom-item .play-count .triangle.data-v-556fc8bd {
+  width: 16rpx;
+  height: 16rpx;
+}
+.found .recommend .recom-con .recom-item .play-count .count.data-v-556fc8bd {
+  font-size: 16rpx;
+  color: #fff;
+  margin-left: 2rpx;
+}
+.found .recommend .recom-con .bg-img.data-v-556fc8bd {
+  width: 100%;
+  height: 200rpx;
+  border-radius: 20rpx;
+  transition: -webkit-transform .6s;
+  transition: transform .6s;
+  transition: transform .6s, -webkit-transform .6s;
+}
+.found .recommend .recom-con .bg-img.narrow.data-v-556fc8bd {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+}
+.found .recommend .recom-con .bg-img.ampli.data-v-556fc8bd {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.found .recommend .recom-con .infin-icon.data-v-556fc8bd {
+  position: absolute;
+  top: 4rpx;
+  right: 12rpx;
+  z-index: 2;
+  width: 42rpx;
+  height: 38rpx;
+}
+.found .recommend .recom-con .desc.data-v-556fc8bd {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  transition: .6s;
+}
+.found .recommend .recom-more.data-v-556fc8bd {
+  position: absolute;
+  right: 80rpx;
+  top: 126rpx;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.found .recommend .recom-more .left-more.data-v-556fc8bd {
+  width: 34rpx;
+  height: 34rpx;
+}
+.found .recommend .recom-more .more-text.data-v-556fc8bd {
+  font-size: 20rpx;
+  color: #515151;
+  -webkit-writing-mode: vertical-lr;
+          writing-mode: vertical-lr;
+  margin-top: 6rpx;
+}
+.found .song-card.data-v-556fc8bd {
+  background: #151515;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+  padding: 30rpx 0;
+  box-sizing: border-box;
+}
+.found .song-card .top-con.data-v-556fc8bd {
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.found .song-card .top-con .refresh-icon.data-v-556fc8bd {
+  width: 38rpx;
+  height: 28rpx;
+}
+.found .song-card .top-con .title.data-v-556fc8bd {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 20rpx;
+}
+.found .song-card .top-con .play-con.data-v-556fc8bd {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  border: 1px solid #404040;
+  border-radius: 50rpx;
+}
+.found .song-card .top-con .play-con .play-icon.data-v-556fc8bd {
+  width: 16rpx;
+  height: 16rpx;
+}
+.found .song-card .top-con .play-con .play-text.data-v-556fc8bd {
+  font-size: 22rpx;
+  color: #fff;
+  white-space: nowrap;
+  margin-left: 10rpx;
+}
+.found .song-card .song-swiper.data-v-556fc8bd {
+  margin-top: 16rpx;
+  height: 320rpx;
+}
+.found .song-card .song-swiper .song-item.data-v-556fc8bd {
+  padding-right: 30rpx;
+  box-sizing: border-box;
+}
+.found .song-card .song-swiper .song-item .song-con.data-v-556fc8bd {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+  position: relative;
+}
+.found .song-card .song-swiper .song-item .song-con .left-img.data-v-556fc8bd {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 16rpx;
+}
+.found .song-card .song-swiper .song-item .song-con .item-con.data-v-556fc8bd {
+  flex: 1;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.found .song-card .song-swiper .song-item .song-con .item-con .song-name.data-v-556fc8bd {
+  font-size: 28rpx;
+  color: #fff;
+}
+.found .song-card .song-swiper .song-item .song-con .item-con .song-name .sing-name.data-v-556fc8bd {
+  font-size: 20rpx;
+  color: #5d5d5d;
+  margin-left: 10rpx;
+}
+.found .song-card .song-swiper .song-item .song-con .item-con .tag.data-v-556fc8bd {
+  display: inline;
+  font-size: 16rpx;
+  color: #d87845;
+  padding: 4rpx 8rpx;
+  border-radius: 6rpx;
+  background: #1f1a17;
+}
+.found .song-card .song-swiper .song-item .song-con .video-play.data-v-556fc8bd {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  right: -10rpx;
+}
+.found .song-card .song-swiper .song-item .song-con .bottom-line.data-v-556fc8bd {
+  position: absolute;
+  width: calc(100% - 110rpx);
+  height: 1rpx;
+  background-color: #2f2f2f;
+  bottom: 0;
+  right: 0;
 }
 
