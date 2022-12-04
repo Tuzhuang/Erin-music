@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "ikun"
+				"navigationBarTitleText": ""
 			}
 		}, {
 			"path": "pages/portPage/portPage",

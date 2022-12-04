@@ -140,7 +140,18 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var found = function found() {Promise.all(/*! require.ensure | pages/tabbar/found/found */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/tabbar/found/found")]).then((function () {return resolve(__webpack_require__(/*! @/pages/tabbar/found/found.vue */ 38));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var found = function found() {Promise.all(/*! require.ensure | pages/tabbar/found/found */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/tabbar/found/found")]).then((function () {return resolve(__webpack_require__(/*! @/pages/tabbar/found/found.vue */ 38));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var bottomPlay = function bottomPlay() {__webpack_require__.e(/*! require.ensure | pages/index/components/bottomPlay */ "pages/index/components/bottomPlay").then((function () {return resolve(__webpack_require__(/*! ./components/bottomPlay.vue */ 45));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var playDetail = function playDetail() {__webpack_require__.e(/*! require.ensure | pages/playDetail/playDetail */ "pages/playDetail/playDetail").then((function () {return resolve(__webpack_require__(/*! @/pages/playDetail/playDetail.vue */ 52));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -191,17 +202,29 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 {
   components: {
-    found: found },
+    found: found,
+    bottomPlay: bottomPlay,
+    playDetail: playDetail },
 
   data: function data() {
     return {
       curTabBar: 'found',
-      homeBarBg: false // 判断首页的时候当往下滚动的时候就展示背景色
+      homeBarBg: false, // 判断首页的时候当往下滚动的时候就展示背景色
+      isBtPlayShow: true, // 是否展示底部的tabbar和播放栏
+      isPlayDetail: true // 是否展示音乐播放详情页
     };
   },
   methods: {
     switchBar: function switchBar(barName) {
       this.curTabBar = barName;
+    },
+    openPlayPage: function openPlayPage() {
+      this.isBtPlayShow = false;
+      this.isPlayDetail = true;
+    },
+    backMusicInfo: function backMusicInfo() {
+      this.isBtPlayShow = true;
+      this.isPlayDetail = false;
     } },
 
   onPageScroll: function onPageScroll(e) {

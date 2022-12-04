@@ -1,0 +1,1 @@
+<view class="play-bar"><view class="start-time _p">00<label class="colon _span">:</label>00</view><view class="progress"></view><view class="end-time _p">05<label class="colon _span">:</label>20</view></view>

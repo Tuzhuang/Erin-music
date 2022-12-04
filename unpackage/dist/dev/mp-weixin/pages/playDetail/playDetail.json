@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "play-bar": "/components/playBar"
+  },
+  "component": true
+}

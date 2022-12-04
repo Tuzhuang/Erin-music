@@ -1,6 +1,8 @@
 {
-  "navigationBarTitleText": "ikun",
+  "navigationBarTitleText": "",
   "usingComponents": {
-    "found": "/pages/tabbar/found/found"
+    "found": "/pages/tabbar/found/found",
+    "bottom-play": "/pages/index/components/bottomPlay",
+    "play-detail": "/pages/playDetail/playDetail"
   }
 }

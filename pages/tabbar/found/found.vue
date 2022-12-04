@@ -49,8 +49,8 @@
 					</view>
 				</view>
 				<!-- 最外层的view只用于设置层级，以展示加载更多提示 -->
-				<view style="position: sticky;z-index: 100;">
-					<scroll-view scroll-x lower-threshold="-50" @scrolltolower="recomRightMore">
+				<view style="position: sticky;z-index: 20;">
+					<scroll-view scroll-x lower-threshold="-100" @scrolltolower="recomRightMore">
 						<view class="recom-con">
 							<!-- 循环 -->
 							<view class="roll-con" @click="recomRoll">
@@ -94,7 +94,7 @@
 					<text class="play-text">播放</text>
 				</view>
 			</view>
-			<swiper class="song-swiper" duration="400" previous-margin="30rpx" next-margin="30rpx">
+			<swiper class="song-swiper" duration="300" previous-margin="30rpx" next-margin="30rpx">
 				<swiper-item class="song-item" v-for="(item,index) in 3" :key="index">
 					<view class="song-con" v-for="(item,index) in songList" :key="index">
 						<image class="left-img" :src="item.icon" mode="aspectFill"></image>
@@ -236,7 +236,7 @@
 	.found {
 		width: 100%;
 		min-height: 100vh;
-		padding-bottom: 160rpx;
+		padding-bottom: 240rpx;
 		padding-top: 100rpx;
 		box-sizing: border-box;
 		background: #0e0e0e;
@@ -573,7 +573,7 @@
 
 				.refresh-icon {
 					width: 38rpx;
-					height: 28rpx;
+					height: 30rpx;
 				}
 
 				.title {

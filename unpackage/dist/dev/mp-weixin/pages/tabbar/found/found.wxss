@@ -27,7 +27,7 @@
 .found.data-v-556fc8bd {
   width: 100%;
   min-height: 100vh;
-  padding-bottom: 160rpx;
+  padding-bottom: 240rpx;
   padding-top: 100rpx;
   box-sizing: border-box;
   background: #0e0e0e;
@@ -328,7 +328,7 @@
 }
 .found .song-card .top-con .refresh-icon.data-v-556fc8bd {
   width: 38rpx;
-  height: 28rpx;
+  height: 30rpx;
 }
 .found .song-card .top-con .title.data-v-556fc8bd {
   font-size: 28rpx;
