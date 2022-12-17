@@ -42,10 +42,10 @@
   display: block;
   margin: -2rpx 2rpx;
 }
-.play-bar .progress {
+.play-bar .slider-con {
   width: 100%;
-  height: 2px;
-  background: #ccc;
-  margin: 0 20rpx;
+}
+.play-bar .slider-con .slider {
+  margin: 20rpx 20rpx;
 }
 

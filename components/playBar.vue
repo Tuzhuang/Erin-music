@@ -1,8 +1,9 @@
 <template>
 	<view class="play-bar">
 		<p class="start-time">00<span class="colon">:</span>00</p>
-		<view class="progress">
-
+		<view class="slider-con">
+			<slider class="slider" :value="slideValue" :backgroundColor="bgColor" block-size="12"
+				:activeColor="activeColor" @change="sliderChange" @changing="sliderChanging" />
 		</view>
 		<p class="end-time">05<span class="colon">:</span>20</p>
 	</view>
@@ -11,10 +12,30 @@
 <script>
 	export default {
 		name: "playBar",
+		props: {
+			slideValue: {
+				type: Number,
+				default: 0
+			},
+			activeColor: {
+				type: String,
+				default: '#a78e88'
+			},
+			bgColor: {
+				type: String,
+				default: '#dbd4d3'
+			},
+		},
 		data() {
-			return {
-
-			};
+			return {};
+		},
+		methods: {
+			sliderChange(e) {
+				console.log('e', e)
+			},
+			sliderChanging(e) {
+				// console.log('event', e);
+			}
 		}
 	}
 </script>
@@ -32,17 +53,19 @@
 			color: #ccc;
 			white-space: nowrap;
 			display: flex;
+
 			.colon {
 				display: block;
 				margin: -2rpx 2rpx;
 			}
 		}
 
-		.progress {
+		.slider-con {
 			width: 100%;
-			height: 2px;
-			background: #ccc;
-			margin: 0 20rpx;
+
+			.slider {
+				margin: 20rpx 20rpx;
+			}
 		}
 	}
 </style>

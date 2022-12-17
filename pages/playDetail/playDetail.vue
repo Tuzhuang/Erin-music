@@ -65,7 +65,6 @@
 				<image class="play-menu" src="/static/images/pages/play/play_menu.png" mode=""></image>
 			</view>
 		</view>
-
 	</view>
 </template>
 
@@ -101,12 +100,11 @@
 			}
 		},
 		components: {
-			playBar
+			playBar,
 		},
 		mounted() {
 			this.audio = uni.createInnerAudioContext();
-			this.audio.src =
-				'http://m801.music.126.net/20221205011213/3dacb00bc207bfa54a0b3793b55174c8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14121656320/e7d3/4173/9398/a1308a85832b281ae4405766c33617af.mp3';
+			this.audio.src = '';
 			// audio.onPlay(() => {
 			//   console.log('开始播放');
 			// });
@@ -287,7 +285,8 @@
 			background: #fff;
 			margin-top: 50rpx;
 			position: absolute;
-			z-index: 90;
+			padding: 0 30rpx;
+			box-sizing: border-box;
 		}
 
 		.play-opera {

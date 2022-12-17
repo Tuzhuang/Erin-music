@@ -211,7 +211,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       curTabBar: 'found',
       homeBarBg: false, // 判断首页的时候当往下滚动的时候就展示背景色
       isBtPlayShow: true, // 是否展示底部的tabbar和播放栏
-      isPlayDetail: true // 是否展示音乐播放详情页
+      isPlayDetail: false // 是否展示音乐播放详情页
     };
   },
   methods: {

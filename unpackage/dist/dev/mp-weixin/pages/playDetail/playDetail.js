@@ -186,7 +186,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 {
   data: function data() {
     return {
@@ -221,8 +220,7 @@ __webpack_require__.r(__webpack_exports__);
 
   mounted: function mounted() {
     this.audio = uni.createInnerAudioContext();
-    this.audio.src =
-    'http://m801.music.126.net/20221205011213/3dacb00bc207bfa54a0b3793b55174c8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14121656320/e7d3/4173/9398/a1308a85832b281ae4405766c33617af.mp3';
+    this.audio.src = '';
     // audio.onPlay(() => {
     //   console.log('开始播放');
     // });

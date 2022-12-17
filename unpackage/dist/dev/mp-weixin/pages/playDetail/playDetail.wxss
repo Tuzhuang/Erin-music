@@ -156,7 +156,8 @@
   background: #fff;
   margin-top: 50rpx;
   position: absolute;
-  z-index: 90;
+  padding: 0 30rpx;
+  box-sizing: border-box;
 }
 .play-detail .play-opera {
   width: 100%;
