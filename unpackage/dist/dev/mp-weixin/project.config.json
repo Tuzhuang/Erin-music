@@ -18,7 +18,7 @@
         }
     },
     "compileType": "miniprogram",
-    "libVersion": "2.27.3",
+    "libVersion": "",
     "appid": "wx08b6c0d072e82d9c",
     "projectname": "erin-music",
     "condition": {

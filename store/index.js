@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+import found from './modules/found.js';
+
 export default new Vuex.Store({
 	state: {
 		loginToken: uni.getStorageSync('loginToken') || "",
@@ -21,6 +23,6 @@ export default new Vuex.Store({
 		}
 	},
 	modules: {
-
+		found
 	}
 })

@@ -19,7 +19,7 @@
 						indicator-active-color="#ffffff" autoplay interval="2500" duration="1000"
 						@change="e=>curBannerIdx=e.detail.current">
 						<swiper-item class="swiper-item" v-for="(item,index) in bannerList" :key="index">
-							<image :src="item" class="banner-img" />
+							<image :src="item.pic" class="banner-img" />
 						</swiper-item>
 					</swiper>
 				</view>
@@ -54,30 +54,33 @@
 						<view class="recom-con">
 							<!-- 循环 -->
 							<view class="roll-con" @click="recomRoll">
-								<swiper class="roll-swiper" autoplay interval="2500" duration="600" vertical circular
+								<swiper class="roll-swiper" autoplay interval="4000" duration="600" vertical circular
 									easing-function="easeInOutCubic" @change="e=>curRecomI=e.detail.current">
-									<swiper-item v-for="(item,index) in bannerList" :key="index">
-										<image :src="item" :class="['bg-img','narrow',{ampli:curRecomI==index}]" alt=""
-											mode="aspectFill" />
-										<img src="/static/images/pages/found/infinite.png" class="infin-icon" alt="">
+									<swiper-item v-for="(item,index) in swPlayList" :key="index">
+										<image :src="item.picUrl" :class="['bg-img','narrow',{ampli:curRecomI==index}]"
+											alt="" mode="aspectFill" />
+										<view class="play-count">
+											<img src="/static/images/pages/found/play.png" class="triangle" alt="">
+											<text class="count">{{item.playCount | numUnit}}</text>
+										</view>
+										<image src="/static/images/pages/found/play.png" class="play-icon"></image>
 									</swiper-item>
 								</swiper>
-								<p class="desc" style="margin-top:8rpx;">{{curRecomI}}0年代经典歌曲 开车必抖腿|蹦迪专场|节奏感带上</p>
+								<p class="desc" style="margin-top:8rpx;">{{swPlayList[curRecomI].name}}</p>
 							</view>
-							<view class="recom-item" v-for="(item,index) in bannerList" :key="index">
-								<image :src="item" class="bg-img" alt="" mode="aspectFill" />
-								<img v-if="index==0" src="/static/images/pages/found/mini_logo.png" class="logo-icon"
-									alt="">
+							<view class="recom-item" v-for="(item,index) in playList" :key="index">
+								<image :src="item.picUrl" class="bg-img" alt="" mode="aspectFill" />
 								<view class="play-count">
-									<img src="/static/images/pages/found/triangle.svg" class="triangle" alt="">
-									<text class="count">134.4 亿</text>
+									<img src="/static/images/pages/found/play.png" class="triangle" alt="">
+									<text class="count">{{item.playCount | numUnit}}</text>
 								</view>
-								<p class="desc">90年代经典歌曲 开车必抖腿|蹦迪专场|节奏感带上</p>
+								<image src="/static/images/pages/found/play.png" class="play-icon"></image>
+								<p class="desc">{{item.name}}</p>
 							</view>
 						</view>
 					</scroll-view>
 				</view>
-				
+
 				<view class="recom-more">
 					<image class="left-more" src="/static/images/pages/found/left_round.svg" mode=""></image>
 					<text class="more-text">左滑更多</text>
@@ -87,26 +90,74 @@
 
 		<view class="song-card">
 			<view class="top-con">
-				<image src="/static/images/pages/found/refresh.png" class="refresh-icon"></image>
-				<text class="title">轻音，远离纷扰，感受内心,轻音，远离纷扰，感受内心</text>
+				<view @click="refreshSongs" style="display:flex;align-items: center;max-width:70%;">
+					<image src="/static/images/pages/found/refresh.png"
+						:class="['refresh-icon',{'refreshing':isRefresh}]"></image>
+					<text :class="['title',{'isRefreshing':isRefresh}]">{{recomPlayName}}</text>
+				</view>
 				<view class="play-con">
 					<image src="/static/images/pages/found/play.png" class="play-icon"></image>
 					<text class="play-text">播放</text>
 				</view>
 			</view>
-			<swiper class="song-swiper" duration="300" previous-margin="30rpx" next-margin="30rpx">
-				<swiper-item class="song-item" v-for="(item,index) in 3" :key="index">
-					<view class="song-con" v-for="(item,index) in songList" :key="index">
-						<image class="left-img" :src="item.icon" mode="aspectFill"></image>
+			<swiper :class="['song-swiper',{'isRefreshing':isRefresh}]" duration="300" previous-margin="30rpx"
+				next-margin="30rpx">
+				<swiper-item class="song-item" v-for="(it,i) in 3" :key="i">
+					<view class="song-con" v-for="(item,index) in recomSongs[i]" :key="index">
+						<image class="left-img" :src="item.al.picUrl" mode="aspectFill"></image>
 						<view class="item-con">
-							<p class="song-name">{{item.name}}<span class="sing-name">- {{item.sing}}</span></p>
-							<p class="tag">{{item.tag}}</p>
+							<view class="song-box">
+								<p class="song-name">{{item.name}}</p>
+								<p class="sing-name">- {{item.ar.map(it=>it.name).join(' & ')}}</p>
+							</view>
+							<p class="tag" v-if="item.name!==item.al.name">{{item.al.name}}</p>
+							<p class="tag" v-else>
+								超{{String(item.id).slice(-2)}}%人{{String(item.id).slice(-2)%2==0?'播放':'收藏'}}</p>
 						</view>
 						<image class="video-play" src="/static/images/pages/found/video_play.png" mode=""></image>
 						<view class="bottom-line" v-if="index!==2"></view>
 					</view>
 				</swiper-item>
 			</swiper>
+		</view>
+
+		<!-- 排行榜 -->
+		<view class="rank-list">
+			<view class="top-con">
+				<view class="left-title">
+					<text class="title">排行榜</text>
+					<image class="arrow-right" src="/static/images/pages/found/arrow_fff.png" mode=""></image>
+				</view>
+				<image class="more-icon" src="/static/images/pages/found/more-dian.svg" mode=""></image>
+			</view>
+			<swiper class="rank-swiper" duration="300" previous-margin="30rpx" next-margin="20rpx">
+				<swiper-item class="rank-item" v-for="(item,index) in rankList" :key="index">
+					<view class="swiper-box">
+						<view class="rank-tit-con">
+							<view class="left-con">
+								<p class="title">{{item.name}}</p>
+								<image class="arrow-right" src="/static/images/pages/found/arrow_fff.png" mode="">
+								</image>
+							</view>
+							<p class="rank-tag">{{item.updateFrequency}}</p>
+						</view>
+						<view class="rank-info-item" v-for="(it,i) in rankDataDetail[index]" :key="i">
+							<image class="song-avatar" :src="it.al.picUrl" mode="" />
+							<span :class="['rank-num',{'two':i==1,'three':i==2}]">{{i+1}}</span>
+							<view class="song-detail">
+								<p class="song-name">{{it.name}}</p>
+								<p class="sing-name" v-if="it.ar.length">{{it.ar.map(v=>v.name).join(' & ')}}</p>
+							</view>
+							<p class="state new-up" v-if="it.v%4==0">新晋</p>
+							<p class="state" v-else>{{it.v%3==1?'霸榜':it.v%3==2?'热门':'飙升'}}</p>
+						</view>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+
+		<view class="zhanwei">
+
 		</view>
 
 		<!-- 点击菜单左侧菜单弹出层 -->
@@ -120,13 +171,16 @@
 </template>
 
 <script>
+	import $http from '@/api/home.js';
 	import topBar from '@/components/topBar.vue';
 	import popup from '@/components/popup.vue';
 	import loading from '@/components/loading.vue';
 	import leftMenu from '@/pages/tabbar/menu/menu.vue';
 	import {
-		mapState
+		mapState,
+		mapMutations
 	} from 'vuex';
+
 	export default {
 		props: {
 			isHomeBarBg: { // tabbar是否展示背景色
@@ -143,14 +197,7 @@
 		data() {
 			return {
 				menuShow: false,
-				bannerList: [
-					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2021/08/12/184/ias_67f14f070915b4a91b6ba98698c35d3c_1135x545_85.jpg",
-					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/07/171/ias_5650bb3a31a524d231ad162e6bba8c5e_1135x545_85.jpg",
-					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/24/45/ias_b51fe08570913f541d489768bbb307a4_1135x545_85.jpg",
-					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/10/27/150/ias_1bd44839bfd63ed49d233f8a2ff64d27_1135x545_85.jpg",
-					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/10/21/130/ias_f0f74d36980fbc8835667fe291773d7b_1135x545_85.jpg",
-					"https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/07/169/ias_80c6070fb28ff034b7c7a73702069146_1135x545_85.jpg",
-				],
+				bannerList: [],
 				curBannerIdx: 0,
 				subMenu: [{
 						icon: 'recom',
@@ -191,42 +238,108 @@
 				],
 				curDay: new Date().getDate(), // 当前日期
 				curRecomI: 0, // 推荐歌单纵轴循环下标
-				songList: [{
-						icon: 'https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/07/171/ias_5650bb3a31a524d231ad162e6bba8c5e_1135x545_85.jpg',
-						name: "寂静之空",
-						sing: "棱镜乐队",
-						tag: "昨日十万播放"
-					},
-					{
-						icon: 'https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/24/45/ias_b51fe08570913f541d489768bbb307a4_1135x545_85.jpg',
-						name: "撒野",
-						sing: "凯瑟毛",
-						tag: "百万红心"
-					},
-					{
-						icon: 'https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/09/07/169/ias_80c6070fb28ff034b7c7a73702069146_1135x545_85.jpg',
-						name: "最后一页",
-						sing: "王泽克",
-						tag: "百万红心"
-					},
-				],
+				swPlayList: [], // 滚动推荐歌单
+				playList: [],
+				recomSongs: [], // 推荐音乐
+				recomPlayName: "", // 推荐单个歌单名字
+				// tagList:['昨日万人播放','十万红心','粉丝推荐'],
+				isRefresh: false, // 是否刷新中状态
+				rankList: [], // 排行榜
+				rankDataDetail: [],
 			}
 		},
 		computed: {
 			...mapState(["userInfo"]),
 		},
+		created() {
+			this.getBanner();
+			this.getplayList();
+			this.getNewSongs();
+			this.getRankList();
+		},
+		filters: {
+			// 次数单位
+			numUnit(val) {
+				let num = Number(val);
+				if (num > 999 && num < 5000) {
+					return '999+';
+				} else if (num > 5000 && num < 10000) {
+					return '5000+'
+				} else if (num > 10000 && num < 100000000) {
+					return (num / 10000).toFixed(1) + ' 万'
+				} else if (num > 100000000) {
+					return (num / 100000000).toFixed(1) + ' 亿';
+				} else {
+					return num;
+				}
+			}
+		},
 		methods: {
+			...mapMutations("found", ["setRankList"]),
 			openMenuShow(val) {
 				this.menuShow = true;
 			},
 			recomRoll() {
 				console.log('当前', this.curRecomI);
 			},
-			recomRightMore(){
+			recomRightMore() {
 				this.$refs.loading.show();
-				setTimeout(()=>{
+				setTimeout(() => {
 					this.$refs.loading.hide();
-				},1000)
+				}, 1000)
+			},
+			async getBanner() {
+				let res = await $http.banner(2);
+				if (res && res.code == 200) {
+					this.bannerList = res.banners;
+				}
+			},
+			async getplayList() {
+				let res = await $http.personalized(10);
+				if (res && res.code === 200) {
+					this.swPlayList = res.result.filter((it, i) => i < 4);
+					this.playList = res.result.filter((it, i) => i > 3);
+				}
+			},
+			async getNewSongs() {
+				// 先获取推荐歌单的名字再根据歌单获取相应的歌曲
+				let playData = await $http.personalized(1);
+				if (playData && playData.code == 200) {
+					this.recomPlayName = playData.result[0].name;
+				}
+				let res = await $http.byIdSongs({
+					id: playData.result[0].id,
+					limit: 9
+				});
+				if (res && res.code == 200) {
+					// 防止数据缓存
+					this.recomSongs = [];
+					// 将一维数组转成二维数组
+					for (let i = 3; i <= res.songs.length; i + 3) {
+						this.recomSongs.push(JSON.parse(JSON.stringify(res.songs.splice(0, i))));
+					}
+				}
+			},
+			// 刷新歌单
+			async refreshSongs() {
+				this.isRefresh = true;
+				await this.getNewSongs();
+				this.isRefresh = false;
+			},
+			// 获取所有排行榜
+			async getRankList() {
+				let res = await $http.toplist();
+				if (res && res.code == 200) {
+					// 保存所有排行榜信息
+					this.setRankList(res.list);
+					this.rankList = res.list.filter((it, i) => i < 4);
+				}
+				this.rankList.forEach(async (it, i) => {
+					let resp = await $http.rankDetail(it.id);
+					if (resp && resp.code == 200) {
+						this.rankDataDetail.push(resp.playlist.tracks.filter((v, idx) => idx < 3));
+					}
+				})
 			}
 		}
 	}
@@ -240,6 +353,7 @@
 		padding-top: 100rpx;
 		box-sizing: border-box;
 		background: #0e0e0e;
+		// background: pink;
 
 		.tab-bar {
 			width: 100%;
@@ -371,7 +485,8 @@
 					.day {
 						font-size: 22rpx;
 						font-weight: 600;
-						color: #2a1919;
+						// color: #2a1919;
+						color: #bab9bc;
 						position: absolute;
 						top: 44rpx;
 					}
@@ -401,7 +516,7 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				color: #fff;
+				color: #e8e8e8;
 				padding: 0 30rpx;
 				box-sizing: border-box;
 
@@ -441,16 +556,17 @@
 					margin-right: 20rpx;
 
 					.roll-swiper {
-						width: 200rpx;
 						height: 200rpx;
 						border-radius: 20rpx;
 						overflow: hidden;
-						position: relative;
 						pointer-events: none;
+						margin-right: 0;
 					}
 				}
 
-				.recom-item {
+				// 共用一个样式
+				.recom-item,
+				.roll-swiper {
 					min-width: 200rpx;
 					height: 290rpx;
 					margin-right: 20rpx;
@@ -458,8 +574,9 @@
 
 					&:last-child {
 						padding-right: 30rpx;
+
 						.play-count {
-							right: 38rpx;
+							right: 44rpx;
 						}
 					}
 
@@ -476,26 +593,32 @@
 					}
 
 					.play-count {
-						padding: 4rpx 12rpx;
-						background: rgba(0, 0, 0, .2);
-						border-radius: 30rpx;
 						display: flex;
 						align-items: center;
 						position: absolute;
 						top: 10rpx;
-						right: 8rpx;
+						right: 14rpx;
 						z-index: 2;
 
 						.triangle {
-							width: 16rpx;
-							height: 16rpx;
+							width: 10rpx;
+							height: 10rpx;
+							margin-right: 4rpx;
 						}
 
 						.count {
-							font-size: 16rpx;
+							font-size: 18rpx;
 							color: #fff;
 							margin-left: 2rpx;
 						}
+					}
+
+					.play-icon {
+						position: absolute;
+						top: 158rpx;
+						right: 14rpx;
+						width: 32rpx;
+						height: 32rpx;
 					}
 				}
 
@@ -535,6 +658,7 @@
 					transition: .6s;
 				}
 			}
+
 			// 加载更多
 			.recom-more {
 				position: absolute;
@@ -545,14 +669,16 @@
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
+
 				.left-more {
 					width: 34rpx;
 					height: 34rpx;
 				}
+
 				.more-text {
 					font-size: 20rpx;
 					color: #515151;
-					writing-mode: vertical-lr; 
+					writing-mode: vertical-lr;
 					margin-top: 6rpx;
 				}
 			}
@@ -572,18 +698,29 @@
 				box-sizing: border-box;
 
 				.refresh-icon {
-					width: 38rpx;
+					width: 30rpx;
 					height: 30rpx;
 				}
 
+				.refreshing {
+					transform: rotate(720deg);
+					transition: 1.2s;
+				}
+
 				.title {
-					font-size: 28rpx;
-					font-weight: 600;
-					color: #fff;
+					flex: 1;
+					font-size: 30rpx;
+					color: #e8e8e8;
 					white-space: nowrap;
 					overflow: hidden;
 					text-overflow: ellipsis;
-					padding: 0 20rpx;
+					padding: 0 16rpx;
+					opacity: 1;
+					transition: 1.2s;
+				}
+
+				.isRefreshing {
+					opacity: 0;
 				}
 
 				.play-con {
@@ -610,6 +747,8 @@
 			.song-swiper {
 				margin-top: 16rpx;
 				height: 320rpx;
+				opacity: 1;
+				transition: 1.2s;
 
 				.song-item {
 					padding-right: 30rpx;
@@ -626,31 +765,48 @@
 							width: 90rpx;
 							height: 90rpx;
 							border-radius: 16rpx;
+
+							image {
+								width: 100%;
+								height: 100%;
+							}
 						}
 
 						.item-con {
-							flex: 1;
+							width: 76%;
 							padding: 0 20rpx;
 							box-sizing: border-box;
 
-							.song-name {
+							.song-box {
+								width: 100%;
+								display: flex;
+								align-items: center;
+							}
+
+							.song-name,
+							.sing-name {
 								font-size: 28rpx;
 								color: #fff;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+							}
 
-								.sing-name {
-									font-size: 20rpx;
-									color: #5d5d5d;
-									margin-left: 10rpx;
-								}
+							.sing-name {
+								font-size: 20rpx;
+								color: #5d5d5d;
+								margin-left: 10rpx;
 							}
 
 							.tag {
 								display: inline;
 								font-size: 16rpx;
-								color: #d87845;
+								// color: #d87845;
+								color: #ce463f;
 								padding: 4rpx 8rpx;
 								border-radius: 6rpx;
-								background: #1f1a17;
+								// background: #1f1a17;
+								background: #2f1f26;
 							}
 						}
 
@@ -672,6 +828,156 @@
 					}
 				}
 			}
+
+			.isRefreshing {
+				opacity: 0;
+			}
+		}
+
+		// 排行榜
+		.rank-list {
+			background: #151515;
+			border-radius: 20rpx;
+			margin-top: 20rpx;
+			padding: 30rpx 0;
+			box-sizing: border-box;
+
+			.top-con {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 30rpx;
+				box-sizing: border-box;
+
+				.left-title {
+					.title {
+						font-size: 30rpx;
+						color: #e8e8e8;
+					}
+
+					.arrow-right {
+						width: 28rpx;
+						height: 28rpx;
+						vertical-align: middle;
+					}
+				}
+
+				.more-icon {
+					width: 28rpx;
+					height: 28rpx;
+				}
+			}
+
+			.rank-swiper {
+				width: 100%;
+				height: 310rpx;
+				margin-top: 30rpx;
+
+				.rank-item {
+					padding-right: 20rpx;
+					box-sizing: border-box;
+
+					.swiper-box {
+						height: 100%;
+						padding: 10rpx 20rpx;
+						box-sizing: border-box;
+						border-radius: 20rpx;
+						background: #26252e;
+					}
+
+					.rank-tit-con {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						margin-bottom: 10rpx;
+
+						.left-con {
+							width: 70%;
+							display: flex;
+							align-items: center;
+
+							.title {
+								max-width: 90%;
+								font-size: 28rpx;
+								color: #fff;
+								overflow: hidden;
+								white-space: nowrap;
+								text-overflow: ellipsis;
+							}
+
+							.arrow-right {
+								width: 24rpx;
+								height: 24rpx;
+								margin-top: 4rpx;
+							}
+						}
+
+						.rank-tag {
+							font-size: 20rpx;
+							color: #7f7f84;
+						}
+					}
+
+					.rank-info-item {
+						display: flex;
+						align-items: center;
+						position: relative;
+						height: 80rpx;
+
+						.song-avatar {
+							width: 70rpx;
+							height: 70rpx;
+							border-radius: 10rpx;
+						}
+
+						.rank-num {
+							width: 50rpx;
+							text-align: center;
+							line-height: 70rpx;
+							font-size: 30rpx;
+							color: #c69e4a; // #787f9f  #bb7d56
+							font-weight: 600;
+
+							&.two {
+								color: #787f9f;
+							}
+
+							&.three {
+								color: #bb7d56;
+							}
+						}
+
+						.song-detail {
+							.song-name {
+								font-size: 26rpx;
+								color: #e9e9e9;
+							}
+
+							.sing-name {
+								font-size: 20rpx;
+								color: #a09fa3;
+							}
+						}
+
+						.state {
+							font-size: 18rpx;
+							color: #eb4d45;
+							position: absolute;
+							right: 10rpx;
+
+							&.new-up {
+								color: #66b892;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.zhanwei {
+			width: 100%;
+			height: 300rpx;
+			// background-color: pink;
 		}
 	}
 </style>

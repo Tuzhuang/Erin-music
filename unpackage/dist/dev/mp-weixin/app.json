@@ -2,14 +2,15 @@
   "pages": [
     "pages/index/index",
     "pages/portPage/portPage",
-    "pages/phoneLogin/phoneLogin"
+    "pages/phoneLogin/phoneLogin",
+    "pages/searchDetail/searchDetail"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#000"
   },
   "usingComponents": {}
 }

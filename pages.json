@@ -19,12 +19,21 @@
 				"enablePullDownRefresh": false
 			}
 		}
+        ,{
+            "path" : "pages/searchDetail/searchDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#000"
 	},
 	"uniIdRouter": {}
 }

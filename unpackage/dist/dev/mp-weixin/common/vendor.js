@@ -2678,9 +2678,11 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 4));
-var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 13));
 
-_vue.default.use(_vuex.default);var _default =
+
+
+var _found = _interopRequireDefault(__webpack_require__(/*! ./modules/found.js */ 153));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}_vue.default.use(_vuex.default);var _default =
 
 new _vuex.default.Store({
   state: {
@@ -2699,7 +2701,8 @@ new _vuex.default.Store({
       uni.setStorageSync('userInfo', JSON.stringify(info));
     } },
 
-  modules: {} });exports.default = _default;
+  modules: {
+    found: _found.default } });exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
@@ -3958,6 +3961,85 @@ var index_cjs = {
 module.exports = index_cjs;
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 2)))
+
+/***/ }),
+
+/***/ 136:
+/*!************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/api/home.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 51));var _request = __webpack_require__(/*! @/utils/request.js */ 55);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
+
+
+
+{
+  // 获取banner轮播
+  banner: function banner(type) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                (0, _request.request)({
+                  url: "/banner?type=".concat(type) }));case 2:return _context.abrupt("return", _context.sent);case 3:case "end":return _context.stop();}}}, _callee);}))();
+
+  },
+  // 获取推荐歌单
+  personalized: function personalized(limit) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                (0, _request.request)({
+                  url: "/personalized?limit=".concat(limit) }));case 2:return _context2.abrupt("return", _context2.sent);case 3:case "end":return _context2.stop();}}}, _callee2);}))();
+
+  },
+  // 推荐新音乐
+  newsong: function newsong(limit) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                (0, _request.request)({
+                  url: "/personalized/newsong?limit=".concat(limit) }));case 2:return _context3.abrupt("return", _context3.sent);case 3:case "end":return _context3.stop();}}}, _callee3);}))();
+
+  },
+  // 根据歌单id查询歌曲
+  byIdSongs: function byIdSongs(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                (0, _request.request)({
+                  url: "/playlist/track/all?id=".concat(data.id, "&limit=").concat(data.limit, "&offset=0") }));case 2:return _context4.abrupt("return", _context4.sent);case 3:case "end":return _context4.stop();}}}, _callee4);}))();
+
+  },
+  // 获取所有榜单
+  toplist: function toplist() {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                (0, _request.request)({
+                  url: "/toplist" }));case 2:return _context5.abrupt("return", _context5.sent);case 3:case "end":return _context5.stop();}}}, _callee5);}))();
+
+  },
+  // 榜单的音乐列表
+  rankDetail: function rankDetail(id) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
+                (0, _request.request)({
+                  url: "/playlist/detail?id=".concat(id) }));case 2:return _context6.abrupt("return", _context6.sent);case 3:case "end":return _context6.stop();}}}, _callee6);}))();
+
+  } };exports.default = _default;
+
+/***/ }),
+
+/***/ 153:
+/*!***********************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/store/modules/found.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var state = {
+  rankList: uni.getStorageSync('rankList') || [] // 排行榜详情
+};
+
+var mutations = {
+  setRankList: function setRankList(state, value) {
+    state.rankList = value;
+    uni.setStorageSync('rankList', value);
+  } };var _default =
+
+
+{
+  namespaced: true,
+  state: state,
+  mutations: mutations };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -10521,18 +10603,18 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 85:
+/***/ 51:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 86);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 52);
 
 /***/ }),
 
-/***/ 86:
+/***/ 52:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -10563,7 +10645,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 87);
+module.exports = __webpack_require__(/*! ./runtime */ 53);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -10580,7 +10662,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 87:
+/***/ 53:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -11312,29 +11394,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 88:
-/*!*************************************************!*\
-  !*** D:/code/ErinMusic/erin-music/api/login.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 85));var _request = __webpack_require__(/*! @/utils/request.js */ 89);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
-
-
-
-{
-  login: function login(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                (0, _request.request)({
-                  url: "/login/cellphone?phone=".concat(data.phone, "&password=").concat(data.password),
-                  method: "POST" }));case 2:return _context.abrupt("return", _context.sent);case 3:case "end":return _context.stop();}}}, _callee);}))();
-
-  } };exports.default = _default;
-
-/***/ }),
-
-/***/ 89:
+/***/ 55:
 /*!*****************************************************!*\
   !*** D:/code/ErinMusic/erin-music/utils/request.js ***!
   \*****************************************************/
@@ -11342,16 +11402,15 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.request = void 0; // 封装接口
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.request = void 0;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} // 封装接口
 
-var baseUrl = "http://192.168.1.160:3000";
-
+var baseUrl = "http://192.168.31.176:3000";
 var request = function request(options) {
   return new Promise(function (resolve, reject) {
     uni.request({
       url: baseUrl + options.url,
       method: options.method || "GET",
-      data: options.data || {},
+      data: _objectSpread(_objectSpread({}, options.data), {}, { timestamp: new Date().getTime() }) || { timestamp: new Date().getTime() },
       headers: { // 自定义请求头信息
         'Authoriztion': uni.getStorageSync('token') },
 
@@ -11366,6 +11425,28 @@ var request = function request(options) {
   });
 };exports.request = request;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 98:
+/*!*************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/api/login.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 51));var _request = __webpack_require__(/*! @/utils/request.js */ 55);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
+
+
+
+{
+  login: function login(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                (0, _request.request)({
+                  url: "/login/cellphone?phone=".concat(data.phone, "&password=").concat(data.password),
+                  method: "POST" }));case 2:return _context.abrupt("return", _context.sent);case 3:case "end":return _context.stop();}}}, _callee);}))();
+
+  } };exports.default = _default;
 
 /***/ })
 
