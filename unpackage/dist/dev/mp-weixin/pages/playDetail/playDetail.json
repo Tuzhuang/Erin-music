@@ -1,6 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "play-bar": "/components/playBar"
+    "play-bar": "/components/playBar",
+    "popup": "/components/popup",
+    "song-comments": "/pages/playDetail/pages/songComments"
   }
 }

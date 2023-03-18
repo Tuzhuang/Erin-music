@@ -4,7 +4,7 @@
 			<view class="search-con" slot="content">
 				<view class="search-bar">
 					<img class="search-icon" src="/static/images/pages/found/search.svg">
-					<p class="tip-text">大家都在搜 毛不易</p>
+					<p class="tip-text">大家都在搜 张小海</p>
 				</view>
 			</view>
 			<view class="gene-song-con" slot="right">
@@ -24,8 +24,8 @@
 					</swiper>
 				</view>
 			</view>
-			<view class="banner-bg" v-show="!isHomeBarBg"
-				:style="{backgroundImage:'url('+bannerList[curBannerIdx]+')'}">
+			<view class="banner-bg" v-if="bannerList.length"
+				:style="{backgroundImage:'url('+bannerList[curBannerIdx].pic+')'}">
 			</view>
 			<scroll-view scroll-x>
 				<view class="sub-menu">
@@ -141,7 +141,8 @@
 							</view>
 							<p class="rank-tag">{{item.updateFrequency}}</p>
 						</view>
-						<view class="rank-info-item" v-for="(it,i) in rankDataDetail[index]" :key="i">
+						<view class="rank-info-item" v-for="(it,i) in rankDataDetail[index]" :key="i"
+							@click="getSongUrl(it)">
 							<image class="song-avatar" :src="it.al.picUrl" mode="" />
 							<span :class="['rank-num',{'two':i==1,'three':i==2}]">{{i+1}}</span>
 							<view class="song-detail">
@@ -171,11 +172,12 @@
 </template>
 
 <script>
-	import $http from '@/api/home.js';
+	import $httpHome from '@/api/home.js';
+	import $httpSongInfo from '@/api/songInfo.js'
 	import topBar from '@/components/topBar.vue';
 	import popup from '@/components/popup.vue';
 	import loading from '@/components/loading.vue';
-	import leftMenu from '@/pages/tabbar/menu/menu.vue';
+	import leftMenu from '../menu/menu.vue';
 	import {
 		mapState,
 		mapMutations
@@ -246,12 +248,15 @@
 				isRefresh: false, // 是否刷新中状态
 				rankList: [], // 排行榜
 				rankDataDetail: [],
+				curPlayObj: {}, // 当前播放歌曲信息
 			}
 		},
 		computed: {
 			...mapState(["userInfo"]),
 		},
 		created() {
+			console.log('curPlaySongInfo f', uni.getStorageSync('curPlaySongInfo'));
+			console.log('curPlayTime f', uni.getStorageSync('curPlayTime'));
 			this.getBanner();
 			this.getplayList();
 			this.getNewSongs();
@@ -276,7 +281,9 @@
 		},
 		methods: {
 			...mapMutations("found", ["setRankList"]),
-			openMenuShow(val) {
+			...mapMutations('songDetail', ['setCurPlaySongInfo', 'setCurPlayTime', 'setSongCommentObj']),
+			openMenuShow() {
+				// console.log('val',val);
 				this.menuShow = true;
 			},
 			recomRoll() {
@@ -286,16 +293,16 @@
 				this.$refs.loading.show();
 				setTimeout(() => {
 					this.$refs.loading.hide();
-				}, 1000)
+				}, 4000)
 			},
 			async getBanner() {
-				let res = await $http.banner(2);
+				let res = await $httpHome.banner(2);
 				if (res && res.code == 200) {
 					this.bannerList = res.banners;
 				}
 			},
 			async getplayList() {
-				let res = await $http.personalized(10);
+				let res = await $httpHome.personalized(10);
 				if (res && res.code === 200) {
 					this.swPlayList = res.result.filter((it, i) => i < 4);
 					this.playList = res.result.filter((it, i) => i > 3);
@@ -303,11 +310,11 @@
 			},
 			async getNewSongs() {
 				// 先获取推荐歌单的名字再根据歌单获取相应的歌曲
-				let playData = await $http.personalized(1);
+				let playData = await $httpHome.personalized(1);
 				if (playData && playData.code == 200) {
 					this.recomPlayName = playData.result[0].name;
 				}
-				let res = await $http.byIdSongs({
+				let res = await $httpHome.byIdSongs({
 					id: playData.result[0].id,
 					limit: 9
 				});
@@ -328,18 +335,64 @@
 			},
 			// 获取所有排行榜
 			async getRankList() {
-				let res = await $http.toplist();
+				let res = await $httpHome.toplist();
 				if (res && res.code == 200) {
 					// 保存所有排行榜信息
 					this.setRankList(res.list);
 					this.rankList = res.list.filter((it, i) => i < 4);
 				}
 				this.rankList.forEach(async (it, i) => {
-					let resp = await $http.rankDetail(it.id);
+					let resp = await $httpHome.rankDetail(it.id);
 					if (resp && resp.code == 200) {
 						this.rankDataDetail.push(resp.playlist.tracks.filter((v, idx) => idx < 3));
 					}
 				})
+			},
+			// 获取音乐详情url
+			async getSongUrl(obj) {
+				console.log(obj);
+				let res = await $httpSongInfo.songUrl({
+					id: obj.id
+				});
+				console.log('res', res);
+				if (res && res.code == 200) {
+					this.curPlayObj = res.data[0];
+					// 保存当前播放歌曲信息
+					let songObj = {
+						id: obj.id,
+						songName: obj.name,
+						picUrl: obj.al.picUrl,
+						singName: obj.ar.map(it => it.name).join(' & '),
+						songUrl: res.data[0].url,
+						// 因为获取的时间是毫秒单位，所以要转换为秒单位
+						songTime: parseInt(res.data[0].time / 1000)
+					}
+					// 获取歌曲评论
+					this.getSongComment(obj.id);
+					this.setCurPlaySongInfo(songObj);
+					// 切换音乐的时候重置播放秒数
+					this.setCurPlayTime(0);
+					// 调用播放音乐
+					this.bus.$emit('onPlaySong', res.data[0].url);
+				}
+			},
+			// 获取歌曲评论
+			async getSongComment(id) {
+				let res = await $httpSongInfo.songComment({
+					id: id,
+					limit: 20
+				})
+				if (res && res.code == 200) {
+					// 保存评论信息
+					this.setSongCommentObj({
+						total: res.total,
+						newComments: res.comments,
+						hotComments: res.hotComments,
+						more: res.more,
+						moreHot: res.moreHot
+					})
+
+				}
 			}
 		}
 	}
@@ -353,7 +406,7 @@
 		padding-top: 100rpx;
 		box-sizing: border-box;
 		background: #0e0e0e;
-		// background: pink;
+		// background: #1b1b23;
 
 		.tab-bar {
 			width: 100%;

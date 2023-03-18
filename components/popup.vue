@@ -1,6 +1,7 @@
 <template>
 	<view class="popup">
-		<view :class="['mask',{'hide':!isPopup}]" @click="hidePopup" :catchtouchmove="isPopup?true:false">
+		<!-- :catchtouchmove="isPopup?true:false" -->
+		<view :class="['mask',{'hide':!isPopup}]" @click="hidePopup" @touchmove.stop.prevent="handle">
 			<!-- <view class="content"
 				:style="{width:width+'%',height:height+'rpx',left:isPopup?'0':-width+'%',bottom:isPopup?'0':-height+'rpx',background:bgColor}"
 				@click.stop> -->
@@ -81,6 +82,8 @@
 			}
 		},
 		methods: {
+			// 此方法不用写任何代码，主要是为了解决控制台的警告的
+			handle() {},
 			hidePopup() {
 				this.$emit("update:isPopup", false);
 			}

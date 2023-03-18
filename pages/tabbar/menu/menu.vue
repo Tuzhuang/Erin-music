@@ -10,7 +10,7 @@
 			</view>
 			<view class="plate">
 				<view class="item-con">
-					<img class="icon" src="">
+					<!-- <img class="icon" src=""> -->
 					<p class="title">消息中心</p>
 					<img class="more-icon" src="/static/images/pages/phoneLogin/right-arrow.svg">
 				</view>
@@ -22,21 +22,19 @@
 
 <script>
 	export default {
-		props: {
-			userInfo: {
-				type: Object,
-				default: {}
-			}
-		},
+		props: ['userInfo'],
 		data() {
 			return {
 
 			}
 		},
+		created() {
+			console.log('userInfo', this.userInfo);
+		},
 		methods: {
-			login(){
+			login() {
 				uni.reLaunch({
-					url:'/pages/portPage/portPage'
+					url: '/pages/portPage/portPage'
 				})
 			}
 		}

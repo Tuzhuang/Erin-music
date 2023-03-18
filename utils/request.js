@@ -1,6 +1,7 @@
 // 封装接口
 
-const baseUrl = "http://192.168.31.176:3000";
+const baseUrl = "http://192.168.1.160:3000";
+// const baseUrl = "http://pgn3c6.natappfree.cc";
 const request = options => {
 	return new Promise((resolve, reject) => {
 		uni.request({

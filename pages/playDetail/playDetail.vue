@@ -1,27 +1,23 @@
 <template>
 	<view class="play-detail">
 		<!-- 背景图 -->
-		<image class="bg-img"
-			src="https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/106020/2021/1108/166/f2e64941-3755-4f4f-af1e-26f15c32165b_420_531.jpg"
-			mode="aspectFill"></image>
+		<image class="bg-img" :src="curPlaySongInfo.picUrl" mode="aspectFill"></image>
 		<view class="detail-con">
 			<view class="top-box">
 				<image @click="back" class="back-icon" src="/static/images/pages/found/arrow_fff.png" mode=""></image>
 				<view class="song-info">
-					<p class="name">我叫长安，你叫故里</p>
+					<p class="name">{{curPlaySongInfo.songName}}</p>
 					<view class="singer">
-						<text>汪小敏/张小海</text>
-						<image class="more-icon" src="/static/images/pages/play/arrow_more.svg" mode=""></image>
+						<p>{{curPlaySongInfo.singName}}</p>
+						<p class="follow">关注</p>
 					</view>
 				</view>
 				<image class="share" src="/static/images/pages/play/share.png" mode=""></image>
 			</view>
 			<image :class="['rod',{pause:isPause}]" src="/static/images/pages/play/gmk.png" mode=""></image>
-			<view class="music-con">
+			<view :class="['music-con',{'pause-animate':isPause}]">
 				<image class="bg-disc" src="/static/images/pages/play/music_disc.png" mode=""></image>
-				<image class="music-img"
-					src="https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/616774/2022/0902/182/3cec49ed-b95f-4251-9657-95cb4f34b1bb_420_531.jpg"
-					mode="aspectFill"></image>
+				<image class="music-img" :src="curPlaySongInfo.picUrl" mode="aspectFill"></image>
 			</view>
 			<view class="opera-con">
 				<view class="item-icon">
@@ -35,17 +31,17 @@
 				<view class="item-icon">
 					<image class="opera-icon" src="/static/images/pages/play/emoji.png" mode=""></image>
 				</view>
-				<view class="item-icon">
+				<view class="item-icon" @click="openComments">
 					<image class="opera-icon" src="/static/images/pages/play/comment.png" mode=""></image>
-					<text class="count">631</text>
+					<text class="count">{{songCommTotal}}</text>
 				</view>
 				<view class="item-icon">
 					<image class="opera-icon" src="/static/images/pages/play/more.png" mode=""></image>
 				</view>
 			</view>
 			<!-- 播放条 -->
-			<view class="play-bar">
-				<play-bar></play-bar>
+			<view class="play-bar" v-if="curPlaySongInfo.songTime">
+				<play-bar :sliderMax="curPlaySongInfo.songTime" v-model="currentPlayTime"></play-bar>
 			</view>
 			<view class="play-opera">
 				<view class="play-order" @click="checkPlayMode">
@@ -53,24 +49,41 @@
 						:alt="playModes[curPlayMode].name" mode=""></image>
 				</view>
 				<view class="control-play">
-					<image class="prev-icon" src="/static/images/pages/play/prev_song.png" mode=""></image>
+					<image @click="kaiqi" class="prev-icon" src="/static/images/pages/play/prev_song.png" mode="">
+					</image>
 					<view :class="['control',{play:!isPause}]" @click="checkPause">
 						<image class="contr-icon" v-show="!isPause" src="/static/images/pages/play/play_icon.png"
 							mode=""></image>
 						<image class="contr-icon" v-show="isPause" src="/static/images/pages/play/suspend_icon.png"
 							mode=""></image>
 					</view>
-					<image class="next-icon" src="/static/images/pages/play/next_song.png" mode=""></image>
+					<image @click="guanbi" class="next-icon" src="/static/images/pages/play/next_song.png" mode="">
+					</image>
 				</view>
 				<image class="play-menu" src="/static/images/pages/play/play_menu.png" mode=""></image>
 			</view>
 		</view>
+
+		<!-- 歌曲评论详情 -->
+		<popup :isPopup.sync="isCommentsShow" bgColor="#151515">
+			<songComments slot="content"></songComments>
+		</popup>
 	</view>
 </template>
 
 <script>
-	import playBar from '@/components/playBar.vue'
+	import playBar from '@/components/playBar.vue';
+	import popup from '@/components/popup.vue';
+	import songComments from './pages/songComments.vue';
+	import {
+		mapState
+	} from 'vuex';
 	export default {
+		components: {
+			playBar,
+			popup,
+			songComments,
+		},
 		data() {
 			return {
 				isPause: true, // 是否暂停播放
@@ -95,24 +108,37 @@
 						icon: "cardiac_mode"
 					},
 				],
-				curPlayMode: 0,
-				audio: null, // 播放变量
+				curPlayMode: 0, // 当前循环模式,
+				currentPlayTime: null, // 当前音乐播放秒数
+				isCommentsShow: true, // 是否展示评论区
+				
 			}
 		},
-		components: {
-			playBar,
+
+		created() {},
+		computed: {
+			...mapState('songDetail', ["curPlaySongInfo", "curPlayTime", "songCommentObj"]),
+			songCommTotal() {
+				return this.songCommentObj.total > 999 ? '999+' : this.songCommentObj.total;
+			}
 		},
-		mounted() {
-			this.audio = uni.createInnerAudioContext();
-			this.audio.src = '';
-			// audio.onPlay(() => {
-			//   console.log('开始播放');
-			// });
-			// audio.onError((res) => {
-			//   console.log(res.errMsg);
-			//   console.log(res.errCode);
-			// });
+		watch: {
+			"curPlaySongInfo.songState": {
+				handler(newVal) {
+					this.isPause = newVal == 'pause' ? true : false;
+				},
+				immediate: true,
+				deep: true
+			},
+			curPlayTime: {
+				handler(val) {
+					this.currentPlayTime = val;
+				},
+				immediate: true,
+				deep: true
+			}
 		},
+
 		methods: {
 			back() {
 				this.$emit("backMusicInfo")
@@ -128,15 +154,24 @@
 				console.log(e)
 			},
 			checkPause() {
-				console.log('this.audio', this.audio)
 				this.isPause = !this.isPause;
 				if (!this.isPause) {
-					this.audio.play();
+					// 播放
+					this.bus.$emit('onPlaySong', this.curPlaySongInfo.songUrl);
 				} else {
-					this.audio.pause();
+					// 暂停
+					this.bus.$emit('onPauseSong');
 				}
+			},
+			// 播放音乐
+			playSong() {
+				console.log('curPlaySongInfo.songUrl', curPlaySongInfo.songUrl)
+				this.audio.src = curPlaySongInfo.songUrl;
+			},
+			// 打开评论区
+			openComments(){
+				this.isCommentsShow = true;
 			}
-
 		}
 	}
 </script>
@@ -156,8 +191,8 @@
 		.bg-img {
 			width: 100vw;
 			height: 100vh;
-			backdrop-filter: blur(10px);
-			filter: blur(50px);
+			// backdrop-filter: blur(10px);
+			filter: blur(160px);
 			position: absolute;
 			z-index: 0;
 
@@ -179,6 +214,8 @@
 			}
 
 			.song-info {
+				text-align: center;
+
 				.name {
 					font-size: 26rpx;
 					color: #fff;
@@ -192,10 +229,13 @@
 					align-items: center;
 					justify-content: center;
 
-					.more-icon {
-						width: 30rpx;
-						height: 30rpx;
-						margin-left: -2rpx;
+					.follow {
+						font-size: 14rpx;
+						color: #dedcdb;
+						padding: 3rpx 6rpx;
+						border-radius: 5rpx;
+						background: rgba(#dedcdb, .4);
+						margin-left: 6rpx;
 					}
 				}
 			}
@@ -210,12 +250,13 @@
 			width: 204rpx;
 			height: 358rpx;
 			position: absolute;
-			left: 50%;
-			transform: translateX(-10%);
+			left: 46%;
+			// transform: translateX(-16%);
 			z-index: 50;
 			margin-top: 20rpx;
 			transition: .6s;
-			transform-origin: 22rpx 62rpx;
+			transform-origin: 34rpx 30rpx;
+			transform: rotate(-2deg);
 
 			&.pause {
 				transform: rotate(-30deg);
@@ -230,6 +271,14 @@
 			border: 1px solid #ccc;
 			position: relative;
 			margin: 220rpx auto 170rpx;
+			transform: rotate(0deg);
+			animation: musicRotate 20s infinite;
+			animation-timing-function: linear;
+			animation-fill-mode: backwards;
+
+			&.pause-animate {
+				animation-play-state: paused;
+			}
 
 			.bg-disc {
 				width: 600rpx;
@@ -282,7 +331,7 @@
 		.play-bar {
 			width: 100%;
 			height: 40rpx;
-			background: #fff;
+			// background: #fff;
 			margin-top: 50rpx;
 			position: absolute;
 			padding: 0 30rpx;
@@ -335,6 +384,17 @@
 						height: 50rpx;
 					}
 				}
+			}
+		}
+
+		// 开始播放的时候专辑图片转动
+		@keyframes musicRotate {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
 			}
 		}
 	}

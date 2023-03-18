@@ -4,13 +4,20 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import found from './modules/found.js';
+import songDetail from './modules/songDetail.js';
 
 export default new Vuex.Store({
 	state: {
 		loginToken: uni.getStorageSync('loginToken') || "",
-		userInfo: uni.getStorageSync('userInfo') ? JSON.parse(uni.getStorageSync('userInfo')) : {}, // 防止为空值
+		userInfo: uni.getStorageSync('userInfo') || {}, // 防止为空值
 	},
 	mutations: {
+		// 清空vuex中的数据
+		clearStoreData(state) {
+			state = {};
+			console.log('清空数据', state)
+			uni.clearStorageSync();
+		},
 		// 设置token
 		setLoginToken(state, token) {
 			state.loginToken = token;
@@ -23,6 +30,7 @@ export default new Vuex.Store({
 		}
 	},
 	modules: {
-		found
+		found,
+		songDetail
 	}
 })

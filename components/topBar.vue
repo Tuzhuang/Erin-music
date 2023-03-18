@@ -9,11 +9,11 @@
 		</view>
 		<!-- 中间插槽内容 -->
 		<view class="content">
-			<slot name="content"></slot>
+			<slot name="content">content</slot>
 		</view>
 		<!-- 右侧插槽内容 -->
 		<view class="right">
-			<slot name="right"></slot>
+			<slot name="right">right</slot>
 		</view>
 	</view>
 </template>
@@ -33,7 +33,7 @@
 		},
 		methods: {
 			openMenu() {
-				this.$emit("openMenuShow", true);
+				this.$emit("openMenuShow");
 			}
 		}
 	}

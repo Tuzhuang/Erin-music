@@ -49,7 +49,8 @@
 			</view>
 		</view>
 		<!-- 音乐播放详情页 :catchtouchmove="true" -->
-		<play-detail :class="['play-detail-page',{show:isPlayDetail}]" @backMusicInfo="backMusicInfo" catchtouchmove>
+		<play-detail v-if="curPlaySongInfo.picUrl" :class="['play-detail-page',{show:isPlayDetail}]"
+			@backMusicInfo="backMusicInfo">
 		</play-detail>
 	</view>
 </template>
@@ -58,6 +59,9 @@
 	import found from '@/pages/tabbar/found/found.vue'
 	import bottomPlay from './components/bottomPlay.vue'
 	import playDetail from '@/pages/playDetail/playDetail.vue'
+	import {
+		mapState
+	} from 'vuex';
 	export default {
 		components: {
 			found,
@@ -71,6 +75,13 @@
 				isBtPlayShow: true, // 是否展示底部的tabbar和播放栏
 				isPlayDetail: false, // 是否展示音乐播放详情页
 			}
+		},
+		created() {
+			console.log('curPlaySongInfo', uni.getStorageSync('curPlaySongInfo'));
+			console.log('curPlayTime', uni.getStorageSync('curPlayTime'));
+		},
+		computed: {
+			...mapState('songDetail', ['curPlaySongInfo'])
 		},
 		methods: {
 			switchBar(barName) {
@@ -104,6 +115,7 @@
 			position: fixed;
 			bottom: 0;
 			transition: .3s;
+			// background-color: #212026;
 
 			&.hide {
 				bottom: -260rpx;
@@ -117,7 +129,8 @@
 			height: 160rpx;
 			display: flex;
 			justify-content: space-around;
-			background: rgba(#0d0d0d, .5);
+			// background: rgba(#0d0d0d, .5);
+			background: rgba(#212026, .5);
 			padding-top: 16rpx;
 			box-sizing: border-box;
 			backdrop-filter: blur(20px);

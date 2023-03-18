@@ -5,7 +5,10 @@ import Vue from 'vue'
 
 import store from '@/store/index.js';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.prototype.bus = new Vue();
+
 App.mpType = 'app'
 const app = new Vue({
 	store,
