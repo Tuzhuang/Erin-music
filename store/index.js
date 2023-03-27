@@ -10,8 +10,19 @@ export default new Vuex.Store({
 	state: {
 		loginToken: uni.getStorageSync('loginToken') || "",
 		userInfo: uni.getStorageSync('userInfo') || {}, // 防止为空值
+		duData: uni.getStorageInfoSync('duData') || [],
 	},
 	mutations: {
+		setDuData(state, value) {
+			console.log('stateValue', value)
+			state.duData = value;
+			uni.setStorageSync('duData', value);
+		},
+		removeDuData(state) {
+			state.duData = [];
+			uni.removeStorageSync('duData');
+		},
+
 		// 清空vuex中的数据
 		clearStoreData(state) {
 			state = {};
@@ -27,7 +38,8 @@ export default new Vuex.Store({
 		setUserInfo(state, info) {
 			state.userInfo = info;
 			uni.setStorageSync('userInfo', JSON.stringify(info));
-		}
+		},
+
 	},
 	modules: {
 		found,

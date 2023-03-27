@@ -48,10 +48,11 @@
 				</view>
 			</view>
 		</view>
-		<!-- 音乐播放详情页 :catchtouchmove="true" -->
-		<play-detail v-if="curPlaySongInfo.picUrl" :class="['play-detail-page',{show:isPlayDetail}]"
-			@backMusicInfo="backMusicInfo">
-		</play-detail>
+
+		<!-- 音乐播放详情页 :catchtouchmove="true"    v-if="curPlaySongInfo.picUrl"  	-->
+		<popup :isPopup.sync="isPlayDetail" :catchtouchmove="true" :isPadding="false" :isRadius="false">
+			<play-detail slot="content" :isRenderOk="isPlayDetail" @backMusicInfo="backMusicInfo" />
+		</popup>
 	</view>
 </template>
 
@@ -59,6 +60,7 @@
 	import found from '@/pages/tabbar/found/found.vue'
 	import bottomPlay from './components/bottomPlay.vue'
 	import playDetail from '@/pages/playDetail/playDetail.vue'
+	import popup from '@/components/popup.vue'
 	import {
 		mapState
 	} from 'vuex';
@@ -66,19 +68,16 @@
 		components: {
 			found,
 			bottomPlay,
-			playDetail
+			playDetail,
+			popup
 		},
 		data() {
 			return {
 				curTabBar: 'found',
 				homeBarBg: false, // 判断首页的时候当往下滚动的时候就展示背景色
 				isBtPlayShow: true, // 是否展示底部的tabbar和播放栏
-				isPlayDetail: false, // 是否展示音乐播放详情页
+				isPlayDetail: true, // 是否展示音乐播放详情页
 			}
-		},
-		created() {
-			console.log('curPlaySongInfo', uni.getStorageSync('curPlaySongInfo'));
-			console.log('curPlayTime', uni.getStorageSync('curPlayTime'));
 		},
 		computed: {
 			...mapState('songDetail', ['curPlaySongInfo'])
@@ -186,20 +185,5 @@
 				}
 			}
 		}
-
-		.play-detail-page {
-			width: 100%;
-			position: fixed;
-			bottom: -100vh;
-			transition: .3s;
-			z-index: -1;
-			transition-delay: .1s;
-
-			&.show {
-				bottom: 0;
-				z-index: 99;
-			}
-		}
-
 	}
 </style>

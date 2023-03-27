@@ -24,18 +24,18 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.play-detail {
+.play-detail.data-v-71c91626 {
   width: 100%;
   height: 100vh;
   background: #383838;
 }
-.play-detail .detail-con {
+.play-detail .detail-con.data-v-71c91626 {
   height: 100vh;
   position: -webkit-sticky;
   position: sticky;
   z-index: 50;
 }
-.play-detail .bg-img {
+.play-detail .bg-img.data-v-71c91626 {
   width: 100vw;
   height: 100vh;
   -webkit-filter: blur(160px);
@@ -43,7 +43,7 @@
   position: absolute;
   z-index: 0;
 }
-.play-detail .top-box {
+.play-detail .top-box.data-v-71c91626 {
   width: 100%;
   height: 80rpx;
   display: flex;
@@ -52,20 +52,20 @@
   padding: 0 30rpx;
   box-sizing: border-box;
 }
-.play-detail .top-box .back-icon {
+.play-detail .top-box .back-icon.data-v-71c91626 {
   width: 44rpx;
   height: 44rpx;
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
 }
-.play-detail .top-box .song-info {
+.play-detail .top-box .song-info.data-v-71c91626 {
   text-align: center;
 }
-.play-detail .top-box .song-info .name {
+.play-detail .top-box .song-info .name.data-v-71c91626 {
   font-size: 26rpx;
   color: #fff;
 }
-.play-detail .top-box .song-info .singer {
+.play-detail .top-box .song-info .singer.data-v-71c91626 {
   font-size: 22rpx;
   color: #c9c9c9;
   margin-top: 6rpx;
@@ -73,7 +73,7 @@
   align-items: center;
   justify-content: center;
 }
-.play-detail .top-box .song-info .singer .follow {
+.play-detail .top-box .song-info .singer .follow.data-v-71c91626 {
   font-size: 14rpx;
   color: #dedcdb;
   padding: 3rpx 6rpx;
@@ -81,11 +81,11 @@
   background: rgba(222, 220, 219, 0.4);
   margin-left: 6rpx;
 }
-.play-detail .top-box .share {
+.play-detail .top-box .share.data-v-71c91626 {
   width: 40rpx;
   height: 40rpx;
 }
-.play-detail .rod {
+.play-detail .rod.data-v-71c91626 {
   width: 204rpx;
   height: 358rpx;
   position: absolute;
@@ -98,11 +98,11 @@
   -webkit-transform: rotate(-2deg);
           transform: rotate(-2deg);
 }
-.play-detail .rod.pause {
+.play-detail .rod.pause.data-v-71c91626 {
   -webkit-transform: rotate(-30deg);
           transform: rotate(-30deg);
 }
-.play-detail .music-con {
+.play-detail .music-con.data-v-71c91626 {
   width: 620rpx;
   height: 620rpx;
   border-radius: 50%;
@@ -112,18 +112,18 @@
   margin: 220rpx auto 170rpx;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
-  -webkit-animation: musicRotate 20s infinite;
-          animation: musicRotate 20s infinite;
+  -webkit-animation: musicRotate-data-v-71c91626 20s infinite;
+          animation: musicRotate-data-v-71c91626 20s infinite;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
   -webkit-animation-fill-mode: backwards;
           animation-fill-mode: backwards;
 }
-.play-detail .music-con.pause-animate {
+.play-detail .music-con.pause-animate.data-v-71c91626 {
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
 }
-.play-detail .music-con .bg-disc {
+.play-detail .music-con .bg-disc.data-v-71c91626 {
   width: 600rpx;
   height: 600rpx;
   position: absolute;
@@ -133,7 +133,7 @@
           transform: translate(-50%, -50%);
   z-index: 10;
 }
-.play-detail .music-con .music-img {
+.play-detail .music-con .music-img.data-v-71c91626 {
   width: 500rpx;
   height: 500rpx;
   border-radius: 50%;
@@ -144,29 +144,29 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
-.play-detail .opera-con {
+.play-detail .opera-con.data-v-71c91626 {
   width: 100%;
   height: 70rpx;
   display: flex;
   justify-content: space-around;
 }
-.play-detail .opera-con .item-icon {
+.play-detail .opera-con .item-icon.data-v-71c91626 {
   width: 70rpx;
   height: 70rpx;
   position: relative;
 }
-.play-detail .opera-con .item-icon .opera-icon {
+.play-detail .opera-con .item-icon .opera-icon.data-v-71c91626 {
   width: 100%;
   height: 100%;
 }
-.play-detail .opera-con .item-icon .count {
+.play-detail .opera-con .item-icon .count.data-v-71c91626 {
   position: absolute;
   top: 7rpx;
   left: 46rpx;
   font-size: 18rpx;
   color: #e4e1db;
 }
-.play-detail .play-bar {
+.play-detail .play-bar.data-v-71c91626 {
   width: 100%;
   height: 40rpx;
   margin-top: 50rpx;
@@ -174,7 +174,7 @@
   padding: 0 30rpx;
   box-sizing: border-box;
 }
-.play-detail .play-opera {
+.play-detail .play-opera.data-v-71c91626 {
   width: 100%;
   height: 180rpx;
   display: flex;
@@ -183,23 +183,23 @@
   position: absolute;
   bottom: 20rpx;
 }
-.play-detail .play-opera .play-order .mode-icon,
-.play-detail .play-opera .play-menu {
+.play-detail .play-opera .play-order .mode-icon.data-v-71c91626,
+.play-detail .play-opera .play-menu.data-v-71c91626 {
   width: 80rpx;
   height: 80rpx;
 }
-.play-detail .play-opera .control-play {
+.play-detail .play-opera .control-play.data-v-71c91626 {
   width: 340rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.play-detail .play-opera .control-play .prev-icon,
-.play-detail .play-opera .control-play .next-icon {
+.play-detail .play-opera .control-play .prev-icon.data-v-71c91626,
+.play-detail .play-opera .control-play .next-icon.data-v-71c91626 {
   width: 60rpx;
   height: 60rpx;
 }
-.play-detail .play-opera .control-play .control {
+.play-detail .play-opera .control-play .control.data-v-71c91626 {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
@@ -209,14 +209,14 @@
   align-items: center;
   transition: .4s;
 }
-.play-detail .play-opera .control-play .control.play {
+.play-detail .play-opera .control-play .control.play.data-v-71c91626 {
   border-color: #d2cfcc;
 }
-.play-detail .play-opera .control-play .control .contr-icon {
+.play-detail .play-opera .control-play .control .contr-icon.data-v-71c91626 {
   width: 50rpx;
   height: 50rpx;
 }
-@-webkit-keyframes musicRotate {
+@-webkit-keyframes musicRotate-data-v-71c91626 {
 0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -226,7 +226,7 @@
             transform: rotate(360deg);
 }
 }
-@keyframes musicRotate {
+@keyframes musicRotate-data-v-71c91626 {
 0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);

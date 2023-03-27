@@ -31,8 +31,6 @@
 			}
 		},
 		created() {
-			console.log('curPlaySongInfo b', uni.getStorageSync('curPlaySongInfo'));
-			console.log('curPlayTime b', uni.getStorageSync('curPlayTime'));
 			// 创建播放器实例
 			this.innerAudioContext = uni.createInnerAudioContext();
 			// 播放音乐

@@ -149,6 +149,8 @@ var _default =
                   * height  高度
                   * bgColor  背景色
                   * mode  弹出方向 top right bottom left
+                  * isPadding 是否默认20像素的padding内缩
+                  * isRadius 是否展示圆角
                   * 
                   * @hidePopup 隐藏弹出层
                   */
@@ -171,7 +173,15 @@ var _default =
 
     mode: {
       type: String,
-      default: 'bottom' } },
+      default: 'bottom' },
+
+    isPadding: {
+      type: Boolean,
+      default: true },
+
+    isRadius: {
+      type: Boolean,
+      default: true } },
 
 
   computed: {
@@ -179,29 +189,30 @@ var _default =
       var obj = {
         width: this.width + '%',
         height: this.height + '%',
-        background: this.bgColor };
+        background: this.bgColor,
+        padding: this.isPadding ? '20rpx' : '0' };
 
       // 根据弹出位置设置不同的动画
       switch (this.mode) {
         case 'top':
           obj.top = this.isPopup ? '0' : -this.height + '%';
-          obj.borderBottomLeftRadius = '30rpx';
-          obj.borderBottomRightRadius = '30rpx';
+          obj.borderBottomLeftRadius = this.isRadius ? '30rpx' : '0';
+          obj.borderBottomRightRadius = this.isRadius ? '30rpx' : '0';
           break;
         case 'right':
           obj.right = this.isPopup ? '0' : -this.width + '%';
-          obj.borderTopLeftRadius = '30rpx';
-          obj.borderBottomLeftRadius = '30rpx';
+          obj.borderTopLeftRadius = this.isRadius ? '30rpx' : '0';
+          obj.borderBottomLeftRadius = this.isRadius ? '30rpx' : '0';
           break;
         case 'bottom':
           obj.bottom = this.isPopup ? '0' : -this.height + '%';
-          obj.borderTopLeftRadius = '30rpx';
-          obj.borderTopRightRadius = '30rpx';
+          obj.borderTopLeftRadius = this.isRadius ? '30rpx' : '0';
+          obj.borderTopRightRadius = this.isRadius ? '30rpx' : '0';
           break;
         case 'left':
           obj.left = this.isPopup ? '0' : -this.width + '%';
-          obj.borderTopRightRadius = '30rpx';
-          obj.borderBottomRightRadius = '30rpx';
+          obj.borderTopRightRadius = this.isRadius ? '30rpx' : '0';
+          obj.borderBottomRightRadius = this.isRadius ? '30rpx' : '0';
           break;}
 
       return obj;

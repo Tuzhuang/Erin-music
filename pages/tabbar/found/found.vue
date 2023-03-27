@@ -24,7 +24,7 @@
 					</swiper>
 				</view>
 			</view>
-			<view class="banner-bg" v-if="bannerList.length"
+			<view class="banner-bg" v-if="!isHomeBarBg&&bannerList.length"
 				:style="{backgroundImage:'url('+bannerList[curBannerIdx].pic+')'}">
 			</view>
 			<scroll-view scroll-x>
@@ -103,7 +103,8 @@
 			<swiper :class="['song-swiper',{'isRefreshing':isRefresh}]" duration="300" previous-margin="30rpx"
 				next-margin="30rpx">
 				<swiper-item class="song-item" v-for="(it,i) in 3" :key="i">
-					<view class="song-con" v-for="(item,index) in recomSongs[i]" :key="index">
+					<view :class="['song-con',{'click-animate':curSongId==item.id}]"
+						v-for="(item,index) in recomSongs[i]" :key="index" @click="getSongUrl(item)">
 						<image class="left-img" :src="item.al.picUrl" mode="aspectFill"></image>
 						<view class="item-con">
 							<view class="song-box">
@@ -131,7 +132,7 @@
 				<image class="more-icon" src="/static/images/pages/found/more-dian.svg" mode=""></image>
 			</view>
 			<swiper class="rank-swiper" duration="300" previous-margin="30rpx" next-margin="20rpx">
-				<swiper-item class="rank-item" v-for="(item,index) in rankList" :key="index">
+				<swiper-item class="rank-item" v-for="(item,index) in rankDataDetail" :key="index">
 					<view class="swiper-box">
 						<view class="rank-tit-con">
 							<view class="left-con">
@@ -141,8 +142,8 @@
 							</view>
 							<p class="rank-tag">{{item.updateFrequency}}</p>
 						</view>
-						<view class="rank-info-item" v-for="(it,i) in rankDataDetail[index]" :key="i"
-							@click="getSongUrl(it)">
+						<view :class="['rank-info-item',{'click-animate':curSongId==it.id}]" v-for="(it,i) in item.list"
+							:key="i" @click="getSongUrl(it)">
 							<image class="song-avatar" :src="it.al.picUrl" mode="" />
 							<span :class="['rank-num',{'two':i==1,'three':i==2}]">{{i+1}}</span>
 							<view class="song-detail">
@@ -167,7 +168,7 @@
 				<leftMenu :userInfo.sync="userInfo" />
 			</view>
 		</popup>
-		<loading ref="loading" />
+		<!-- <loading ref="loading" /> -->
 	</view>
 </template>
 
@@ -180,12 +181,17 @@
 	import leftMenu from '../menu/menu.vue';
 	import {
 		mapState,
-		mapMutations
+		mapMutations,
+		mapActions
 	} from 'vuex';
 
 	export default {
 		props: {
 			isHomeBarBg: { // tabbar是否展示背景色
+				type: Boolean,
+				default: false
+			},
+			isRender: {
 				type: Boolean,
 				default: false
 			}
@@ -249,14 +255,17 @@
 				rankList: [], // 排行榜
 				rankDataDetail: [],
 				curPlayObj: {}, // 当前播放歌曲信息
+				curSongId: "", // 当前点击音乐的id
 			}
 		},
 		computed: {
 			...mapState(["userInfo"]),
 		},
+		onLoad() {
+			console.log('页面渲染')
+
+		},
 		created() {
-			console.log('curPlaySongInfo f', uni.getStorageSync('curPlaySongInfo'));
-			console.log('curPlayTime f', uni.getStorageSync('curPlayTime'));
 			this.getBanner();
 			this.getplayList();
 			this.getNewSongs();
@@ -282,6 +291,7 @@
 		methods: {
 			...mapMutations("found", ["setRankList"]),
 			...mapMutations('songDetail', ['setCurPlaySongInfo', 'setCurPlayTime', 'setSongCommentObj']),
+			...mapActions("songDetail", ["getSongComments"]),
 			openMenuShow() {
 				// console.log('val',val);
 				this.menuShow = true;
@@ -344,12 +354,18 @@
 				this.rankList.forEach(async (it, i) => {
 					let resp = await $httpHome.rankDetail(it.id);
 					if (resp && resp.code == 200) {
-						this.rankDataDetail.push(resp.playlist.tracks.filter((v, idx) => idx < 3));
+						this.rankDataDetail.push({
+							name: it.name,
+							updateFrequency: it.updateFrequency,
+							list: resp.playlist.tracks.filter((v, idx) => idx < 3)
+						});
 					}
 				})
+				console.log('rankDataDetail', this.rankDataDetail);
 			},
 			// 获取音乐详情url
 			async getSongUrl(obj) {
+				this.curSongId = obj.id;
 				console.log(obj);
 				let res = await $httpSongInfo.songUrl({
 					id: obj.id
@@ -368,7 +384,9 @@
 						songTime: parseInt(res.data[0].time / 1000)
 					}
 					// 获取歌曲评论
-					this.getSongComment(obj.id);
+					this.getSongComments({
+						id: obj.id
+					});
 					this.setCurPlaySongInfo(songObj);
 					// 切换音乐的时候重置播放秒数
 					this.setCurPlayTime(0);
@@ -376,24 +394,6 @@
 					this.bus.$emit('onPlaySong', res.data[0].url);
 				}
 			},
-			// 获取歌曲评论
-			async getSongComment(id) {
-				let res = await $httpSongInfo.songComment({
-					id: id,
-					limit: 20
-				})
-				if (res && res.code == 200) {
-					// 保存评论信息
-					this.setSongCommentObj({
-						total: res.total,
-						newComments: res.comments,
-						hotComments: res.hotComments,
-						more: res.more,
-						moreHot: res.moreHot
-					})
-
-				}
-			}
 		}
 	}
 </script>
@@ -497,7 +497,7 @@
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
 			transition: .5s;
-			filter: blur(60px);
+			filter: blur(40px);
 		}
 
 		.sub-menu {
@@ -1031,6 +1031,21 @@
 			width: 100%;
 			height: 300rpx;
 			// background-color: pink;
+		}
+
+		// 点击音乐的时候点击效果
+		.click-animate {
+			animation: click-move .4s;
+		}
+
+		@keyframes click-move {
+			from {
+				transform: scale(.95);
+			}
+
+			to {
+				transform: scale(1);
+			}
 		}
 	}
 </style>

@@ -114,19 +114,178 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 9);
+
+
+
+
+var _songInfo = _interopRequireDefault(__webpack_require__(/*! @/api/songInfo.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loading */ "components/loading").then((function () {return resolve(__webpack_require__(/*! @/components/loading.vue */ 118));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var popup = function popup() {__webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {return resolve(__webpack_require__(/*! @/components/popup.vue */ 75));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var replyComments = function replyComments() {__webpack_require__.e(/*! require.ensure | pages/playDetail/components/replyComments */ "pages/playDetail/components/replyComments").then((function () {return resolve(__webpack_require__(/*! ../components/replyComments.vue */ 146));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+
+;var _default =
 {
+  name: "songComments",
+  components: {
+    loading: loading,
+    popup: popup,
+    replyComments: replyComments },
+
+  props: ['isRenderOk'],
   data: function data() {
-    return {};
+    return {
+      commentsTypes: [{
+        label: "推荐",
+        value: 'recom' },
+      {
+        label: "最热",
+        value: 'hot' },
+      {
+        label: "最新",
+        value: 'new' }],
 
+      curCommType: 'recom', // new hot
+      commentsData: [],
+      isLoadMore: false, // 是否加载更多,防止触发多次
+      curPage: 1, // 当前页码
+      scrollTop: 0,
+      isReplyCommShow: false, // 是否打开回复评论
+      curFloorComments: null // 当前需要回复的评论信息
+    };
+  },
+  computed: _objectSpread(_objectSpread({},
+  (0, _vuex.mapState)("songDetail", ["curPlaySongInfo", "songCommentObj"])),
+  (0, _vuex.mapGetters)("songDetail", ["hotCommentsList", "newCommentsList", "commentsTotal"])),
 
-  } };exports.default = _default;
+  watch: {
+    // 当评论对象改变的时候，重新渲染数据
+    songCommentObj: {
+      handler: function handler() {
+        this.commentsData = this.songCommentObj.comments;
+      },
+      immediate: true,
+      deep: true },
+
+    // 切换评论类型的时候
+    curCommType: {
+      handler: function handler(val) {
+        this.onCommType(val);
+      },
+      deep: true },
+
+    // 判断页面是否渲染完成
+    isRenderOk: function isRenderOk(val) {
+      if (val) {// 渲染完成之后调用获取默认评论的方法
+        this.onCommType('recom');
+      }
+    } },
+
+  methods: _objectSpread(_objectSpread({},
+  (0, _vuex.mapActions)('songDetail', ["getSongComments"])), {}, {
+    back: function back() {
+      this.$emit('toBack');
+    },
+    // 上拉加载更多评论
+    loadMore: function loadMore() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!
+                _this.isLoadMore) {_context.next = 2;break;}return _context.abrupt("return");case 2:
+                _this.isLoadMore = true;
+                _this.curPage++;
+                // 获取更多评论信息
+                _context.next = 6;return _this.getSongComments({
+                  pageNo: _this.curPage,
+                  cursor: _this.curCommType == 'new' && _this.curPage != 1 ? _this.commentsData[_this.
+                  commentsData.length - 1].time : '' // 详细判断条件可看接口封装处
+                });case 6:
+                _this.isLoadMore = false;case 7:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    // 切换评论类型
+    onCommType: function onCommType(val) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                _this2.curCommType = val;
+                _this2.curPage = 1;
+                _this2.commentsData = [];if (
+                _this2.commentsData.length) {_context2.next = 9;break;}
+                _this2.$refs.loading.show();_context2.next = 7;return (
+                  _this2.getSongComments({
+                    sortType: val == 'recom' ? '1' : val == 'hot' ? '2' : '3' }));case 7:
+
+                _this2.$refs.loading.hide();
+                _this2.commentsData = _this2.songCommentObj.comments;case 9:case "end":return _context2.stop();}}}, _callee2);}))();
+
+    },
+    // 打开回复评论
+    openReply: function openReply(obj) {
+      this.curFloorComments = obj;
+      this.isReplyCommShow = true;
+    },
+    top: function top(val) {
+      // uni.navigateTo({
+      // 	url: "/pages/searchDetail/searchDetail"
+      // })
+
+    } }) };exports.default = _default;
 
 /***/ }),
 

@@ -86,16 +86,4 @@
 .index-home .tab-bar .item-bar .title.active.data-v-57280228 {
   color: #cc453e;
 }
-.index-home .play-detail-page.data-v-57280228 {
-  width: 100%;
-  position: fixed;
-  bottom: -100vh;
-  transition: .3s;
-  z-index: -1;
-  transition-delay: .1s;
-}
-.index-home .play-detail-page.show.data-v-57280228 {
-  bottom: 0;
-  z-index: 99;
-}
 

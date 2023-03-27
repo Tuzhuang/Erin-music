@@ -1,4 +1,8 @@
 {
-  "usingComponents": {},
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "loading": "/components/loading",
+    "popup": "/components/popup",
+    "reply-comments": "/pages/playDetail/components/replyComments"
+  }
 }

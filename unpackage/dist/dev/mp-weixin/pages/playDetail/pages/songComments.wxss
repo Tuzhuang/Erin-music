@@ -26,7 +26,182 @@
 /* 文章场景相关 */
 .song-comments {
   width: 100%;
-  height: 100vh;
-  background: #151515;
+  height: 100%;
+}
+.song-comments .top-con {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background-color: #151515;
+}
+.song-comments .top-con .top-bar {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.song-comments .top-con .top-bar .back {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  width: 50rpx;
+  height: 50rpx;
+}
+.song-comments .top-con .top-bar .comm-count {
+  font-size: 32rpx;
+  color: #fff;
+}
+.song-comments .top-con .top-bar .share-icon {
+  width: 46rpx;
+  height: 46rpx;
+}
+.song-comments .top-con .song-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+}
+.song-comments .top-con .song-info .left-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  position: relative;
+}
+.song-comments .top-con .song-info .left-avatar .disc-icon,
+.song-comments .top-con .song-info .left-avatar .song-img {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.song-comments .top-con .song-info .left-avatar .song-img {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.song-comments .top-con .song-info .song-name {
+  font-size: 24rpx;
+  color: #f0f0f0;
+  margin-left: 10rpx;
+}
+.song-comments .top-con .song-info .sing-name {
+  font-size: 18rpx;
+  color: #bfbfbf;
+  margin-left: 6rpx;
+}
+.song-comments .comments-info {
+  margin-top: 20rpx;
+  background-color: #151515;
+}
+.song-comments .comments-info .comm-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60rpx;
+  font-size: 26rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.song-comments .comments-info .comm-menu .title {
+  color: #fff;
+}
+.song-comments .comments-info .comm-menu .screen {
+  display: flex;
+  align-items: center;
+  margin-right: -20rpx;
+}
+.song-comments .comments-info .comm-menu .screen .it {
+  padding: 0 20rpx;
+  border-right: 1px solid #282828;
+  color: #666;
+  transition: .4s;
+}
+.song-comments .comments-info .comm-menu .screen .it:last-child {
+  border-right: 0;
+}
+.song-comments .comments-info .comm-menu .screen .it.active {
+  color: #fff;
+}
+.song-comments .comments-info .comm-menu .screen .line {
+  width: 2rpx;
+  height: 30rpx;
+  background-color: #282828;
+  margin: 0 20rpx;
+}
+.song-comments .comments-list {
+  height: calc(100vh - 250rpx);
+}
+.song-comments .comm-item {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+.song-comments .comm-item .comm-user-info {
+  display: flex;
+  align-items: center;
+}
+.song-comments .comm-item .comm-user-info .avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.song-comments .comm-item .comm-user-info .right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+.song-comments .comm-item .comm-user-info .right .detail .name {
+  font-size: 24rpx;
+  color: #d0d0d0;
+}
+.song-comments .comm-item .comm-user-info .right .detail .time {
+  font-size: 16rpx;
+  color: #585858;
+  margin-top: 6rpx;
+}
+.song-comments .comm-item .comm-user-info .right .give {
+  display: flex;
+  align-items: center;
+}
+.song-comments .comm-item .comm-user-info .right .give .count {
+  font-size: 24rpx;
+  color: #666;
+}
+.song-comments .comm-item .comm-user-info .right .give .icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 10rpx;
+}
+.song-comments .comm-item .comm-content {
+  font-size: 28rpx;
+  line-height: 42rpx;
+  letter-spacing: 0rpx;
+  color: #f9f9f9;
+  margin-left: 80rpx;
+  margin-top: 10rpx;
+}
+.song-comments .comm-item .reply-comm {
+  width: 100%;
+  height: 20rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 80rpx;
+  margin-top: 10rpx;
+}
+.song-comments .comm-item .reply-comm .reply-count {
+  font-size: 20rpx;
+  color: #5778a5;
+}
+.song-comments .comm-item .reply-comm .reply-icon {
+  width: 24rpx;
+  height: 24rpx;
+}
+.song-comments .comm-item .split-line {
+  width: 100%;
+  height: 1rpx;
+  background-color: #262626;
+  margin-left: 80rpx;
+  margin-top: 20rpx;
 }
 

@@ -3,6 +3,7 @@
   "usingComponents": {
     "found": "/pages/tabbar/found/found",
     "bottom-play": "/pages/index/components/bottomPlay",
-    "play-detail": "/pages/playDetail/playDetail"
+    "play-detail": "/pages/playDetail/playDetail",
+    "popup": "/components/popup"
   }
 }

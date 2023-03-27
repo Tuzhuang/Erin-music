@@ -10,8 +10,6 @@
 		},
 		onShow: function() {
 			console.log('App Show')
-			console.log('curPlaySongInfo a', uni.getStorageSync('curPlaySongInfo'));
-			console.log('curPlayTime a', uni.getStorageSync('curPlayTime'));
 		},
 		onHide: function() {
 			console.log('App Hide')
@@ -37,4 +35,15 @@
 			}
 		}
 	}
+	/* 解决安卓小程序滚动条的问题 */
+	/* #ifdef MP-WEIXIN */
+		::-webkit-scrollbar {
+		    display: none;
+		    width: 0 !important;
+		    height: 0 !important;
+		    -webkit-appearance: none;
+		    background: transparent;
+		    color: transparent;
+		  }
+	/* #endif */
 </style>

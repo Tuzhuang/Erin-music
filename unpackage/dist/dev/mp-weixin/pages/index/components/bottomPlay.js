@@ -147,8 +147,6 @@ var _vuex = __webpack_require__(/*! vuex */ 9);function ownKeys(object, enumerab
     };
   },
   created: function created() {var _this = this;
-    console.log('curPlaySongInfo b', uni.getStorageSync('curPlaySongInfo'));
-    console.log('curPlayTime b', uni.getStorageSync('curPlayTime'));
     // 创建播放器实例
     this.innerAudioContext = uni.createInnerAudioContext();
     // 播放音乐

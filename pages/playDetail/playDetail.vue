@@ -64,10 +64,11 @@
 			</view>
 		</view>
 
-		<!-- 歌曲评论详情 -->
-		<popup :isPopup.sync="isCommentsShow" bgColor="#151515">
-			<songComments slot="content"></songComments>
+		<!-- 歌曲评论详情:isRenderOk="isCommentsShow" -->
+		<popup :isPopup.sync="isCommentsShow" :isPadding="false" :isRadius="false" bgColor="#0f0f0f">
+			<songComments slot="content"  @toBack="onOffComm" />
 		</popup>
+
 	</view>
 </template>
 
@@ -76,7 +77,10 @@
 	import popup from '@/components/popup.vue';
 	import songComments from './pages/songComments.vue';
 	import {
-		mapState
+		mapState,
+		mapMutations,
+		mapGetters,
+		mapActions
 	} from 'vuex';
 	export default {
 		components: {
@@ -84,6 +88,7 @@
 			popup,
 			songComments,
 		},
+		props:["isRenderOk"],
 		data() {
 			return {
 				isPause: true, // 是否暂停播放
@@ -111,23 +116,23 @@
 				curPlayMode: 0, // 当前循环模式,
 				currentPlayTime: null, // 当前音乐播放秒数
 				isCommentsShow: true, // 是否展示评论区
-				
+				songCommTotal: 0, // 评论总条数
 			}
 		},
-
-		created() {},
 		computed: {
 			...mapState('songDetail', ["curPlaySongInfo", "curPlayTime", "songCommentObj"]),
-			songCommTotal() {
-				return this.songCommentObj.total > 999 ? '999+' : this.songCommentObj.total;
-			}
+			...mapGetters("songDetail", ["newCommentsList", "hotCommentsList"]),
 		},
 		watch: {
+			isRenderOk(val){
+				if(val){
+					console.log('页面这才开始触发')
+				}
+			},
 			"curPlaySongInfo.songState": {
 				handler(newVal) {
 					this.isPause = newVal == 'pause' ? true : false;
 				},
-				immediate: true,
 				deep: true
 			},
 			curPlayTime: {
@@ -136,10 +141,32 @@
 				},
 				immediate: true,
 				deep: true
+			},
+			// 评论数
+			"songCommentObj.total": {
+				handler(val) {
+					if (val > 999 && val <= 5000) {
+						this.songCommTotal = '999+';
+					} else if (val > 5000 && val <= 10000) {
+						this.songCommTotal = '5k+';
+					} else if (val > 10000 && val <= 50000) {
+						this.songCommTotal = '1w+';
+					} else if (val > 50000 && val <= 100000) {
+						this.songCommTotal = '5w+';
+					} else if (val > 100000) {
+						this.songCommTotal = '10w+';
+					} else {
+						this.songCommTotal = val;
+					}
+				},
+				immediate: true,
+				deep: true
 			}
 		},
 
 		methods: {
+			...mapMutations('songDetail', ["deleteSongComments"]),
+			...mapActions("songDetail", ["getSongComments"]),
 			back() {
 				this.$emit("backMusicInfo")
 			},
@@ -165,18 +192,27 @@
 			},
 			// 播放音乐
 			playSong() {
-				console.log('curPlaySongInfo.songUrl', curPlaySongInfo.songUrl)
 				this.audio.src = curPlaySongInfo.songUrl;
 			},
 			// 打开评论区
-			openComments(){
+			async openComments() {
+				// 获取最新评论前先清除旧的评论
+				// await this.deleteSongComments();
+				// await this.getSongComments({});
 				this.isCommentsShow = true;
+			},
+			// 关闭评论区
+			onOffComm() {
+				// 清空评论信息（以便防止数据错乱，以及下次更新最新评论）
+				this.deleteSongComments();
+				console.log('评论清空完成', this.songCommentObj)
+				this.isCommentsShow = false;
 			}
 		}
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.play-detail {
 		width: 100%;
 		height: 100vh;
@@ -397,5 +433,6 @@
 				transform: rotate(360deg);
 			}
 		}
+
 	}
 </style>

@@ -126,8 +126,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
 var _default =
 {
+  props: {
+    isMask: {
+      type: Boolean,
+      default: true } },
+
+
   data: function data() {
     return {
       isShow: false };
