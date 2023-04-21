@@ -32,6 +32,9 @@
   box-sizing: border-box;
   background: #0e0e0e;
 }
+.found .found-scroll.data-v-556fc8bd {
+  height: 100%;
+}
 .found .tab-bar.data-v-556fc8bd {
   width: 100%;
 }
@@ -428,9 +431,14 @@
   margin-left: 10rpx;
 }
 .found .song-card .song-swiper .song-item .song-con .item-con .tag.data-v-556fc8bd {
-  display: inline;
+  max-width: 90%;
+  display: inline-block;
   font-size: 16rpx;
   color: #ce463f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 12rpx;
   padding: 4rpx 8rpx;
   border-radius: 6rpx;
   background: #2f1f26;

@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/index/components/bottomPlay"],{
 
-/***/ 61:
+/***/ 65:
 /*!**************************************************************************!*\
   !*** D:/code/ErinMusic/erin-music/pages/index/components/bottomPlay.vue ***!
   \**************************************************************************/
@@ -9,10 +9,10 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _bottomPlay_vue_vue_type_template_id_1ec76fb2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bottomPlay.vue?vue&type=template&id=1ec76fb2& */ 62);
-/* harmony import */ var _bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bottomPlay.vue?vue&type=script&lang=js& */ 64);
+/* harmony import */ var _bottomPlay_vue_vue_type_template_id_1ec76fb2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bottomPlay.vue?vue&type=template&id=1ec76fb2& */ 66);
+/* harmony import */ var _bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bottomPlay.vue?vue&type=script&lang=js& */ 68);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bottomPlay.vue?vue&type=style&index=0&lang=scss& */ 66);
+/* harmony import */ var _bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bottomPlay.vue?vue&type=style&index=0&lang=scss& */ 70);
 /* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 12);
 
 var renderjs
@@ -41,7 +41,7 @@ component.options.__file = "pages/index/components/bottomPlay.vue"
 
 /***/ }),
 
-/***/ 62:
+/***/ 66:
 /*!*********************************************************************************************************!*\
   !*** D:/code/ErinMusic/erin-music/pages/index/components/bottomPlay.vue?vue&type=template&id=1ec76fb2& ***!
   \*********************************************************************************************************/
@@ -50,7 +50,7 @@ component.options.__file = "pages/index/components/bottomPlay.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_template_id_1ec76fb2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./bottomPlay.vue?vue&type=template&id=1ec76fb2& */ 63);
+/* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_template_id_1ec76fb2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./bottomPlay.vue?vue&type=template&id=1ec76fb2& */ 67);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_template_id_1ec76fb2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_template_id_1ec76fb2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -63,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 63:
+/***/ 67:
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!D:/code/ErinMusic/erin-music/pages/index/components/bottomPlay.vue?vue&type=template&id=1ec76fb2& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -90,7 +90,7 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ 64:
+/***/ 68:
 /*!***************************************************************************************************!*\
   !*** D:/code/ErinMusic/erin-music/pages/index/components/bottomPlay.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************/
@@ -99,14 +99,14 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./bottomPlay.vue?vue&type=script&lang=js& */ 65);
+/* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./bottomPlay.vue?vue&type=script&lang=js& */ 69);
 /* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 65:
+/***/ 69:
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!D:/code/ErinMusic/erin-music/pages/index/components/bottomPlay.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -140,54 +140,56 @@ var _vuex = __webpack_require__(/*! vuex */ 9);function ownKeys(object, enumerab
 
 
 {
+  props: ["isReadyOk"],
   data: function data() {
     return {
-      innerAudioContext: null, // 播放器
-      songTimer: null // 当前播放时间的timerId
+      innerAudioContext: null // 播放器dom
     };
   },
   created: function created() {var _this = this;
     // 创建播放器实例
     this.innerAudioContext = uni.createInnerAudioContext();
+    this.innerAudioContext.autoplay = true; // 自动播放
+    this.innerAudioContext.obeyMuteSwitch = false; // 静音状态依旧播放声音
     // 播放音乐
     this.bus.$on('onPlaySong', function (value) {
-      console.log('value', value);
       _this.playSong(value);
     });
     // 暂停音乐
     this.bus.$on('onPauseSong', function () {
-      console.log('触发暂停音乐');
       _this.pauseSong();
-    }),
+    });
     // 从某个位置开始播放音乐
     this.bus.$on('onToTimePlay', function (value) {
       _this.toTimePlay(value);
     });
+    // 当音乐播放的时候触发的方法
+    this.innerAudioContext.onPlay(function () {
+      _this.setCurPlaySongInfo(_objectSpread(_objectSpread({},
+      _this.curPlaySongInfo), {}, {
+        songState: 'play' }));
+
+    });
+    // 当音乐暂停播放的时候触发的方法
+    this.innerAudioContext.onPause(function () {
+      console.log('暂停');
+      _this.setCurPlaySongInfo(_objectSpread(_objectSpread({},
+      _this.curPlaySongInfo), {}, {
+        songState: 'pause' }));
+
+      // this.innerAudioContext.offTimeUpdate();
+    });
+    // 音乐加载完毕准备播放会触发的方法
+    this.innerAudioContext.onCanplay(function () {
+      // 这个打印必须要执行，不然就会出问题，离谱！！！
+      console.log('当前播放状态', _this.innerAudioContext.paused);
+      _this.$nextTick(function () {
+        _this.getPlayCurTime();
+      });
+    });
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)('songDetail', ["curPlaySongInfo", 'curPlayTime'])),
-
-  watch: {
-    curPlayTime: {
-      handler: function handler(newVal, oldVal) {
-        if (typeof newVal != 'number' || typeof oldVal != 'number') return;
-        // 此处的作用主要是当音乐进度条更新的时候触发新的计时器，并且旧时间不等于歌曲总时长
-        if (newVal - oldVal != 1) {
-          clearInterval(this.songTimer);
-          // 判断一下播放条更新前是播放状态还是暂停状态，如果是播放状态的话就开启计时器继续播放
-          if (this.curPlaySongInfo.songState == 'play') {
-            this.openTimer(newVal);
-          }
-        }
-        // 还要判断下当当前音乐播放完毕的时候就要停止计时器
-        if (newVal == this.curPlaySongInfo.songTime) {
-          console.log('音乐播放完毕');
-          this.pauseSong();
-        }
-      },
-      immediate: true,
-      deep: true } },
-
 
   methods: _objectSpread(_objectSpread({},
   (0, _vuex.mapMutations)('songDetail', ['setCurPlaySongInfo', 'setCurPlayTime'])), {}, {
@@ -198,55 +200,32 @@ var _vuex = __webpack_require__(/*! vuex */ 9);function ownKeys(object, enumerab
       console.log('openPlayList不会下去');
     },
     // 开始播放音乐
-    playSong: function playSong(url) {var _this2 = this;
+    playSong: function playSong(url) {
       this.innerAudioContext.src = url;
       // 重新播放音乐的时候判断下当前音乐是否播放结束，如果结束的话就要将当前已播放时间清零
       if (this.curPlaySongInfo.songTime == this.curPlayTime) {
         this.setCurPlayTime(0);
       }
-      // 更新播放时间的时候要重新触发一下该方法
-      this.toTimePlay(this.curPlayTime);
+      // 判断一下如果有上次记录的时间，就从上次记录的时间开始播放
+      if (this.curPlayTime) {
+        this.toTimePlay(this.curPlayTime);
+      }
       this.innerAudioContext.play();
-      this.innerAudioContext.onPlay(function () {
-        console.log('播放');
-        _this2.setCurPlaySongInfo(_objectSpread(_objectSpread({},
-        _this2.curPlaySongInfo), {}, {
-          songState: 'play' }));
-
-        // 开启定时器读秒
-        _this2.openTimer(_this2.curPlayTime);
-      });
     },
     // 暂停播放音乐
-    pauseSong: function pauseSong() {var _this3 = this;
+    pauseSong: function pauseSong() {
       this.innerAudioContext.pause();
-      this.innerAudioContext.onPause(function () {
-        console.log('暂停');
-        _this3.setCurPlaySongInfo(_objectSpread(_objectSpread({},
-        _this3.curPlaySongInfo), {}, {
-          songState: 'pause' }));
-
-        // 暂停计时器
-        clearInterval(_this3.songTimer);
-      });
-    },
-    // 开启一个定时器来注饰当前播放音乐的进度
-    openTimer: function openTimer(startTime) {var _this4 = this;
-      if (this.songTimer) {
-        clearInterval(this.songTimer);
-      }
-      this.songTimer = setInterval(function () {
-        startTime++; // 当前播放时间
-        _this4.setCurPlayTime(startTime);
-      }, 1000);
     },
     // 从某个位置开始播放音乐
     toTimePlay: function toTimePlay(val) {
-      console.log('出发了几次');
-      this.innerAudioContext.seek(val);
-      this.innerAudioContext.onSeeked(function () {
-        console.log('进度更新成功');
+      this.innerAudioContext.seek(+val);
+    },
+    getPlayCurTime: function getPlayCurTime() {var _this2 = this;
+      this.innerAudioContext.onTimeUpdate(function () {
+        // 保存当前音乐播放的秒数
+        _this2.setCurPlayTime(_this2.innerAudioContext.currentTime.toFixed(2));
       });
+
     } }),
 
   onUnload: function onUnload() {
@@ -256,7 +235,7 @@ var _vuex = __webpack_require__(/*! vuex */ 9);function ownKeys(object, enumerab
 
 /***/ }),
 
-/***/ 66:
+/***/ 70:
 /*!************************************************************************************************************!*\
   !*** D:/code/ErinMusic/erin-music/pages/index/components/bottomPlay.vue?vue&type=style&index=0&lang=scss& ***!
   \************************************************************************************************************/
@@ -265,14 +244,14 @@ var _vuex = __webpack_require__(/*! vuex */ 9);function ownKeys(object, enumerab
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./bottomPlay.vue?vue&type=style&index=0&lang=scss& */ 67);
+/* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../../../../LenovoSoftstore/Install/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./bottomPlay.vue?vue&type=style&index=0&lang=scss& */ 71);
 /* harmony import */ var _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_LenovoSoftstore_Install_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_bottomPlay_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 67:
+/***/ 71:
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!D:/code/ErinMusic/erin-music/pages/index/components/bottomPlay.vue?vue&type=style&index=0&lang=scss& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -291,7 +270,7 @@ __webpack_require__.r(__webpack_exports__);
     'pages/index/components/bottomPlay-create-component',
     {
         'pages/index/components/bottomPlay-create-component':(function(module, exports, __webpack_require__){
-            __webpack_require__('1')['createComponent'](__webpack_require__(61))
+            __webpack_require__('1')['createComponent'](__webpack_require__(65))
         })
     },
     [['pages/index/components/bottomPlay-create-component']]

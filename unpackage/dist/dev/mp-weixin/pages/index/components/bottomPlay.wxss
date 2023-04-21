@@ -76,15 +76,23 @@
   display: flex;
   align-items: flex-end;
   margin-left: 20rpx;
+  max-width: 66%;
 }
-.bottom-play .play-con .song-name .name {
+.bottom-play .play-con .song-name .name,
+.bottom-play .play-con .song-name .singer {
   font-size: 24rpx;
   color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .bottom-play .play-con .song-name .split,
 .bottom-play .play-con .song-name .singer {
   font-size: 20rpx;
   color: #5d5d5d;
+}
+.bottom-play .play-con .song-name .singer {
+  flex: 1;
 }
 .bottom-play .play-con .song-name .split {
   padding: 0 10rpx;

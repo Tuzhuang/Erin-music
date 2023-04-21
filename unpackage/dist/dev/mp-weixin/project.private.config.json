@@ -17,8 +17,8 @@
                     "scene": null
                 },
                 {
-                    "name": "搜索详情",
-                    "pathName": "pages/searchDetail/searchDetail",
+                    "name": "搜索页面",
+                    "pathName": "pages/searchPage/searchPage",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

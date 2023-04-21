@@ -3,6 +3,7 @@
   "usingComponents": {
     "play-bar": "/components/playBar",
     "popup": "/components/popup",
-    "song-comments": "/pages/playDetail/pages/songComments"
+    "song-comments": "/pages/playDetail/pages/songComments",
+    "lyrics-detail": "/pages/playDetail/components/lyricsDetail"
   }
 }

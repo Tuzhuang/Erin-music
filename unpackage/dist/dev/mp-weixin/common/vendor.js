@@ -2540,7 +2540,7 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 101:
+/***/ 105:
 /*!*************************************************!*\
   !*** D:/code/ErinMusic/erin-music/api/login.js ***!
   \*************************************************/
@@ -2705,7 +2705,8 @@ var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 9));
 
 
 var _found = _interopRequireDefault(__webpack_require__(/*! ./modules/found.js */ 14));
-var _songDetail = _interopRequireDefault(__webpack_require__(/*! ./modules/songDetail.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}_vue.default.use(_vuex.default);var _default =
+var _songDetail = _interopRequireDefault(__webpack_require__(/*! ./modules/songDetail.js */ 15));
+var _searchDetail = _interopRequireDefault(__webpack_require__(/*! ./modules/searchDetail.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}_vue.default.use(_vuex.default);var _default =
 
 new _vuex.default.Store({
   state: {
@@ -2744,7 +2745,8 @@ new _vuex.default.Store({
 
   modules: {
     found: _found.default,
-    songDetail: _songDetail.default } });exports.default = _default;
+    songDetail: _songDetail.default,
+    searchDetail: _searchDetail.default } });exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
@@ -2784,12 +2786,13 @@ var mutations = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _songInfo = _interopRequireDefault(__webpack_require__(/*! @/api/songInfo.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _songInfo = _interopRequireDefault(__webpack_require__(/*! @/api/songInfo.js */ 19));
+var _storage = _interopRequireDefault(__webpack_require__(/*! @/utils/storage.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
 var state = {
-  curPlaySongInfo: uni.getStorageSync('curPlaySongInfo') || {}, // 当前播放音乐的详细信息
-  curPlayTime: uni.getStorageSync('curPlayTime') || 0, // 当前音乐播放到第几秒了
-  songCommentObj: uni.getStorageSync('songCommentObj') || {} // 歌曲评论信息
+  curPlaySongInfo: _storage.default.getItem('curPlaySongInfo') || {}, // 当前播放音乐的详细信息
+  curPlayTime: _storage.default.getItem('curPlayTime') || 0, // 当前音乐播放到第几秒了
+  songCommentObj: _storage.default.getItem('songCommentObj') || {} // 歌曲评论信息
 };
 
 var getters = {
@@ -2798,28 +2801,29 @@ var getters = {
   // 最新评论
   newCommentsList: function newCommentsList(state) {return state.songCommentObj.newComments || [];},
   // 评论条数
-  commentsTotal: function commentsTotal(state) {return state.songCommentObj.total || 0;} };
+  commentsTotal: function commentsTotal(state) {return state.songCommentObj.total || 0;},
+  // 当前秒数的取整
+  curPlayTimeRound: function curPlayTimeRound(state) {return ~~state.curPlayTime;} };
 
 
 
 var mutations = {
   setCurPlaySongInfo: function setCurPlaySongInfo(state, value) {
     state.curPlaySongInfo = value;
-    uni.setStorageSync('curPlaySongInfo', value);
+    _storage.default.setItem('curPlaySongInfo', value);
   },
   setCurPlayTime: function setCurPlayTime(state, value) {
     state.curPlayTime = value;
-    uni.setStorageSync('curPlayTime', value);
+    _storage.default.setItem('curPlayTime', value);
   },
   setSongCommentObj: function setSongCommentObj(state, value) {
-    console.log('mutations', value);
     state.songCommentObj = value;
-    uni.setStorageSync('songCommentObj', value);
+    _storage.default.setItem('songCommentObj', value);
   },
   // 清空评论数据
   deleteSongComments: function deleteSongComments(state) {
     state.songCommentObj = {};
-    uni.removeStorageSync('songCommentObj');
+    _storage.default.removeItem('songCommentObj');
   } };
 
 
@@ -2840,7 +2844,6 @@ var actions = {
                 // 判断当页码不为1的时候就追加到原数组之后
                 oldComments = [];
                 if (value.pageNo && value.pageNo != 1) {
-                  console.log('进到这里了吗', value.pageNo);
                   oldComments = JSON.parse(JSON.stringify(state.songCommentObj.comments));
                 }
                 obj = {
@@ -2859,7 +2862,6 @@ var actions = {
   getters: getters,
   mutations: mutations,
   actions: actions };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -3743,6 +3745,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.request = void 0;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} // 封装接口
 
 var baseUrl = "http://192.168.31.176:3000";
+// const baseUrl = "http://192.168.1.100:3000"; // 茂德家
 // const baseUrl = "http://localhost:3000";
 // const baseUrl = "http://pgn3c6.natappfree.cc";
 var request = function request(options) {
@@ -3765,6 +3768,113 @@ var request = function request(options) {
   });
 };exports.request = request;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 21:
+/*!*****************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/utils/storage.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 操作本地数据  2023年3月29日01点36分
+var _default =
+{
+  // 保存数据
+  setItem: function setItem(label, value) {
+    uni.setStorageSync(label, JSON.parse(JSON.stringify(value)));
+  },
+  // 获取数据
+  getItem: function getItem(label) {
+    // if(uni.getStorageSync(label)){
+    // 	return JSON.parse(uni.getStorageSync(label));
+    // }else {
+    return uni.getStorageSync(label);
+    // }
+  },
+  // 删除某一项数据
+  removeItem: function removeItem(label) {
+    uni.removeStorageSync(label);
+  },
+  // 清空全部数据
+  clearAll: function clearAll() {
+    uni.clearStorageSync();
+  } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 22:
+/*!******************************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/store/modules/searchDetail.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _songInfo = _interopRequireDefault(__webpack_require__(/*! @/api/songInfo.js */ 19));
+var _storage = _interopRequireDefault(__webpack_require__(/*! @/utils/storage.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  searchHistory: _storage.default.getItem('searchHistory') || [] // 搜索历史
+};
+
+// const getters = {
+// 	// 热门评论
+// 	hotCommentsList: state => state.songCommentObj.hotComments || [],
+// 	// 最新评论
+// 	newCommentsList: state => state.songCommentObj.newComments || [],
+// 	// 评论条数
+// 	commentsTotal: state => state.songCommentObj.total || 0,
+
+// }
+
+var mutations = {
+  setSearchHistory: function setSearchHistory(state, value) {
+    state.searchHistory = value;
+    _storage.default.setItem('searchHistory', value);
+  } };
+
+
+// const actions = {
+// 	async getSongComments({
+// 		commit,
+// 		state
+// 	}, value) {
+// 		let res = await $httpSongInfo.songComments({
+// 			id: value.id || state.curPlaySongInfo.id,
+// 			type: value.type || 0, // 评论的类型
+// 			pageNo: value.pageNo || 1,
+// 			pageSize: value.pageSize || 20,
+// 			sortType: value.sortType || 2,
+// 			cursor: value.cursor || ''
+// 		})
+// 		if (res && res.code == 200) {
+// 			// 判断当页码不为1的时候就追加到原数组之后
+// 			let oldComments = [];
+// 			if (value.pageNo && value.pageNo != 1) {
+// 				console.log('进到这里了吗', value.pageNo)
+// 				oldComments = JSON.parse(JSON.stringify(state.songCommentObj.comments));
+// 			}
+// 			let obj = {
+// 				total: res.data.totalCount,
+// 				comments: oldComments.concat(res.data.comments),
+// 				hasMore: res.data.hasMore
+// 			}
+// 			commit('setSongCommentObj', obj);
+// 		}
+// 	}
+// }
+var _default =
+{
+  namespaced: true,
+  state: state,
+  // getters,
+  mutations: mutations
+  // actions
+};exports.default = _default;
 
 /***/ }),
 
@@ -10297,7 +10407,35 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 58:
+/***/ 53:
+/*!**************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/api/search.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = __webpack_require__(/*! @/utils/request.js */ 20);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
+
+
+
+{
+  // 默认搜索关键词
+  searchDefault: function searchDefault() {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                (0, _request.request)({
+                  url: "/search/default" }));case 2:return _context.abrupt("return", _context.sent);case 3:case "end":return _context.stop();}}}, _callee);}))();
+
+  },
+  // 搜索 type  1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音
+  search: function search(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                (0, _request.request)({
+                  url: "/cloudsearch?keywords=".concat(data.keywords, "&limit=").concat(data.limit || '', "&type=").concat(data.type || 1) }));case 2:return _context2.abrupt("return", _context2.sent);case 3:case "end":return _context2.stop();}}}, _callee2);}))();
+
+  } };exports.default = _default;
+
+/***/ }),
+
+/***/ 61:
 /*!************************************************!*\
   !*** D:/code/ErinMusic/erin-music/api/home.js ***!
   \************************************************/
@@ -10346,6 +10484,78 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
                   url: "/playlist/detail?id=".concat(id) }));case 2:return _context6.abrupt("return", _context6.sent);case 3:case "end":return _context6.stop();}}}, _callee6);}))();
 
   } };exports.default = _default;
+
+/***/ }),
+
+/***/ 62:
+/*!******************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/utils/dataJson.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.playModes = exports.subMenu = void 0; // 所有静态数据
+
+// 首页子菜单
+var subMenu = [{
+  icon: 'recom',
+  name: '每日推荐' },
+
+{
+  icon: 'private',
+  name: '私人FM' },
+
+{
+  icon: 'playlist',
+  name: '歌单' },
+
+{
+  icon: 'leader',
+  name: '排行榜' },
+
+{
+  icon: 'songmeet',
+  name: '一歌一遇' },
+
+{
+  icon: 'album',
+  name: '数字专辑' },
+
+{
+  icon: 'audiobook',
+  name: '有声书' },
+
+{
+  icon: 'cd',
+  name: '关注新歌' },
+
+{
+  icon: 'birthday',
+  name: '生日专区' }];
+
+
+
+// 音乐播放类型
+exports.subMenu = subMenu;var playModes = [{
+  name: "循环播放",
+  icon: "cycle_mode" },
+
+{
+  name: "顺序播放",
+  icon: "order_mode" },
+
+{
+  name: "随机播放",
+  icon: "random_mode" },
+
+{
+  name: "单曲播放",
+  icon: "single_mode" },
+
+{
+  name: "心动模式",
+  icon: "cardiac_mode" }];exports.playModes = playModes;
 
 /***/ }),
 

@@ -1,10 +1,10 @@
 <template>
 	<view class="play-detail">
 		<!-- 背景图 -->
-		<image class="bg-img" :src="curPlaySongInfo.picUrl" mode="aspectFill"></image>
+		<image class="bg-img" :src="curPlaySongInfo.picUrl" mode="aspectFill" />
 		<view class="detail-con">
 			<view class="top-box">
-				<image @click="back" class="back-icon" src="/static/images/pages/found/arrow_fff.png" mode=""></image>
+				<image @click="back" class="back-icon" src="/static/images/pages/found/arrow_fff.png" mode="" />
 				<view class="song-info">
 					<p class="name">{{curPlaySongInfo.songName}}</p>
 					<view class="singer">
@@ -12,33 +12,45 @@
 						<p class="follow">关注</p>
 					</view>
 				</view>
-				<image class="share" src="/static/images/pages/play/share.png" mode=""></image>
+				<image class="share" src="/static/images/pages/play/share.png" mode="" />
 			</view>
-			<image :class="['rod',{pause:isPause}]" src="/static/images/pages/play/gmk.png" mode=""></image>
-			<view :class="['music-con',{'pause-animate':isPause}]">
-				<image class="bg-disc" src="/static/images/pages/play/music_disc.png" mode=""></image>
-				<image class="music-img" :src="curPlaySongInfo.picUrl" mode="aspectFill"></image>
+			<!-- 播放状态 转盘 -->
+			<view @click="isAlbumShow=!isAlbumShow">
+				<view :class="['album-conta',{'album-conta-hide':!isAlbumShow}]">
+					<image :class="['rod',{pause:isPause}]" src="/static/images/pages/play/gmk.png" mode="" />
+					<view :class="['music-con',{'pause-animate':isPause}]">
+						<image class="bg-disc" src="/static/images/pages/play/music_disc.png" mode="" />
+						<image class="music-img" :src="curPlaySongInfo.picUrl" mode="aspectFill" />
+					</view>
+					<view class="opera-con">
+						<view class="item-icon">
+							<image class="opera-icon" src="/static/images/pages/play/hollow.png" mode="" />
+							<image class="opera-icon" v-show="false" src="/static/images/pages/play/solid.png"
+								mode="" />
+						</view>
+						<view class="item-icon">
+							<image class="opera-icon" src="/static/images/pages/play/excep.png" mode="" />
+							<text class="count">999+</text>
+						</view>
+						<view class="item-icon">
+							<image class="opera-icon" src="/static/images/pages/play/emoji.png" mode="" />
+						</view>
+						<view class="item-icon" @click.stop="openComments">
+							<image class="opera-icon" src="/static/images/pages/play/comment.png" mode="" />
+							<text class="count">{{songCommTotal}}</text>
+						</view>
+						<view class="item-icon">
+							<image class="opera-icon" src="/static/images/pages/play/more.png" mode="" />
+						</view>
+					</view>
+				</view>
+				<!-- 歌词信息 -->
+				<view :class="['lyrics-con',{'lyrics-con-hide':isAlbumShow}]">
+					<lyricsDetail :isReadyOK="isRenderLyrCom"></lyricsDetail>
+				</view>
 			</view>
-			<view class="opera-con">
-				<view class="item-icon">
-					<image class="opera-icon" src="/static/images/pages/play/hollow.png" mode=""></image>
-					<image class="opera-icon" v-show="false" src="/static/images/pages/play/solid.png" mode=""></image>
-				</view>
-				<view class="item-icon">
-					<image class="opera-icon" src="/static/images/pages/play/excep.png" mode=""></image>
-					<text class="count">999+</text>
-				</view>
-				<view class="item-icon">
-					<image class="opera-icon" src="/static/images/pages/play/emoji.png" mode=""></image>
-				</view>
-				<view class="item-icon" @click="openComments">
-					<image class="opera-icon" src="/static/images/pages/play/comment.png" mode=""></image>
-					<text class="count">{{songCommTotal}}</text>
-				</view>
-				<view class="item-icon">
-					<image class="opera-icon" src="/static/images/pages/play/more.png" mode=""></image>
-				</view>
-			</view>
+
+
 			<!-- 播放条 -->
 			<view class="play-bar" v-if="curPlaySongInfo.songTime">
 				<play-bar :sliderMax="curPlaySongInfo.songTime" v-model="currentPlayTime"></play-bar>
@@ -46,27 +58,25 @@
 			<view class="play-opera">
 				<view class="play-order" @click="checkPlayMode">
 					<image class="mode-icon" :src="'/static/images/pages/play/'+playModes[curPlayMode].icon+'.png'"
-						:alt="playModes[curPlayMode].name" mode=""></image>
+						:alt="playModes[curPlayMode].name" mode="" />
 				</view>
 				<view class="control-play">
-					<image @click="kaiqi" class="prev-icon" src="/static/images/pages/play/prev_song.png" mode="">
-					</image>
+					<image @click="kaiqi" class="prev-icon" src="/static/images/pages/play/prev_song.png" mode="" />
 					<view :class="['control',{play:!isPause}]" @click="checkPause">
 						<image class="contr-icon" v-show="!isPause" src="/static/images/pages/play/play_icon.png"
-							mode=""></image>
+							mode="" />
 						<image class="contr-icon" v-show="isPause" src="/static/images/pages/play/suspend_icon.png"
-							mode=""></image>
+							mode="" />
 					</view>
-					<image @click="guanbi" class="next-icon" src="/static/images/pages/play/next_song.png" mode="">
-					</image>
+					<image @click="guanbi" class="next-icon" src="/static/images/pages/play/next_song.png" mode="" />
 				</view>
-				<image class="play-menu" src="/static/images/pages/play/play_menu.png" mode=""></image>
+				<image class="play-menu" src="/static/images/pages/play/play_menu.png" mode="" />
 			</view>
 		</view>
 
 		<!-- 歌曲评论详情:isRenderOk="isCommentsShow" -->
 		<popup :isPopup.sync="isCommentsShow" :isPadding="false" :isRadius="false" bgColor="#0f0f0f">
-			<songComments slot="content"  @toBack="onOffComm" />
+			<songComments slot="content" @toBack="onOffComm" />
 		</popup>
 
 	</view>
@@ -76,6 +86,10 @@
 	import playBar from '@/components/playBar.vue';
 	import popup from '@/components/popup.vue';
 	import songComments from './pages/songComments.vue';
+	import lyricsDetail from './components/lyricsDetail.vue';
+	import {
+		playModes
+	} from '@/utils/dataJson.js';
 	import {
 		mapState,
 		mapMutations,
@@ -87,36 +101,19 @@
 			playBar,
 			popup,
 			songComments,
+			lyricsDetail
 		},
-		props:["isRenderOk"],
+		props: ["isRenderOk"],
 		data() {
 			return {
 				isPause: true, // 是否暂停播放
-				playModes: [{
-						name: "循环播放",
-						icon: "cycle_mode"
-					},
-					{
-						name: "顺序播放",
-						icon: "order_mode"
-					},
-					{
-						name: "随机播放",
-						icon: "random_mode"
-					},
-					{
-						name: "单曲播放",
-						icon: "single_mode"
-					},
-					{
-						name: "心动模式",
-						icon: "cardiac_mode"
-					},
-				],
+				playModes: playModes,
 				curPlayMode: 0, // 当前循环模式,
 				currentPlayTime: null, // 当前音乐播放秒数
-				isCommentsShow: true, // 是否展示评论区
+				isCommentsShow: false, // 是否展示评论区
 				songCommTotal: 0, // 评论总条数
+				isAlbumShow: true, // 是否展示专辑图片（默认不展示歌词）
+				isRenderLyrCom: false, // 是否可以渲染歌词页面
 			}
 		},
 		computed: {
@@ -124,8 +121,9 @@
 			...mapGetters("songDetail", ["newCommentsList", "hotCommentsList"]),
 		},
 		watch: {
-			isRenderOk(val){
-				if(val){
+			isRenderOk(val) {
+				if (val && this.curPlaySongInfo.id) {
+					this.isRenderLyrCom = true;
 					console.log('页面这才开始触发')
 				}
 			},
@@ -137,10 +135,9 @@
 			},
 			curPlayTime: {
 				handler(val) {
-					this.currentPlayTime = val;
+					this.currentPlayTime = ~~val;
 				},
 				immediate: true,
-				deep: true
 			},
 			// 评论数
 			"songCommentObj.total": {
@@ -168,7 +165,7 @@
 			...mapMutations('songDetail', ["deleteSongComments"]),
 			...mapActions("songDetail", ["getSongComments"]),
 			back() {
-				this.$emit("backMusicInfo")
+				this.$emit("backMusicInfo");
 			},
 			// 切换播放模式
 			checkPlayMode() {
@@ -207,7 +204,7 @@
 				this.deleteSongComments();
 				console.log('评论清空完成', this.songCommentObj)
 				this.isCommentsShow = false;
-			}
+			},
 		}
 	}
 </script>
@@ -282,11 +279,22 @@
 			}
 		}
 
+		.album-conta {
+			opacity: 1;
+			transition: .2s;
+
+			&-hide {
+				opacity: 0;
+				height: 0;
+			}
+		}
+
 		.rod {
 			width: 204rpx;
 			height: 358rpx;
 			position: absolute;
 			left: 46%;
+			top: 5%;
 			// transform: translateX(-16%);
 			z-index: 50;
 			margin-top: 20rpx;
@@ -364,12 +372,30 @@
 			}
 		}
 
+		.lyrics-con {
+			height: calc(100vh - 380rpx);
+			// margin-top: 30rpx;
+			position: relative;
+			top: -200rpx;
+			z-index: 99;
+			opacity: 1;
+			transition: .4s;
+
+			// background-color: pink;
+			&-hide {
+				opacity: 0;
+				height: 0;
+				top: 200rpx;
+				transition: 0s;
+			}
+		}
+
 		.play-bar {
 			width: 100%;
 			height: 40rpx;
 			// background: #fff;
-			margin-top: 50rpx;
 			position: absolute;
+			bottom: 200rpx;
 			padding: 0 30rpx;
 			box-sizing: border-box;
 		}

@@ -29,9 +29,9 @@ export default {
 		})
 	},
 	// 楼层评论  type:0-歌曲、1-mv、2-歌单、3-专辑、4-电台节目
-	async floorComments(data){
+	async floorComments(data) {
 		return await request({
-			url:`/comment/floor?parentCommentId=${data.parentId}&id=${data.songId}&type=${data.type}&time=${data.time}`
+			url: `/comment/floor?parentCommentId=${data.parentId}&id=${data.songId}&type=${data.type}&time=${data.time}`
 		})
-	}
+	},
 }

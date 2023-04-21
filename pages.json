@@ -20,10 +20,10 @@
 			}
 		}
         ,{
-            "path" : "pages/searchDetail/searchDetail",
+            "path" : "pages/searchPage/searchPage",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "音乐搜索",
                 "enablePullDownRefresh": false
             }
             

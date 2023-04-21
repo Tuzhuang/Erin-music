@@ -24,4 +24,53 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.lyrics {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.lyrics .tigger-menu {
+  width: 100%;
+  height: 120rpx;
+  background-color: white;
+}
+.lyrics .lyr-container {
+  flex: 1;
+  overflow: hidden;
+}
+.lyrics .lyr-container .lyr-content {
+  height: 100%;
+  padding-top: calc(6 * 40px);
+  padding-bottom: calc(5 * 40px);
+  transition: all .3s;
+}
+.lyrics .lyr-container .lyr-item {
+  font-size: 30rpx;
+  line-height: 50rpx;
+  text-align: center;
+  min-height: 40px;
+  color: #ddd;
+  opacity: .6;
+  z-index: 10;
+  transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 40rpx;
+  box-sizing: border-box;
+}
+.lyrics .lyr-container .lyr-item.cur-row {
+  padding: 10rpx 100rpx;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  line-height: 50rpx;
+  color: #fff;
+  opacity: 1;
+}
+.lyrics .lyr-container .lyr-item.opacity-4 {
+  opacity: .3;
+}
+.lyrics .lyr-container .lyr-item.opacity-2 {
+  opacity: .1;
+}
 

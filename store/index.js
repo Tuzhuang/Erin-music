@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 import found from './modules/found.js';
 import songDetail from './modules/songDetail.js';
+import searchDetail from './modules/searchDetail.js';
 
 export default new Vuex.Store({
 	state: {
@@ -43,6 +44,7 @@ export default new Vuex.Store({
 	},
 	modules: {
 		found,
-		songDetail
+		songDetail,
+		searchDetail
 	}
 })

@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/portPage/portPage",
     "pages/phoneLogin/phoneLogin",
-    "pages/searchDetail/searchDetail"
+    "pages/searchPage/searchPage"
   ],
   "subPackages": [],
   "window": {

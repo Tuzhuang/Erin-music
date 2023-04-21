@@ -47,11 +47,11 @@
 		},
 		created() {
 			// if (this.sliderMax) {
-				this.timeFormat(this.sliderMax);
+			// this.timeFormat(this.sliderMax);
 			// }
 		},
 		computed: {
-			...mapState('songDetail', ['curPlayTime']),
+			...mapState('songDetail', ['curPlayTime', 'curPlaySongInfo']),
 		},
 		watch: {
 			value: {
@@ -69,17 +69,23 @@
 				},
 				immediate: true,
 				deep: true
+			},
+			"curPlaySongInfo.songTime": {
+				handler(newVal) {
+					this.timeFormat(newVal);
+				},
+				deep: true,
+				immediate: true
 			}
 		},
 		methods: {
-			...mapMutations('songDetail', ['setCurPlayTime']),
+			...mapMutations('songDetail', ['setCurPlayTime', 'setCurrentTime']),
 			// 时间格式转换
 			timeFormat(val) {
 				this.maxMinute = ('0' + parseInt(val / 60)).slice(-2);
 				this.maxSecond = ('0' + (val - this.maxMinute * 60)).slice(-2);
 			},
 			sliderChange(e) {
-				console.log('e', e.detail.value);
 				this.$emit('input', e.detail.value);
 				this.setCurPlayTime(e.detail.value);
 				// 点击哪个位置就从哪个位置开始播放音乐

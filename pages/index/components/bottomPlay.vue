@@ -24,54 +24,56 @@
 	} from 'vuex';
 
 	export default {
+		props: ["isReadyOk"],
 		data() {
 			return {
-				innerAudioContext: null, // 播放器
-				songTimer: null, // 当前播放时间的timerId
+				innerAudioContext: null, // 播放器dom
 			}
 		},
 		created() {
 			// 创建播放器实例
 			this.innerAudioContext = uni.createInnerAudioContext();
+			this.innerAudioContext.autoplay = true; // 自动播放
+			this.innerAudioContext.obeyMuteSwitch = false; // 静音状态依旧播放声音
 			// 播放音乐
 			this.bus.$on('onPlaySong', value => {
-				console.log('value', value);
 				this.playSong(value);
-			})
+			});
 			// 暂停音乐
 			this.bus.$on('onPauseSong', () => {
-					console.log('触发暂停音乐');
-					this.pauseSong();
-				}),
-				// 从某个位置开始播放音乐
-				this.bus.$on('onToTimePlay', value => {
-					this.toTimePlay(value);
+				this.pauseSong();
+			});
+			// 从某个位置开始播放音乐
+			this.bus.$on('onToTimePlay', value => {
+				this.toTimePlay(value);
+			});
+			// 当音乐播放的时候触发的方法
+			this.innerAudioContext.onPlay(() => {
+				this.setCurPlaySongInfo({
+					...this.curPlaySongInfo,
+					songState: 'play'
+				});
+			});
+			// 当音乐暂停播放的时候触发的方法
+			this.innerAudioContext.onPause(() => {
+				console.log('暂停');
+				this.setCurPlaySongInfo({
+					...this.curPlaySongInfo,
+					songState: 'pause'
+				});
+				// this.innerAudioContext.offTimeUpdate();
+			});
+			// 音乐加载完毕准备播放会触发的方法
+			this.innerAudioContext.onCanplay(() => {
+				// 这个打印必须要执行，不然就会出问题，离谱！！！
+				console.log('当前播放状态', this.innerAudioContext.paused)
+				this.$nextTick(() => {
+					this.getPlayCurTime();
 				})
+			})
 		},
 		computed: {
 			...mapState('songDetail', ["curPlaySongInfo", 'curPlayTime']),
-		},
-		watch: {
-			curPlayTime: {
-				handler(newVal, oldVal) {
-					if (typeof newVal != 'number' || typeof oldVal != 'number') return;
-					// 此处的作用主要是当音乐进度条更新的时候触发新的计时器，并且旧时间不等于歌曲总时长
-					if (newVal - oldVal != 1) {
-						clearInterval(this.songTimer);
-						// 判断一下播放条更新前是播放状态还是暂停状态，如果是播放状态的话就开启计时器继续播放
-						if (this.curPlaySongInfo.songState == 'play') {
-							this.openTimer(newVal);
-						}
-					}
-					// 还要判断下当当前音乐播放完毕的时候就要停止计时器
-					if (newVal == this.curPlaySongInfo.songTime) {
-						console.log('音乐播放完毕');
-						this.pauseSong();
-					}
-				},
-				immediate: true,
-				deep: true
-			}
 		},
 		methods: {
 			...mapMutations('songDetail', ['setCurPlaySongInfo', 'setCurPlayTime']),
@@ -88,49 +90,26 @@
 				if (this.curPlaySongInfo.songTime == this.curPlayTime) {
 					this.setCurPlayTime(0);
 				}
-				// 更新播放时间的时候要重新触发一下该方法
-				this.toTimePlay(this.curPlayTime);
+				// 判断一下如果有上次记录的时间，就从上次记录的时间开始播放
+				if (this.curPlayTime) {
+					this.toTimePlay(this.curPlayTime);
+				}
 				this.innerAudioContext.play();
-				this.innerAudioContext.onPlay(() => {
-					console.log('播放');
-					this.setCurPlaySongInfo({
-						...this.curPlaySongInfo,
-						songState: 'play'
-					});
-					// 开启定时器读秒
-					this.openTimer(this.curPlayTime);
-				})
 			},
 			// 暂停播放音乐
 			pauseSong() {
 				this.innerAudioContext.pause();
-				this.innerAudioContext.onPause(() => {
-					console.log('暂停');
-					this.setCurPlaySongInfo({
-						...this.curPlaySongInfo,
-						songState: 'pause'
-					});
-					// 暂停计时器
-					clearInterval(this.songTimer);
-				})
-			},
-			// 开启一个定时器来注饰当前播放音乐的进度
-			openTimer(startTime) {
-				if (this.songTimer) {
-					clearInterval(this.songTimer);
-				}
-				this.songTimer = setInterval(() => {
-					startTime++; // 当前播放时间
-					this.setCurPlayTime(startTime);
-				}, 1000)
 			},
 			// 从某个位置开始播放音乐
 			toTimePlay(val) {
-				console.log('出发了几次')
-				this.innerAudioContext.seek(val);
-				this.innerAudioContext.onSeeked(() => {
-					console.log('进度更新成功')
+				this.innerAudioContext.seek(+val);
+			},
+			getPlayCurTime() {
+				this.innerAudioContext.onTimeUpdate(() => {
+					// 保存当前音乐播放的秒数
+					this.setCurPlayTime(this.innerAudioContext.currentTime.toFixed(2));
 				})
+
 			}
 		},
 		onUnload() {
@@ -194,16 +173,26 @@
 				display: flex;
 				align-items: flex-end;
 				margin-left: 20rpx;
+				max-width: 66%;
 
-				.name {
+
+				.name,
+				.singer {
 					font-size: 24rpx;
 					color: #fff;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 
 				.split,
 				.singer {
 					font-size: 20rpx;
 					color: #5d5d5d;
+				}
+
+				.singer {
+					flex: 1;
 				}
 
 				.split {

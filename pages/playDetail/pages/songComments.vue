@@ -70,13 +70,13 @@
 	import $httpSongInfo from '@/api/songInfo.js';
 	import loading from '@/components/loading.vue';
 	import popup from '@/components/popup.vue';
-	import replyComments from '../components/replyComments.vue';;
+	import replyComments from '../components/replyComments.vue';
 	export default {
 		name: "songComments",
 		components: {
 			loading,
 			popup,
-			replyComments
+			replyComments,
 		},
 		props: ['isRenderOk'],
 		data() {

@@ -1,184 +1,193 @@
 <template>
 	<view class="found">
-		<top-bar class="tab-bar" :bgColor="isHomeBarBg?'#171515':''" @openMenuShow="openMenuShow">
-			<view class="search-con" slot="content">
-				<view class="search-bar">
-					<img class="search-icon" src="/static/images/pages/found/search.svg">
-					<p class="tip-text">大家都在搜 张小海</p>
+		<scroll-view :scroll-y="isfoundScroll" class="found-scroll" @scroll="foundScroll">
+			<top-bar class="tab-bar" :bgColor="isHomeBarBg?'#171515':'transparent'" @openMenuShow="openMenuShow">
+				<view class="search-con" slot="content" @click="toSearchDetail">
+					<view class="search-bar">
+						<img class="search-icon" src="/static/images/pages/found/search.svg">
+						<p class="tip-text">大家都在搜 {{searchSugges}}</p>
+					</view>
 				</view>
-			</view>
-			<view class="gene-song-con" slot="right">
-				<img class="song-icon" src="/static/images/pages/found/gene_song.png">
-			</view>
-		</top-bar>
+				<view class="gene-song-con" slot="right">
+					<img class="song-icon" src="/static/images/pages/found/gene_song.png">
+				</view>
+			</top-bar>
 
-		<view class="top-card">
-			<view class="banner-con">
-				<view class="banner">
-					<swiper class="swiper" circular indicator-dots indicator-color="#d5d5d6"
-						indicator-active-color="#ffffff" autoplay interval="2500" duration="1000"
-						@change="e=>curBannerIdx=e.detail.current">
-						<swiper-item class="swiper-item" v-for="(item,index) in bannerList" :key="index">
-							<image :src="item.pic" class="banner-img" />
-						</swiper-item>
-					</swiper>
-				</view>
-			</view>
-			<view class="banner-bg" v-if="!isHomeBarBg&&bannerList.length"
-				:style="{backgroundImage:'url('+bannerList[curBannerIdx].pic+')'}">
-			</view>
-			<scroll-view scroll-x>
-				<view class="sub-menu">
-					<view class="sub-item" v-for="(item,index) in subMenu" :key="index">
-						<view class="icon-con">
-							<img :class="['icon',{'big':[4,5,6].includes(index)}]"
-								:src="'/static/images/pages/found/'+item.icon+'.png'" alt="图片无法展示噢~">
-							<tetx class="day" v-if="index==0">{{curDay}}</tetx>
-						</view>
-						<p class="sub-tit">{{item.name}}</p>
+			<view class="top-card">
+				<view class="banner-con">
+					<view class="banner">
+						<swiper class="swiper" circular indicator-dots indicator-color="#d5d5d6"
+							indicator-active-color="#ffffff" autoplay interval="2500" duration="1000"
+							@change="e=>curBannerIdx=e.detail.current">
+							<swiper-item class="swiper-item" v-for="(item,index) in bannerList" :key="index">
+								<image :src="item.pic" class="banner-img" />
+							</swiper-item>
+						</swiper>
 					</view>
 				</view>
-			</scroll-view>
-			<view class="line"></view>
-			<view class="recommend">
-				<view class="top-con">
-					<h2 class="title">推荐歌单</h2>
-					<view class="more-con">
-						<text class="more">更多</text>
-						<img class="more-icon" src="/static/images/pages/found/arrow_fff.png" alt="">
-					</view>
+				<view class="banner-bg" v-if="!isHomeBarBg&&bannerList.length"
+					:style="{backgroundImage:'url('+bannerList[curBannerIdx].pic+')'}">
 				</view>
-				<!-- 最外层的view只用于设置层级，以展示加载更多提示 -->
-				<view style="position: sticky;z-index: 20;">
-					<scroll-view scroll-x lower-threshold="-100" @scrolltolower="recomRightMore">
-						<view class="recom-con">
-							<!-- 循环 -->
-							<view class="roll-con" @click="recomRoll">
-								<swiper class="roll-swiper" autoplay interval="4000" duration="600" vertical circular
-									easing-function="easeInOutCubic" @change="e=>curRecomI=e.detail.current">
-									<swiper-item v-for="(item,index) in swPlayList" :key="index">
-										<image :src="item.picUrl" :class="['bg-img','narrow',{ampli:curRecomI==index}]"
-											alt="" mode="aspectFill" />
-										<view class="play-count">
-											<img src="/static/images/pages/found/play.png" class="triangle" alt="">
-											<text class="count">{{item.playCount | numUnit}}</text>
-										</view>
-										<image src="/static/images/pages/found/play.png" class="play-icon"></image>
-									</swiper-item>
-								</swiper>
-								<p class="desc" style="margin-top:8rpx;">{{swPlayList[curRecomI].name}}</p>
+				<scroll-view scroll-x>
+					<view class="sub-menu">
+						<view class="sub-item" v-for="(item,index) in subMenu" :key="index">
+							<view class="icon-con">
+								<img :class="['icon',{'big':[4,5,6].includes(index)}]"
+									:src="'/static/images/pages/found/'+item.icon+'.png'" alt="图片无法展示噢~">
+								<tetx class="day" v-if="index==0">{{curDay}}</tetx>
 							</view>
-							<view class="recom-item" v-for="(item,index) in playList" :key="index">
-								<image :src="item.picUrl" class="bg-img" alt="" mode="aspectFill" />
-								<view class="play-count">
-									<img src="/static/images/pages/found/play.png" class="triangle" alt="">
-									<text class="count">{{item.playCount | numUnit}}</text>
+							<p class="sub-tit">{{item.name}}</p>
+						</view>
+					</view>
+				</scroll-view>
+				<view class="line"></view>
+				<view class="recommend">
+					<view class="top-con">
+						<h2 class="title">推荐歌单</h2>
+						<view class="more-con">
+							<text class="more">更多</text>
+							<img class="more-icon" src="/static/images/pages/found/arrow_fff.png" alt="">
+						</view>
+					</view>
+					<!-- 最外层的view只用于设置层级，以展示加载更多提示 -->
+					<view style="position: sticky;z-index: 20;">
+						<scroll-view scroll-x lower-threshold="-100" @scrolltolower="recomRightMore">
+							<view class="recom-con">
+								<!-- 循环 -->
+								<view class="roll-con" @click="recomRoll">
+									<swiper class="roll-swiper" autoplay interval="4000" duration="600" vertical
+										circular easing-function="easeInOutCubic"
+										@change="e=>curRecomI=e.detail.current">
+										<swiper-item v-for="(item,index) in swPlayList" :key="index">
+											<image :src="item.picUrl"
+												:class="['bg-img','narrow',{ampli:curRecomI==index}]" alt=""
+												mode="aspectFill" />
+											<view class="play-count">
+												<img src="/static/images/pages/found/play.png" class="triangle" alt="">
+												<text class="count">{{item.playCount | numUnit}}</text>
+											</view>
+											<image src="/static/images/pages/found/play.png" class="play-icon"></image>
+										</swiper-item>
+									</swiper>
+									<p class="desc" style="margin-top:8rpx;">{{swPlayList[curRecomI].name}}</p>
 								</view>
-								<image src="/static/images/pages/found/play.png" class="play-icon"></image>
-								<p class="desc">{{item.name}}</p>
+								<view class="recom-item" v-for="(item,index) in playList" :key="index">
+									<image :src="item.picUrl" class="bg-img" alt="" mode="aspectFill" />
+									<view class="play-count">
+										<img src="/static/images/pages/found/play.png" class="triangle" alt="">
+										<text class="count">{{item.playCount | numUnit}}</text>
+									</view>
+									<image src="/static/images/pages/found/play.png" class="play-icon"></image>
+									<p class="desc">{{item.name}}</p>
+								</view>
 							</view>
-						</view>
-					</scroll-view>
-				</view>
-
-				<view class="recom-more">
-					<image class="left-more" src="/static/images/pages/found/left_round.svg" mode=""></image>
-					<text class="more-text">左滑更多</text>
-				</view>
-			</view>
-		</view>
-
-		<view class="song-card">
-			<view class="top-con">
-				<view @click="refreshSongs" style="display:flex;align-items: center;max-width:70%;">
-					<image src="/static/images/pages/found/refresh.png"
-						:class="['refresh-icon',{'refreshing':isRefresh}]"></image>
-					<text :class="['title',{'isRefreshing':isRefresh}]">{{recomPlayName}}</text>
-				</view>
-				<view class="play-con">
-					<image src="/static/images/pages/found/play.png" class="play-icon"></image>
-					<text class="play-text">播放</text>
-				</view>
-			</view>
-			<swiper :class="['song-swiper',{'isRefreshing':isRefresh}]" duration="300" previous-margin="30rpx"
-				next-margin="30rpx">
-				<swiper-item class="song-item" v-for="(it,i) in 3" :key="i">
-					<view :class="['song-con',{'click-animate':curSongId==item.id}]"
-						v-for="(item,index) in recomSongs[i]" :key="index" @click="getSongUrl(item)">
-						<image class="left-img" :src="item.al.picUrl" mode="aspectFill"></image>
-						<view class="item-con">
-							<view class="song-box">
-								<p class="song-name">{{item.name}}</p>
-								<p class="sing-name">- {{item.ar.map(it=>it.name).join(' & ')}}</p>
-							</view>
-							<p class="tag" v-if="item.name!==item.al.name">{{item.al.name}}</p>
-							<p class="tag" v-else>
-								超{{String(item.id).slice(-2)}}%人{{String(item.id).slice(-2)%2==0?'播放':'收藏'}}</p>
-						</view>
-						<image class="video-play" src="/static/images/pages/found/video_play.png" mode=""></image>
-						<view class="bottom-line" v-if="index!==2"></view>
+						</scroll-view>
 					</view>
-				</swiper-item>
-			</swiper>
-		</view>
 
-		<!-- 排行榜 -->
-		<view class="rank-list">
-			<view class="top-con">
-				<view class="left-title">
-					<text class="title">排行榜</text>
-					<image class="arrow-right" src="/static/images/pages/found/arrow_fff.png" mode=""></image>
-				</view>
-				<image class="more-icon" src="/static/images/pages/found/more-dian.svg" mode=""></image>
-			</view>
-			<swiper class="rank-swiper" duration="300" previous-margin="30rpx" next-margin="20rpx">
-				<swiper-item class="rank-item" v-for="(item,index) in rankDataDetail" :key="index">
-					<view class="swiper-box">
-						<view class="rank-tit-con">
-							<view class="left-con">
-								<p class="title">{{item.name}}</p>
-								<image class="arrow-right" src="/static/images/pages/found/arrow_fff.png" mode="">
-								</image>
-							</view>
-							<p class="rank-tag">{{item.updateFrequency}}</p>
-						</view>
-						<view :class="['rank-info-item',{'click-animate':curSongId==it.id}]" v-for="(it,i) in item.list"
-							:key="i" @click="getSongUrl(it)">
-							<image class="song-avatar" :src="it.al.picUrl" mode="" />
-							<span :class="['rank-num',{'two':i==1,'three':i==2}]">{{i+1}}</span>
-							<view class="song-detail">
-								<p class="song-name">{{it.name}}</p>
-								<p class="sing-name" v-if="it.ar.length">{{it.ar.map(v=>v.name).join(' & ')}}</p>
-							</view>
-							<p class="state new-up" v-if="it.v%4==0">新晋</p>
-							<p class="state" v-else>{{it.v%3==1?'霸榜':it.v%3==2?'热门':'飙升'}}</p>
-						</view>
+					<view class="recom-more">
+						<image class="left-more" src="/static/images/pages/found/left_round.svg" mode=""></image>
+						<text class="more-text">左滑更多</text>
 					</view>
-				</swiper-item>
-			</swiper>
-		</view>
-
-		<view class="zhanwei">
-
-		</view>
-
-		<!-- 点击菜单左侧菜单弹出层 -->
-		<popup :isPopup.sync="menuShow" mode="left" width="80" bgColor="#151515">
-			<view slot="content">
-				<leftMenu :userInfo.sync="userInfo" />
+				</view>
 			</view>
-		</popup>
-		<!-- <loading ref="loading" /> -->
+
+			<view class="song-card">
+				<view class="top-con">
+					<view @click="refreshSongs" style="display:flex;align-items: center;max-width:70%;">
+						<image src="/static/images/pages/found/refresh.png"
+							:class="['refresh-icon',{'refreshing':isRefresh}]"></image>
+						<text :class="['title',{'isRefreshing':isRefresh}]">{{recomPlayName}}</text>
+					</view>
+					<view class="play-con">
+						<image src="/static/images/pages/found/play.png" class="play-icon"></image>
+						<text class="play-text">播放</text>
+					</view>
+				</view>
+				<swiper :class="['song-swiper',{'isRefreshing':isRefresh}]" duration="300" previous-margin="30rpx"
+					next-margin="30rpx">
+					<swiper-item class="song-item" v-for="(it,i) in 3" :key="i">
+						<view :class="['song-con',{'click-animate':curSongId==item.id}]"
+							v-for="(item,index) in recomSongs[i]" :key="index" @click="getSongUrl(item)">
+							<image class="left-img" :src="item.al.picUrl" mode="aspectFill"></image>
+							<view class="item-con">
+								<view class="song-box">
+									<p class="song-name">{{item.name}}</p>
+									<p class="sing-name">- {{item.ar.map(it=>it.name).join(' & ')}}</p>
+								</view>
+								<p class="tag" v-if="item.name!==item.al.name">{{item.al.name}}</p>
+								<p class="tag" v-else>
+									超{{String(item.id).slice(-2)}}%人{{String(item.id).slice(-2)%2==0?'播放':'收藏'}}</p>
+							</view>
+							<image class="video-play" src="/static/images/pages/found/video_play.png" mode=""></image>
+							<view class="bottom-line" v-if="index!==2"></view>
+						</view>
+					</swiper-item>
+				</swiper>
+			</view>
+
+			<!-- 排行榜 -->
+			<view class="rank-list">
+				<view class="top-con">
+					<view class="left-title">
+						<text class="title">排行榜</text>
+						<image class="arrow-right" src="/static/images/pages/found/arrow_fff.png" mode=""></image>
+					</view>
+					<image class="more-icon" src="/static/images/pages/found/more-dian.svg" mode=""></image>
+				</view>
+				<swiper class="rank-swiper" duration="300" previous-margin="30rpx" next-margin="20rpx">
+					<swiper-item class="rank-item" v-for="(item,index) in rankDataDetail" :key="index">
+						<view class="swiper-box">
+							<view class="rank-tit-con">
+								<view class="left-con">
+									<p class="title">{{item.name}}</p>
+									<image class="arrow-right" src="/static/images/pages/found/arrow_fff.png" mode="">
+									</image>
+								</view>
+								<p class="rank-tag">{{item.updateFrequency}}</p>
+							</view>
+							<view :class="['rank-info-item',{'click-animate':curSongId==it.id}]"
+								v-for="(it,i) in item.list" :key="i" @click="getSongUrl(it)">
+								<image class="song-avatar" :src="it.al.picUrl" mode="" />
+								<span :class="['rank-num',{'two':i==1,'three':i==2}]">{{i+1}}</span>
+								<view class="song-detail">
+									<p class="song-name">{{it.name}}</p>
+									<p class="sing-name" v-if="it.ar.length">{{it.ar.map(v=>v.name).join(' & ')}}</p>
+								</view>
+								<p class="state new-up" v-if="it.v%4==0">新晋</p>
+								<p class="state" v-else>{{it.v%3==1?'霸榜':it.v%3==2?'热门':'飙升'}}</p>
+							</view>
+						</view>
+					</swiper-item>
+				</swiper>
+			</view>
+
+			<view class="zhanwei">
+
+			</view>
+
+
+			<!-- 点击菜单左侧菜单弹出层 -->
+			<popup :isPopup.sync="menuShow" mode="left" width="80" bgColor="#151515">
+				<view slot="content">
+					<leftMenu :userInfo.sync="userInfo" />
+				</view>
+			</popup>
+			<!-- <loading ref="loading" /> -->
+		</scroll-view>
 	</view>
 </template>
 
 <script>
 	import $httpHome from '@/api/home.js';
 	import $httpSongInfo from '@/api/songInfo.js'
+	import $httpSearch from '@/api/search.js';
 	import topBar from '@/components/topBar.vue';
 	import popup from '@/components/popup.vue';
 	import loading from '@/components/loading.vue';
 	import leftMenu from '../menu/menu.vue';
+	import {
+		subMenu
+	} from '@/utils/dataJson.js';
 	import {
 		mapState,
 		mapMutations,
@@ -187,6 +196,11 @@
 
 	export default {
 		props: {
+			// 判断当前页面是否可滚动
+			isfoundScroll: {
+				type: Boolean,
+				default: true,
+			},
 			isHomeBarBg: { // tabbar是否展示背景色
 				type: Boolean,
 				default: false
@@ -204,46 +218,13 @@
 		},
 		data() {
 			return {
+				// isPageScroll: true, // 当前页面是否可滚动
+				// isHomeBarBg: false, // 顶部背景色是否为固定色 tabbar是否展示背景色
+				searchSugges: "",
 				menuShow: false,
 				bannerList: [],
 				curBannerIdx: 0,
-				subMenu: [{
-						icon: 'recom',
-						name: '每日推荐',
-					},
-					{
-						icon: 'private',
-						name: '私人FM',
-					},
-					{
-						icon: 'playlist',
-						name: '歌单',
-					},
-					{
-						icon: 'leader',
-						name: '排行榜',
-					},
-					{
-						icon: 'songmeet',
-						name: '一歌一遇',
-					},
-					{
-						icon: 'album',
-						name: '数字专辑',
-					},
-					{
-						icon: 'audiobook',
-						name: '有声书',
-					},
-					{
-						icon: 'cd',
-						name: '关注新歌',
-					},
-					{
-						icon: 'birthday',
-						name: '生日专区',
-					},
-				],
+				subMenu: subMenu,
 				curDay: new Date().getDate(), // 当前日期
 				curRecomI: 0, // 推荐歌单纵轴循环下标
 				swPlayList: [], // 滚动推荐歌单
@@ -261,11 +242,17 @@
 		computed: {
 			...mapState(["userInfo"]),
 		},
+		watch:{
+			isfoundScroll(newVal){
+				console.log('达能前还能滑动嘛',newVal);
+			}
+		},
 		onLoad() {
 			console.log('页面渲染')
 
 		},
 		created() {
+			this.getSearchDefault();
 			this.getBanner();
 			this.getplayList();
 			this.getNewSongs();
@@ -296,6 +283,16 @@
 				// console.log('val',val);
 				this.menuShow = true;
 			},
+			// 判断当前页面是否滚动
+			foundScroll(e) {
+				console.log('当前页面滚动了', e.detail.scrollTop)
+				// 当前滑出距离大于0的时候就把顶部背景色设置为固定色
+				// if (e.detail.scrollTop > 0) {
+				// 	this.isHomeBarBg = true;
+				// } else {
+				// 	this.isHomeBarBg = false;
+				// }
+			},
 			recomRoll() {
 				console.log('当前', this.curRecomI);
 			},
@@ -304,6 +301,13 @@
 				setTimeout(() => {
 					this.$refs.loading.hide();
 				}, 4000)
+			},
+			// 获取默认搜索关键词
+			async getSearchDefault() {
+				let res = await $httpSearch.searchDefault();
+				if (res && res.code == 200) {
+					this.searchSugges = res.data.showKeyword;
+				}
 			},
 			async getBanner() {
 				let res = await $httpHome.banner(2);
@@ -381,7 +385,7 @@
 						singName: obj.ar.map(it => it.name).join(' & '),
 						songUrl: res.data[0].url,
 						// 因为获取的时间是毫秒单位，所以要转换为秒单位
-						songTime: parseInt(res.data[0].time / 1000)
+						songTime: ~~(res.data[0].time / 1000)
 					}
 					// 获取歌曲评论
 					this.getSongComments({
@@ -394,6 +398,12 @@
 					this.bus.$emit('onPlaySong', res.data[0].url);
 				}
 			},
+			// 跳转到
+			toSearchDetail() {
+				uni.navigateTo({
+					url: '/pages/searchPage/searchPage'
+				})
+			}
 		}
 	}
 </script>
@@ -406,7 +416,13 @@
 		padding-top: 100rpx;
 		box-sizing: border-box;
 		background: #0e0e0e;
+		// overflow-y: hidden;
+
 		// background: #1b1b23;
+		.found-scroll {
+			height: 100%;
+			// overflow: hidden;
+		}
 
 		.tab-bar {
 			width: 100%;
@@ -852,10 +868,15 @@
 							}
 
 							.tag {
-								display: inline;
+								max-width: 90%;
+								display: inline-block;
 								font-size: 16rpx;
 								// color: #d87845;
 								color: #ce463f;
+								white-space: nowrap;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								margin-top: 12rpx;
 								padding: 4rpx 8rpx;
 								border-radius: 6rpx;
 								// background: #1f1a17;

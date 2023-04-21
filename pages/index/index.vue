@@ -1,7 +1,8 @@
 <template>
 	<view class="index-home">
+		<!-- <scroll-view :scroll-y="true" @scroll="scrollChange"> -->
 		<!-- 发现页面 -->
-		<found v-if="curTabBar=='found'" :isHomeBarBg="homeBarBg"></found>
+		<found v-if="curTabBar=='found'" :isHomeBarBg="homeBarBg" :isfoundScroll="foundScroll"></found>
 
 		<view :class="['bottom-box',{hide:!isBtPlayShow}]">
 			<!-- 底部的播放栏 -->
@@ -48,6 +49,7 @@
 				</view>
 			</view>
 		</view>
+		<!-- </scroll-view> -->
 
 		<!-- 音乐播放详情页 :catchtouchmove="true"    v-if="curPlaySongInfo.picUrl"  	-->
 		<popup :isPopup.sync="isPlayDetail" :catchtouchmove="true" :isPadding="false" :isRadius="false">
@@ -76,7 +78,8 @@
 				curTabBar: 'found',
 				homeBarBg: false, // 判断首页的时候当往下滚动的时候就展示背景色
 				isBtPlayShow: true, // 是否展示底部的tabbar和播放栏
-				isPlayDetail: true, // 是否展示音乐播放详情页
+				isPlayDetail: false, // 是否展示音乐播放详情页
+				foundScroll: true, // 发现页面是否可滚动
 			}
 		},
 		computed: {
@@ -89,10 +92,18 @@
 			openPlayPage() {
 				this.isBtPlayShow = false;
 				this.isPlayDetail = true;
+				// 打开音乐详情页的时候要让当前页面禁止滑动
+				this.foundScroll = false;
 			},
 			backMusicInfo() {
 				this.isBtPlayShow = true;
 				this.isPlayDetail = false;
+				// 关闭音乐详情页的时候要让当前页面可以滑动
+				this.foundScroll = true;
+			},
+			// 当前页面滚动的时候
+			scrollChange(e) {
+				console.log(e);
 			}
 		},
 		onPageScroll(e) {

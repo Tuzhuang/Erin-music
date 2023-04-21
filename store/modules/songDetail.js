@@ -1,9 +1,10 @@
 import $httpSongInfo from '@/api/songInfo.js';
+import storage from '@/utils/storage.js';
 
 const state = {
-	curPlaySongInfo: uni.getStorageSync('curPlaySongInfo') || {}, // 当前播放音乐的详细信息
-	curPlayTime: uni.getStorageSync('curPlayTime') || 0, // 当前音乐播放到第几秒了
-	songCommentObj: uni.getStorageSync('songCommentObj') || {}, // 歌曲评论信息
+	curPlaySongInfo: storage.getItem('curPlaySongInfo') || {}, // 当前播放音乐的详细信息
+	curPlayTime: storage.getItem('curPlayTime') || 0, // 当前音乐播放到第几秒了
+	songCommentObj: storage.getItem('songCommentObj') || {}, // 歌曲评论信息
 }
 
 const getters = {
@@ -13,28 +14,29 @@ const getters = {
 	newCommentsList: state => state.songCommentObj.newComments || [],
 	// 评论条数
 	commentsTotal: state => state.songCommentObj.total || 0,
+	// 当前秒数的取整
+	curPlayTimeRound: state => ~~state.curPlayTime,
 
 }
 
 const mutations = {
 	setCurPlaySongInfo(state, value) {
 		state.curPlaySongInfo = value;
-		uni.setStorageSync('curPlaySongInfo', value);
+		storage.setItem('curPlaySongInfo', value);
 	},
 	setCurPlayTime(state, value) {
 		state.curPlayTime = value;
-		uni.setStorageSync('curPlayTime', value);
+		storage.setItem('curPlayTime', value);
 	},
 	setSongCommentObj(state, value) {
-		console.log('mutations', value);
 		state.songCommentObj = value;
-		uni.setStorageSync('songCommentObj', value);
+		storage.setItem('songCommentObj', value);
 	},
 	// 清空评论数据
 	deleteSongComments(state) {
 		state.songCommentObj = {};
-		uni.removeStorageSync('songCommentObj');
-	}
+		storage.removeItem('songCommentObj');
+	},
 }
 
 const actions = {
@@ -53,8 +55,7 @@ const actions = {
 		if (res && res.code == 200) {
 			// 判断当页码不为1的时候就追加到原数组之后
 			let oldComments = [];
-			if (value.pageNo&&value.pageNo != 1) {
-				console.log('进到这里了吗',value.pageNo)
+			if (value.pageNo && value.pageNo != 1) {
 				oldComments = JSON.parse(JSON.stringify(state.songCommentObj.comments));
 			}
 			let obj = {
