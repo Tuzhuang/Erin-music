@@ -556,6 +556,15 @@
 .found .rank-list .rank-swiper .rank-item .rank-info-item .rank-num.three.data-v-556fc8bd {
   color: #bb7d56;
 }
+.found .rank-list .rank-swiper .rank-item .rank-info-item .song-detail.data-v-556fc8bd {
+  width: 66%;
+}
+.found .rank-list .rank-swiper .rank-item .rank-info-item .song-detail .song-name.data-v-556fc8bd, .found .rank-list .rank-swiper .rank-item .rank-info-item .song-detail .sing-name.data-v-556fc8bd {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .found .rank-list .rank-swiper .rank-item .rank-info-item .song-detail .song-name.data-v-556fc8bd {
   font-size: 26rpx;
   color: #e9e9e9;

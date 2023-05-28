@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "音乐搜索",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "circle-progre-bar": "/components/circleProgreBar"
+  }
 }

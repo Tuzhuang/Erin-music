@@ -242,9 +242,9 @@
 		computed: {
 			...mapState(["userInfo"]),
 		},
-		watch:{
-			isfoundScroll(newVal){
-				console.log('达能前还能滑动嘛',newVal);
+		watch: {
+			isfoundScroll(newVal) {
+				console.log('达能前还能滑动嘛', newVal);
 			}
 		},
 		onLoad() {
@@ -1022,6 +1022,13 @@
 						}
 
 						.song-detail {
+							width: 66%;
+							.song-name,.sing-name {
+								max-width: 100%;
+								white-space: nowrap;
+								overflow: hidden;
+								text-overflow: ellipsis;
+							}
 							.song-name {
 								font-size: 26rpx;
 								color: #e9e9e9;

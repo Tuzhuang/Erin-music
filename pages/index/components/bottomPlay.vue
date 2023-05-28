@@ -10,8 +10,11 @@
 				<span class="split">-</span>
 				<text class="singer">{{curPlaySongInfo.singName}}</text>
 			</view>
-			<view class="play-menu" @click.stop="openPlayList">
-				<image class="menu-icon" src="/static/images/pages/play/play_menu.png" mode=""></image>
+			<view class="right-box">
+				<circleProgreBar class="circle-progre" />
+				<view class="play-menu" @click.stop="openPlayList">
+					<image class="menu-icon" src="/static/images/pages/play/play_menu.png" mode=""></image>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -22,9 +25,13 @@
 		mapState,
 		mapMutations
 	} from 'vuex';
+	import circleProgreBar from '@/components/circleProgreBar.vue';
 
 	export default {
 		props: ["isReadyOk"],
+		components: {
+			circleProgreBar
+		},
 		data() {
 			return {
 				innerAudioContext: null, // 播放器dom
@@ -173,7 +180,7 @@
 				display: flex;
 				align-items: flex-end;
 				margin-left: 20rpx;
-				max-width: 66%;
+				max-width: 60%;
 
 
 				.name,
@@ -200,15 +207,20 @@
 				}
 			}
 
-			.play-menu {
-				width: 80rpx;
-				height: 80rpx;
-				position: absolute;
-				right: 0;
+			.right-box {
+				flex: 1;
+				height: 100%;
+				display: flex;
+				justify-content: flex-end;
 
-				.menu-icon {
-					width: 70rpx;
-					height: 70rpx;
+				.play-menu {
+					width: 80rpx;
+					height: 80rpx;
+
+					.menu-icon {
+						width: 70rpx;
+						height: 70rpx;
+					}
 				}
 			}
 		}

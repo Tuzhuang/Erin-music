@@ -76,7 +76,7 @@
   display: flex;
   align-items: flex-end;
   margin-left: 20rpx;
-  max-width: 66%;
+  max-width: 60%;
 }
 .bottom-play .play-con .song-name .name,
 .bottom-play .play-con .song-name .singer {
@@ -97,13 +97,17 @@
 .bottom-play .play-con .song-name .split {
   padding: 0 10rpx;
 }
-.bottom-play .play-con .play-menu {
+.bottom-play .play-con .right-box {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.bottom-play .play-con .right-box .play-menu {
   width: 80rpx;
   height: 80rpx;
-  position: absolute;
-  right: 0;
 }
-.bottom-play .play-con .play-menu .menu-icon {
+.bottom-play .play-con .right-box .play-menu .menu-icon {
   width: 70rpx;
   height: 70rpx;
 }

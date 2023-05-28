@@ -45,11 +45,16 @@
 				<p v-for="it in 100" :key="it">{{it}}</p>
 			</view>
 		</view>
+		<!-- <canvas canvas-id="myCanvas" style="width: 80px;height: 80px;"></canvas> -->
+		<circleProgreBar />
+
+		<canvas canvas-id="myCanvas" class="canvass" style="width: 100px;height: 100px;"></canvas>
 	</view>
 </template>
 
 <script>
 	import $httpSearch from '@/api/search.js';
+	import circleProgreBar from '@/components/circleProgreBar.vue';
 	import {
 		mapMutations,
 		mapState
@@ -63,12 +68,61 @@
 				isMoreShow: false, // 是否展开更多搜索记录
 			}
 		},
+		components: {
+			circleProgreBar
+		},
 		created() {
 			this.getSearchDefault();
 			this.setExpandBtn();
 
+			// const ctx = wx.createCanvasContext('myCanvas');
+			// ctx.beginPath();
+			// ctx.arc(40, 40, 20, 0, 2 * Math.PI);
+			// ctx.lineWidth = 1;
+			// ctx.strokeStyle = '#ccc';
+			// ctx.stroke();
+			// ctx.draw()
 
 
+		},
+		mounted() {
+			let ctx = uni.createCanvasContext("myCanvas", this);
+
+			ctx.beginPath(); // 开始路径
+			ctx.arc(50, 50, 50, 0, 2 * Math.PI); // 创建圆弧
+			ctx.strokeStyle = "#aaa"; // 设置填充颜色
+			ctx.lineWidth = 1; // 设置填充线宽
+			ctx.stroke(); // 开始描边
+			ctx.closePath();
+			ctx.draw();
+
+			function fn() {
+
+				// ctx.save();
+				// var start = -Math.PI / 2;// 声明起始角
+				var x = 0; // 结束角度
+				var timer = setInterval(function() {
+					x++; // 角度累加
+					ctx.beginPath(); // 开始新路径,必须放在定时器里面
+					ctx.arc(50, 50, 50, 0, x * 0.02 * Math.PI); // 创建圆弧
+
+					ctx.strokeStyle = "#f00"; // 设置填充颜色
+
+					ctx.stroke(); // 开始描边
+					// ctx.restore();
+					ctx.closePath();
+					ctx.draw()
+
+					console.log('我是')
+					if (x > 100) {
+						console.log('x', x)
+						clearInterval(timer)
+						// ctx.clearRect(185, 85, 430, 430)
+						// fn()
+					}
+				}, 40);
+			}
+			fn()
 		},
 		computed: {
 			...mapState("searchDetail", ["searchHistory"])
@@ -143,6 +197,10 @@
 </script>
 
 <style lang="scss">
+	.canvass {
+		box-shadow: 2px 2px 2px 2px red;
+	}
+
 	.search-detail {
 		background: #1b1b23;
 		min-height: 100vh;
@@ -287,13 +345,14 @@
 				}
 			}
 		}
-		
+
 		.box {
 			width: 100%;
 			height: 500rpx;
 			border: 1px solid #000;
 			overflow-y: scroll;
 		}
+
 		.cont {
 			width: 100%;
 			height: 1000px;

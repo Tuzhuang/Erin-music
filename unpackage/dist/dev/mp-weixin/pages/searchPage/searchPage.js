@@ -141,7 +141,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));
+
+
+
+
 
 
 
@@ -193,7 +197,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 53));
-var _vuex = __webpack_require__(/*! vuex */ 9);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+
+var _vuex = __webpack_require__(/*! vuex */ 9);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var circleProgreBar = function circleProgreBar() {__webpack_require__.e(/*! require.ensure | components/circleProgreBar */ "components/circleProgreBar").then((function () {return resolve(__webpack_require__(/*! @/components/circleProgreBar.vue */ 121));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -206,12 +211,61 @@ var _vuex = __webpack_require__(/*! vuex */ 9);function _interopRequireDefault(o
       isMoreShow: false // 是否展开更多搜索记录
     };
   },
+  components: {
+    circleProgreBar: circleProgreBar },
+
   created: function created() {
     this.getSearchDefault();
     this.setExpandBtn();
 
+    // const ctx = wx.createCanvasContext('myCanvas');
+    // ctx.beginPath();
+    // ctx.arc(40, 40, 20, 0, 2 * Math.PI);
+    // ctx.lineWidth = 1;
+    // ctx.strokeStyle = '#ccc';
+    // ctx.stroke();
+    // ctx.draw()
 
 
+  },
+  mounted: function mounted() {
+    var ctx = uni.createCanvasContext("myCanvas", this);
+
+    ctx.beginPath(); // 开始路径
+    ctx.arc(50, 50, 50, 0, 2 * Math.PI); // 创建圆弧
+    ctx.strokeStyle = "#aaa"; // 设置填充颜色
+    ctx.lineWidth = 1; // 设置填充线宽
+    ctx.stroke(); // 开始描边
+    ctx.closePath();
+    ctx.draw();
+
+    function fn() {
+
+      // ctx.save();
+      // var start = -Math.PI / 2;// 声明起始角
+      var x = 0; // 结束角度
+      var timer = setInterval(function () {
+        x++; // 角度累加
+        ctx.beginPath(); // 开始新路径,必须放在定时器里面
+        ctx.arc(50, 50, 50, 0, x * 0.02 * Math.PI); // 创建圆弧
+
+        ctx.strokeStyle = "#f00"; // 设置填充颜色
+
+        ctx.stroke(); // 开始描边
+        // ctx.restore();
+        ctx.closePath();
+        ctx.draw();
+
+        console.log('我是');
+        if (x > 100) {
+          console.log('x', x);
+          clearInterval(timer);
+          // ctx.clearRect(185, 85, 430, 430)
+          // fn()
+        }
+      }, 40);
+    }
+    fn();
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)("searchDetail", ["searchHistory"])),
@@ -281,6 +335,7 @@ var _vuex = __webpack_require__(/*! vuex */ 9);function _interopRequireDefault(o
       this.searchValue = it;
       this.search();
     } }) };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
