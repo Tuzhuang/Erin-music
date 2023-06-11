@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.podcast {
+  width: 100%;
+  height: 100%;
+  padding: 20rpx;
+  padding-top: 0;
+  box-sizing: border-box;
+}
+.podcast .podcast-scroll {
+  height: 100%;
+}
+.podcast .podcast-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.podcast .podcast-item .left-avatar {
+  min-width: 120rpx;
+  min-height: 140rpx;
+  position: relative;
+}
+.podcast .podcast-item .left-avatar .bg-img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  background: #2c2c2c;
+  position: absolute;
+  top: 0rpx;
+  left: 10rpx;
+}
+.podcast .podcast-item .left-avatar .avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 10rpx;
+  position: absolute;
+  top: 8rpx;
+}
+.podcast .podcast-item .info-con {
+  width: 100%;
+  margin: 0 20rpx;
+  overflow: hidden;
+}
+.podcast .podcast-item .info-con .title {
+  font-size: 32rpx;
+  color: #e8e8e8;
+}
+.podcast .podcast-item .info-con .desc-con {
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+}
+.podcast .podcast-item .info-con .desc-con .tag {
+  font-size: 20rpx;
+  color: #8691af;
+  padding: 0 4rpx;
+  border: 1rpx solid #363441;
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+  white-space: nowrap;
+}
+.podcast .podcast-item .info-con .desc-con .desc {
+  font-size: 24rpx;
+  color: #5d5d5d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.podcast .podcast-item .info-con .desc {
+  font-size: 24rpx;
+  color: #5d5d5d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.podcast .podcast-item .score {
+  width: 80rpx;
+  height: 80rpx;
+  font-size: 38rpx;
+  color: #e7e7e7;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.podcast .podcast-item .score .text {
+  font-weight: normal;
+  font-size: 20rpx;
+  margin-top: 14rpx;
+  margin-left: 4rpx;
+}
+

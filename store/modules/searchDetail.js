@@ -19,6 +19,11 @@ const mutations = {
 	setSearchHistory(state, value) {
 		state.searchHistory = value;
 		storage.setItem('searchHistory', value);
+	},
+	// 清空搜索历史记录
+	clearSearchHistory(state) {
+		state.searchHistory = [];
+		storage.removeItem('searchHistory');
 	}
 }
 

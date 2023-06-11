@@ -62,7 +62,6 @@
 		methods: {
 			drawProgress() {
 				const endAngle = (2 * Math.PI / this.count) * this.curNum + this.startAngle; //终止角度
-
 				//清除上一次的画布
 				this.ctx.clearRect(0, 0, 40, 40);
 

@@ -18,18 +18,23 @@
 				"navigationBarTitleText": "手机号登录",
 				"enablePullDownRefresh": false
 			}
+		}, {
+			"path": "pages/searchPage/searchPage",
+			"style": {
+				"navigationBarTitleText": "音乐搜索",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/searchResult/searchResult",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
 		}
-        ,{
-            "path" : "pages/searchPage/searchPage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "音乐搜索",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/demo/demo/demo",
+	    ,{
+            "path" : "pages/demo/demo",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
@@ -40,7 +45,7 @@
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "Erin音乐",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#000"
 	},

@@ -4,12 +4,13 @@
     "pages/portPage/portPage",
     "pages/phoneLogin/phoneLogin",
     "pages/searchPage/searchPage",
-    "pages/demo/demo/demo"
+    "pages/searchResult/searchResult",
+    "pages/demo/demo"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "Erin音乐",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#000"
   },

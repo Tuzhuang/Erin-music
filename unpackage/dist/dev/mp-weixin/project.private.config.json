@@ -24,8 +24,15 @@
                     "scene": null
                 },
                 {
-                    "name": "demo测试",
-                    "pathName": "pages/demo/demo/demo",
+                    "name": "搜索结果页面",
+                    "pathName": "pages/searchResult/searchResult",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "demo",
+                    "pathName": "pages/demo/demo",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

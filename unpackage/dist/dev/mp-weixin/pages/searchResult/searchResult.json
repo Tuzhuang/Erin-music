@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "menu-scroll-tab": "/components/menuScrollTab",
+    "compre": "/pages/searchResult/components/compre",
+    "single": "/pages/searchResult/components/single",
+    "song-list": "/pages/searchResult/components/songList",
+    "video-page": "/pages/searchResult/components/videoPage",
+    "singer": "/pages/searchResult/components/singer",
+    "podcast": "/pages/searchResult/components/podcast",
+    "lyrics": "/pages/searchResult/components/lyrics",
+    "album": "/pages/searchResult/components/album"
+  }
+}

@@ -1,6 +1,6 @@
 <template>
 	<view :class="['loading',{mask:isMask}]" v-if="isShow" catchtouchmove>
-		<view class="load-bg">
+		<view :class="['load-bg',{'top':mode=='top'}]">
 			<view class="load-item">
 				<view class="item one"></view>
 				<view class="item two"></view>
@@ -18,6 +18,10 @@
 			isMask: {
 				type: Boolean,
 				default: true
+			},
+			mode: {
+				type: String,
+				default: 'center' // top center
 			}
 		},
 		data() {
@@ -38,29 +42,33 @@
 
 <style lang="scss">
 	.loading {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		z-index: 100;
+		
 		transition: .4s;
 
 		&.mask {
 			background: rgba(0, 0, 0, .4);
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 100;
 		}
 
 		.load-bg {
 			width: 200rpx;
 			height: 100rpx;
 			position: absolute;
-			top: 40%;
+			top: 30%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+			&.top {
+				top: 10%;
+			}
 
 			.load-item {
 				width: 22rpx;

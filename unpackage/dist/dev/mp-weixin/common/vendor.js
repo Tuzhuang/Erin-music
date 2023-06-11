@@ -2540,28 +2540,6 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 111:
-/*!*************************************************!*\
-  !*** D:/code/ErinMusic/erin-music/api/login.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = __webpack_require__(/*! @/utils/request.js */ 20);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
-
-
-
-{
-  login: function login(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                (0, _request.request)({
-                  url: "/login/cellphone?phone=".concat(data.phone, "&password=").concat(data.password),
-                  method: "POST" }));case 2:return _context.abrupt("return", _context.sent);case 3:case "end":return _context.stop();}}}, _callee);}))();
-
-  } };exports.default = _default;
-
-/***/ }),
-
 /***/ 12:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -2688,6 +2666,28 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ 120:
+/*!*************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/api/login.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = __webpack_require__(/*! @/utils/request.js */ 20);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
+
+
+
+{
+  login: function login(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                (0, _request.request)({
+                  url: "/login/cellphone?phone=".concat(data.phone, "&password=").concat(data.password),
+                  method: "POST" }));case 2:return _context.abrupt("return", _context.sent);case 3:case "end":return _context.stop();}}}, _callee);}))();
+
+  } };exports.default = _default;
 
 /***/ }),
 
@@ -3744,7 +3744,8 @@ module.exports = g;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.request = void 0;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} // 封装接口
 
-var baseUrl = "http://192.168.31.176:3000";
+// const baseUrl = "http://192.168.1.160:3000"; // cmcc-8888
+var baseUrl = "http://192.168.31.176:3000"; // 张小海1000M
 // const baseUrl = "http://192.168.1.100:3000"; // 茂德家
 // const baseUrl = "http://localhost:3000";
 // const baseUrl = "http://pgn3c6.natappfree.cc";
@@ -3753,7 +3754,12 @@ var request = function request(options) {
     uni.request({
       url: baseUrl + options.url,
       method: options.method || "GET",
-      data: _objectSpread(_objectSpread({}, options.data), {}, { timestamp: new Date().getTime() }) || { timestamp: new Date().getTime() },
+      data: _objectSpread(_objectSpread({},
+      options.data), {}, {
+        timestamp: new Date().getTime() }) ||
+      {
+        timestamp: new Date().getTime() },
+
       headers: { // 自定义请求头信息
         'Authoriztion': uni.getStorageSync('token') },
 
@@ -3835,6 +3841,11 @@ var mutations = {
   setSearchHistory: function setSearchHistory(state, value) {
     state.searchHistory = value;
     _storage.default.setItem('searchHistory', value);
+  },
+  // 清空搜索历史记录
+  clearSearchHistory: function clearSearchHistory(state) {
+    state.searchHistory = [];
+    _storage.default.removeItem('searchHistory');
   } };
 
 
@@ -10429,13 +10440,83 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   // 搜索 type  1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音
   search: function search(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
                 (0, _request.request)({
-                  url: "/cloudsearch?keywords=".concat(data.keywords, "&limit=").concat(data.limit || '', "&type=").concat(data.type || 1) }));case 2:return _context2.abrupt("return", _context2.sent);case 3:case "end":return _context2.stop();}}}, _callee2);}))();
+                  url: "/cloudsearch?keywords=".concat(data.keywords, "&limit=").concat(data.limit || 30, "&type=").concat(data.type || 1, "&offset=").concat(data.offset || 0) }));case 2:return _context2.abrupt("return", _context2.sent);case 3:case "end":return _context2.stop();}}}, _callee2);}))();
+
+  },
+  // 热搜列表
+  hotList: function hotList() {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                (0, _request.request)({
+                  url: "/search/hot/detail" }));case 2:return _context3.abrupt("return", _context3.sent);case 3:case "end":return _context3.stop();}}}, _callee3);}))();
+
+  },
+  // 获取榜单的详细歌曲列表
+  boardSongs: function boardSongs(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                (0, _request.request)({
+                  url: "/playlist/track/all?id=".concat(data.id, "&limit=").concat(data.limit || 20) }));case 2:return _context4.abrupt("return", _context4.sent);case 3:case "end":return _context4.stop();}}}, _callee4);}))();
+
+  },
+  // 搜索建议
+  searchSuggest: function searchSuggest(name) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                (0, _request.request)({
+                  url: "/search/suggest?keywords=".concat(name, "&type=mobile") // mobile的意思是返回移动端数据
+                }));case 2:return _context5.abrupt("return", _context5.sent);case 3:case "end":return _context5.stop();}}}, _callee5);}))();
+  },
+  // 根据mvid获取mv播放地址
+  mvUrl: function mvUrl(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
+                (0, _request.request)({
+                  url: "/mv/url?id=".concat(data.id, "&r=").concat(data.r || 720) }));case 2:return _context6.abrupt("return", _context6.sent);case 3:case "end":return _context6.stop();}}}, _callee6);}))();
 
   } };exports.default = _default;
 
 /***/ }),
 
-/***/ 67:
+/***/ 54:
+/*!*******************************************************!*\
+  !*** D:/code/ErinMusic/erin-music/utils/timeDelay.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.throttle = exports.debounce = void 0; // 防抖函数
+var debounce = function debounce(fn) {var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 300; // 默认为300毫秒
+  var timer;
+  return function () {var _this2 = this;
+    var args = arguments;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      fn.apply(_this2, args); // this指向vue
+    }, delay);
+  };
+};
+
+// 节流函数
+exports.debounce = debounce;var throttle = function throttle(fn) {var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
+  var last;
+  var timer;
+  var interval = time;
+  return function () {
+    var _this = this;
+    var args = arguments;
+    var now = +new Date();
+    if (last && now - last < interval) {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        last = now;
+        fn.apply(_this, args);
+      }, interval);
+    } else {
+      last = now;
+      fn.apply(_this, args);
+    }
+  };
+};exports.throttle = throttle;
+
+/***/ }),
+
+/***/ 76:
 /*!************************************************!*\
   !*** D:/code/ErinMusic/erin-music/api/home.js ***!
   \************************************************/
@@ -10487,7 +10568,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 68:
+/***/ 77:
 /*!******************************************************!*\
   !*** D:/code/ErinMusic/erin-music/utils/dataJson.js ***!
   \******************************************************/
