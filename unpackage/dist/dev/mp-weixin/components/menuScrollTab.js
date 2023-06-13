@@ -148,7 +148,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
 var _timeDelay = __webpack_require__(/*! @/utils/timeDelay.js */ 54); //
 //
 //
@@ -171,10 +170,14 @@ var _timeDelay = __webpack_require__(/*! @/utils/timeDelay.js */ 54); //
 //
 //
 //
-//
-var _default2 = { name: "menu-scroll-tab", props: { menuNames: { type: Array, default: function _default() {return [{ label: '占位1', value: 'zhanwei1' }, { label: '占位2', value: 'zhanwei2' }];} } }, data: function data() {return { curMenuNameI: 0, // 当前选中tabs
-      scrollLeft: 0, slideWidth: 16 // 滑块宽度
-    };}, watch: { curMenuNameI: {
+var _default2 = { name: "menu-scroll-tab", props: { value: { type: Number, default: 0 }, menuNames: { type: Array, default: function _default() {return [{ label: '占位1', value: 'zhanwei1' }, { label: '占位2', value: 'zhanwei2' }];} } }, data: function data() {return {
+      curMenuNameI: this.value, // 当前选中tabs, 因为子组件不能直接修改父组件传过来的值，所以需要声明一个变量来接收父组件传过来的值
+      scrollLeft: 0,
+      slideWidth: 16 // 滑块宽度
+    };
+  },
+  watch: {
+    curMenuNameI: {
       handler: function handler(val) {
         if (val > this.menuNames.length - 5) {
           this.scrollLeft = this.menuNames.length * 100;
@@ -184,7 +187,7 @@ var _default2 = { name: "menu-scroll-tab", props: { menuNames: { type: Array, de
           this.scrollLeft = 0;
         }
         // 把值传给父组件
-        this.$emit('curMenuIndex', val);
+        this.$emit('input', val);
       },
       immediate: true } },
 
@@ -192,7 +195,6 @@ var _default2 = { name: "menu-scroll-tab", props: { menuNames: { type: Array, de
   methods: {
     // 轮播图内容改变时
     menuContChange: function menuContChange(e) {
-      console.log('current改变了');
       this.curMenuNameI = e.detail.current;
     },
     // 轮播图滑动中

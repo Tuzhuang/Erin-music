@@ -31,6 +31,10 @@
 	import $httpSearch from '@/api/search.js';
 	import loading from '@/components/loading.vue';
 	export default {
+		props: {
+			limit: Number,
+			default: 0
+		},
 		data() {
 			return {
 				songList: [],
@@ -53,21 +57,23 @@
 		methods: {
 			// 获取歌单列表
 			async getSongList() {
-				if (this.songList.length == 0) {
+				if (this.songList.length == 0 && !this.limit) {
 					this.$refs.loading.show();
 				}
 				this.isPending = true;
 				let res = await $httpSearch.search({
 					keywords: '起风了',
+					limit: this.limit,
 					offset: this.curPage,
 					type: 1000
 				})
-				if (this.songList.length == 0) {
+				if (this.songList.length == 0 && !this.limit) {
 					this.$refs.loading.hide();
 				}
 				this.isPending = false;
 				if (res && res.code == 200) {
 					this.totalCount = res.result.playlistCount;
+					this.$emit('onTotalCount', this.totalCount);
 					this.songList = this.songList.concat(res.result.playlists);
 				}
 			},
@@ -93,8 +99,7 @@
 	.song-list {
 		width: 100%;
 		height: 100%;
-		padding: 20rpx;
-		padding-top: 0;
+		padding: 0 20rpx;
 		box-sizing: border-box;
 
 		.list-scroll {
@@ -106,6 +111,9 @@
 			justify-content: space-between;
 			align-items: center;
 			margin-bottom: 20rpx;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
 
 			.left-img {
 				min-width: 100rpx;

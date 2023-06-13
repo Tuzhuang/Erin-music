@@ -1,1 +1,1 @@
-<view class="content"></view>
+<view class="content"><view class="_p">{{count}}</view><child bind:input="__e" vue-id="719c3a40-1" value="{{count}}" data-event-opts="{{[['^input',[['__set_model',['','count','$event',[]]]]]]}}" bind:__l="__l"></child></view>

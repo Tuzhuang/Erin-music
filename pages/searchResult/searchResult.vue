@@ -23,8 +23,8 @@
 		</view>
 		<!-- 滑动tab -->
 		<view class="menu-scroll-con">
-			<menuScrollTab :menuNames="menuNameList" @curMenuIndex="(val)=>curMenuValue=menuNameList[val].value">
-				<compre slot="compre" v-if="curMenuValue=='compre'"  />
+			<menuScrollTab :menuNames="menuNameList" v-model="curMenuTabsI">
+				<compre slot="compre" v-if="curMenuValue=='compre'" />
 				<single slot="single" v-if="curMenuValue=='single'" />
 				<songList slot="songList" v-if="curMenuValue=='songList'" />
 				<videoPage slot="videoPage" v-if="curMenuValue=='videoPage'" />
@@ -91,7 +91,8 @@
 					// 	value: 'yonghu'
 					// },
 				],
-				curMenuValue: "compre",
+				curMenuValue: "compre", // 当前展示的子组件
+				curMenuTabsI: 0 // 当前展示的子组件下标
 			}
 		},
 		components: {
@@ -105,8 +106,14 @@
 			lyrics,
 			album
 		},
+		watch: {
+			curMenuTabsI: {
+				handler(val) {
+					this.curMenuValue = this.menuNameList[val].value;
+				}
+			}
+		},
 		onLoad(query) {
-			console.log('query', query.search);
 			this.searchValue = query.search;
 		},
 		created() {

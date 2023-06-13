@@ -15,6 +15,10 @@
 <script>
 	export default {
 		props: {
+			value: {
+				type: Boolean,
+				default: false
+			},
 			isMask: {
 				type: Boolean,
 				default: true
@@ -22,19 +26,25 @@
 			mode: {
 				type: String,
 				default: 'center' // top center
+			},
+			isLoadShow: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
 			return {
-				isShow: false,
+				isShow: this.isLoadShow,
 			}
 		},
 		methods: {
 			show() {
 				this.isShow = true;
+				this.$emit('input', true);
 			},
 			hide() {
 				this.isShow = false;
+				this.$emit('input', false);
 			}
 		}
 	}
@@ -42,7 +52,7 @@
 
 <style lang="scss">
 	.loading {
-		
+
 		transition: .4s;
 
 		&.mask {
@@ -66,6 +76,7 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+
 			&.top {
 				top: 10%;
 			}

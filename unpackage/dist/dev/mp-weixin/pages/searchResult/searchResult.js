@@ -103,10 +103,6 @@ var render = function() {
     _vm.e0 = function($event) {
       _vm.searchValue = ""
     }
-
-    _vm.e1 = function(val) {
-      return (_vm.curMenuValue = _vm.menuNameList[val].value)
-    }
   }
 }
 var recyclableRender = false
@@ -234,8 +230,9 @@ var _default = { name: 'searchResult', data: function data() {return { searchSug
       // 	value: 'yonghu'
       // },
       ],
-      curMenuValue: "compre" };
-
+      curMenuValue: "compre", // 当前展示的子组件
+      curMenuTabsI: 0 // 当前展示的子组件下标
+    };
   },
   components: {
     menuScrollTab: menuScrollTab,
@@ -248,8 +245,14 @@ var _default = { name: 'searchResult', data: function data() {return { searchSug
     lyrics: lyrics,
     album: album },
 
+  watch: {
+    curMenuTabsI: {
+      handler: function handler(val) {
+        this.curMenuValue = this.menuNameList[val].value;
+      } } },
+
+
   onLoad: function onLoad(query) {
-    console.log('query', query.search);
     this.searchValue = query.search;
   },
   created: function created() {

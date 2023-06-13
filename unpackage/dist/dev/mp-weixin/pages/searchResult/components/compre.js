@@ -81,22 +81,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.singleList.length
-    ? _vm.__map(_vm.singleList, function(item, __i0__) {
-        var $orig = _vm.__get_orig(item)
+  var l0 = _vm.__map(_vm.videoList, function(item, __i0__) {
+    var $orig = _vm.__get_orig(item)
 
-        var m0 = _vm.formatSingsName(item.ar)
-        return {
-          $orig: $orig,
-          m0: m0
-        }
+    var m0 = _vm.formatTime(item.duration)
+    var m1 = Number((item.playCount / 10000).toFixed(1))
+    return {
+      $orig: $orig,
+      m0: m0,
+      m1: m1
+    }
+  })
+
+  var l1 = _vm.__map(_vm.singleRecommList, function(item, __i1__) {
+    var $orig = _vm.__get_orig(item)
+
+    var g0 = item.artists
+      .map(function(it) {
+        return it.name
       })
-    : null
+      .join("&")
+    return {
+      $orig: $orig,
+      g0: g0
+    }
+  })
+
+  var l2 = _vm.__map(_vm.podcastList, function(item, __i2__) {
+    var $orig = _vm.__get_orig(item)
+
+    var g1 = (item.playCount / 10000).toFixed(1)
+    var m2 = item.subCount % 1 == 0 ? _vm.randomScore() : null
+    return {
+      $orig: $orig,
+      g1: g1,
+      m2: m2
+    }
+  })
+
+  if (!_vm._isMounted) {
+    _vm.e0 = function(val) {
+      return (_vm.singleTotal = val)
+    }
+
+    _vm.e1 = function(val) {
+      return (_vm.songListTotal = val)
+    }
+
+    _vm.e2 = function(val) {
+      return (_vm.albumTotal = val)
+    }
+
+    _vm.e3 = function(val) {
+      return (_vm.singerTotal = val)
+    }
+  }
+
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        l0: l0
+        l0: l0,
+        l1: l1,
+        l2: l2
       }
     }
   )
@@ -184,42 +231,227 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loading */ "components/loading").then((function () {return resolve(__webpack_require__(/*! @/components/loading.vue */ 207));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loading */ "components/loading").then((function () {return resolve(__webpack_require__(/*! @/components/loading.vue */ 207));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var single = function single() {__webpack_require__.e(/*! require.ensure | pages/searchResult/components/single */ "pages/searchResult/components/single").then((function () {return resolve(__webpack_require__(/*! ./single.vue */ 151));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var songList = function songList() {__webpack_require__.e(/*! require.ensure | pages/searchResult/components/songList */ "pages/searchResult/components/songList").then((function () {return resolve(__webpack_require__(/*! ./songList.vue */ 158));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var album = function album() {__webpack_require__.e(/*! require.ensure | pages/searchResult/components/album */ "pages/searchResult/components/album").then((function () {return resolve(__webpack_require__(/*! ./album.vue */ 193));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var singer = function singer() {__webpack_require__.e(/*! require.ensure | pages/searchResult/components/singer */ "pages/searchResult/components/singer").then((function () {return resolve(__webpack_require__(/*! ./singer.vue */ 172));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   data: function data() {
     return {
-      singleList: [], // 单曲信息
-      singleTotal: 0 };
-
+      singleTotal: 0, // 单曲总条数
+      songListTotal: 0, // 歌单总条数
+      videoList: [],
+      videoListTotal: 0,
+      albumTotal: 0, // 专辑总条数
+      podcastList: [],
+      singleRecommList: [], // 单曲推荐
+      singleRecommTotal: 0,
+      podcastTotal: 0, // 播客总条数
+      singerTotal: 0 // 艺人总条数
+    };
   },
   components: {
-    loading: loading },
+    loading: loading,
+    single: single,
+    songList: songList,
+    album: album,
+    singer: singer },
 
   mounted: function mounted() {
-    this.getSingleInfo();
+    // 判断当前是否展示加载动画
+    if (this.singleTotal + this.songListTotal == 0) {
+      this.$refs.loading.show();
+    } else {
+      this.$refs.loading.hide();
+    }
+    this.getVideoList();
+    this.getpodcastList();
+    this.getSingleRecommList();
   },
-  methods: {
-    // 获取单曲信息
-    getSingleInfo: function getSingleInfo() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  _search.default.search({
-                    keywords: '起风了',
-                    limit: 8 }));case 2:res = _context.sent;
+  computed: {
+    isLoadingShow: function isLoadingShow() {
+      return this.singleTotal + this.songListTotal;
+    } },
 
-                console.log('res', res);
-                if (res && res.code == 200) {
-                  _this.singleTotal = res.result.songCount;
-                  _this.singleList = res.result.songs;
-                }case 5:case "end":return _context.stop();}}}, _callee);}))();
-    },
-    formatSingsName: function formatSingsName(val) {
-      if (val.length) {
-        return val.map(function (it) {return it.name;}).join('&');
-      }
-      return;
-    },
+  watch: {
+    // 判断当前是否展示加载动画
+    isLoadingShow: {
+      handler: function handler(val) {
+        if (val == 0) {
+          this.$refs.loading.show();
+        } else {
+          this.$refs.loading.hide();
+        }
+      } } },
+
+
+  methods: {
     // 去单曲页面
     toSinglePage: function toSinglePage() {
       // this.$emit('curPageIndex', 1)
+    },
+    // 获取视频列表
+    getVideoList: function getVideoList() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _search.default.search({
+                    keywords: '起风了',
+                    limit: 5,
+                    type: 1004 }));case 2:res = _context.sent;
+
+                if (res && res.code == 200) {
+                  _this.videoList = res.result.mvs;
+                  _this.videoListTotal = res.result.mvCount;
+                }case 4:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    // 时间转换格式
+    formatTime: function formatTime(val) {
+      var totalSec = parseInt(val / 1000);
+      var minute = parseInt(totalSec / 60);
+      var second = totalSec - minute * 60;
+      return "".concat(('0' + minute).slice(-2), ":").concat(('0' + second).slice(-2));
+    },
+    // 获取单曲推荐信息
+    getSingleRecommList: function getSingleRecommList() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _search.default.curSongResem(1330348068));case 2:res = _context2.sent;
+                console.log('res', res);
+                if (res && res.code == 200) {
+                  _this2.singleRecommList = res.songs.slice(0, 7);
+                  _this2.singleRecommTotal = res.songs.length;
+                }case 5:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
+    // 获取播客列表信息
+    getpodcastList: function getpodcastList() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _search.default.search({
+                    keywords: '起风了',
+                    offset: _this3.curPage,
+                    limit: 3,
+                    type: 1009 }));case 2:res = _context3.sent;
+
+                if (res && res.code == 200) {
+                  _this3.podcastList = res.result.djRadios.slice(0, 3);
+                  _this3.podcastTotal = res.result.djRadiosCount;
+                }case 4:case "end":return _context3.stop();}}}, _callee3);}))();
+    },
+    // 随机生成7分以上的评分
+    randomScore: function randomScore() {
+      var num = Math.random() * 10;
+      if (num > 9) {
+        return num.toFixed(1);
+      }
+      return this.randomScore();
     } } };exports.default = _default;
 
 /***/ }),

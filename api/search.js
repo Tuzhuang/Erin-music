@@ -38,5 +38,11 @@ export default {
 		return await request({
 			url: `/mv/url?id=${data.id}&r=${data.r||720}`
 		})
+	},
+	// 搜索当前歌曲的相似歌曲
+	async curSongResem(id) {
+		return await request({
+			url: `/simi/song?id=${id}`
+		})
 	}
 }

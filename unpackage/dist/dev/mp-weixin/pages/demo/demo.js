@@ -130,19 +130,24 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var child = function child() {__webpack_require__.e(/*! require.ensure | pages/demo/components/child */ "pages/demo/components/child").then((function () {return resolve(__webpack_require__(/*! ./components/child.vue */ 280));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
-      activeKey: 0 };
+      count: 0 };
 
   },
+  components: {
+    child: child },
+
   methods: {} };exports.default = _default;
 
 /***/ })

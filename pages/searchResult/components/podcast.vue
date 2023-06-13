@@ -2,7 +2,7 @@
 <template>
 	<view class="podcast">
 		<scroll-view class="podcast-scroll" scroll-y lower-threshold="200" @scrolltolower="moreLoad">
-			<view class="podcast-item" v-for="item in padcastList" :key="item.id">
+			<view class="podcast-item" v-for="item in podcastList" :key="item.id">
 				<view class="left-avatar">
 					<view class="bg-img"></view>
 					<image class="avatar" :src="item.picUrl"></image>
@@ -22,7 +22,7 @@
 					<span class="text">分</span>
 				</view>
 			</view>
-			<view v-if="totalCount==padcastList.length" class="loader">没有更多信息啦~</view>
+			<view v-if="totalCount==podcastList.length" class="loader">没有更多信息啦~</view>
 		</scroll-view>
 		<loading ref="loading" :isMask="false" mode="top" />
 	</view>
@@ -34,7 +34,7 @@
 	export default {
 		data() {
 			return {
-				padcastList: [],
+				podcastList: [],
 				curPage: 0,
 				isPending: false, // 是否正在请求中
 				totalCount: 1,
@@ -44,11 +44,11 @@
 			loading,
 		},
 		mounted() {
-			this.getpadcastList();
+			this.getpodcastList();
 		},
 		methods: {
-			async getpadcastList() {
-				if (this.padcastList.length == 0) {
+			async getpodcastList() {
+				if (this.podcastList.length == 0) {
 					this.$refs.loading.show();
 				}
 				this.isPending = true;
@@ -57,12 +57,12 @@
 					offset: this.curPage,
 					type: 1009
 				})
-				if (this.padcastList.length == 0) {
+				if (this.podcastList.length == 0) {
 					this.$refs.loading.hide();
 				}
 				this.isPending = false;
 				if (res && res.code == 200) {
-					this.padcastList = res.result.djRadios;
+					this.podcastList = res.result.djRadios;
 					this.totalCount = res.result.djRadiosCount;
 				}
 			},
@@ -76,9 +76,9 @@
 			},
 			// 加载更多
 			moreLoad() {
-				if (this.isPending || this.totalCount == this.padcastList.length) return;
+				if (this.isPending || this.totalCount == this.podcastList.length) return;
 				this.curPage += 30;
-				this.getpadcastList();
+				this.getpodcastList();
 			}
 		}
 	}

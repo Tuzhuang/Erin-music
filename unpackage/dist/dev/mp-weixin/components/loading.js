@@ -131,6 +131,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _default =
 {
   props: {
+    value: {
+      type: Boolean,
+      default: false },
+
     isMask: {
       type: Boolean,
       default: true },
@@ -138,19 +142,25 @@ var _default =
     mode: {
       type: String,
       default: 'center' // top center
-    } },
+    },
+    isLoadShow: {
+      type: Boolean,
+      default: false } },
+
 
   data: function data() {
     return {
-      isShow: false };
+      isShow: this.isLoadShow };
 
   },
   methods: {
     show: function show() {
       this.isShow = true;
+      this.$emit('input', true);
     },
     hide: function hide() {
       this.isShow = false;
+      this.$emit('input', false);
     } } };exports.default = _default;
 
 /***/ }),

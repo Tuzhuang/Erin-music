@@ -26,6 +26,12 @@
 	import $httpSearch from '@/api/search.js';
 	import loading from '@/components/loading.vue';
 	export default {
+		props: {
+			limit: {
+				type: Number,
+				default: 0
+			}
+		},
 		data() {
 			return {
 				albumList: [],
@@ -34,7 +40,7 @@
 				totalCount: 1
 			}
 		},
-		components:{
+		components: {
 			loading,
 		},
 		mounted() {
@@ -42,22 +48,24 @@
 		},
 		methods: {
 			async getAlbumList() {
-				if(this.albumList.length == 0){
+				if (this.albumList.length == 0 && !this.limit) {
 					this.$refs.loading.show();
 				}
 				this.isPending = true;
 				let res = await $httpSearch.search({
 					keywords: '起风了',
 					offset: this.curPage,
+					limit: this.limit,
 					type: 10
 				})
-				if(this.albumList.length == 0){
+				if (this.albumList.length == 0 && !this.limit) {
 					this.$refs.loading.hide();
 				}
 				this.isPending = false;
 				if (res && res.code == 200) {
 					this.albumList = res.result.albums;
 					this.totalCount = res.result.albumCount;
+					this.$emit('onTotalCount', this.totalCount);
 				}
 			},
 			// 处理年月日
@@ -87,8 +95,7 @@
 		}
 
 		.album-item {
-			padding: 20rpx;
-			padding-bottom: 10rpx;
+			padding: 10rpx 20rpx 0;
 			box-sizing: border-box;
 			display: flex;
 			align-items: center;
@@ -109,7 +116,7 @@
 					background: #232827;
 					border-radius: 50%;
 					position: absolute;
-					top: -12rpx;
+					top: -10rpx;
 					left: 8rpx;
 				}
 

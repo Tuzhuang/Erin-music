@@ -32,37 +32,52 @@
   height: 100%;
 }
 .singer .singer-item {
-  padding: 20rpx;
+  padding: 10rpx 20rpx;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .singer .singer-item:first-of-type {
   padding-top: 0;
 }
-.singer .singer-item .left-avatar {
+.singer .singer-item .left-con {
+  display: flex;
+  align-items: center;
+}
+.singer .singer-item .left-con .avatar-con {
   width: 100rpx;
   height: 100rpx;
   position: relative;
   margin-right: 20rpx;
 }
-.singer .singer-item .left-avatar .cover-img {
+.singer .singer-item .left-con .avatar-con .cover-img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
-.singer .singer-item .left-avatar .logo-icon {
+.singer .singer-item .left-con .avatar-con .logo-icon {
   width: 34rpx;
   height: 34rpx;
   position: absolute;
   right: 4rpx;
   bottom: 0;
 }
-.singer .singer-item .right-info {
+.singer .singer-item .left-con .singer-name {
   font-size: 28rpx;
   color: #d2d2d2;
 }
-.singer .singer-item .right-info .real-name {
+.singer .singer-item .left-con .singer-name .real-name {
   color: #747474;
+}
+.singer .singer-item .follow {
+  padding: 6rpx 14rpx;
+  border-radius: 50rpx;
+  border: 1rpx solid #7f2f2c;
+  vertical-align: middle;
+}
+.singer .singer-item .follow .focus {
+  font-size: 22rpx;
+  color: #eb4d45;
 }
 

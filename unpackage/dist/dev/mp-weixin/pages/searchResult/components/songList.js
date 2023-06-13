@@ -168,6 +168,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loading */ "components/loading").then((function () {return resolve(__webpack_require__(/*! @/components/loading.vue */ 207));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
+  props: {
+    limit: Number,
+    default: 0 },
+
   data: function data() {
     return {
       songList: [],
@@ -190,21 +194,23 @@ var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 
   methods: {
     // 获取歌单列表
     getSongList: function getSongList() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                if (_this.songList.length == 0) {
+                if (_this.songList.length == 0 && !_this.limit) {
                   _this.$refs.loading.show();
                 }
                 _this.isPending = true;_context.next = 4;return (
                   _search.default.search({
                     keywords: '起风了',
+                    limit: _this.limit,
                     offset: _this.curPage,
                     type: 1000 }));case 4:res = _context.sent;
 
-                if (_this.songList.length == 0) {
+                if (_this.songList.length == 0 && !_this.limit) {
                   _this.$refs.loading.hide();
                 }
                 _this.isPending = false;
                 if (res && res.code == 200) {
                   _this.totalCount = res.result.playlistCount;
+                  _this.$emit('onTotalCount', _this.totalCount);
                   _this.songList = _this.songList.concat(res.result.playlists);
                 }case 8:case "end":return _context.stop();}}}, _callee);}))();
     },

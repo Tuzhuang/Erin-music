@@ -1,9 +1,9 @@
 // 封装接口
 
 // const baseUrl = "http://192.168.1.160:3000"; // cmcc-8888
-const baseUrl = "http://192.168.31.176:3000"; // 张小海1000M
+// const baseUrl = "http://192.168.31.176:3000"; // 张小海1000M
 // const baseUrl = "http://192.168.1.100:3000"; // 茂德家
-// const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3000";
 // const baseUrl = "http://pgn3c6.natappfree.cc";
 const request = options => {
 	return new Promise((resolve, reject) => {

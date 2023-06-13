@@ -1,18 +1,22 @@
 <template>
 	<view class="content">
-		
+		<p>{{count}}</p>
+		<child v-model="count" />
 	</view>
 </template>
 
 <script>
+	import child from './components/child.vue';
 	export default {
 		data() {
 			return {
-				activeKey: 0,
+				count: 0,
 			}
 		},
-		methods: {
-		}
+		components: {
+			child
+		},
+		methods: {}
 	}
 </script>
 

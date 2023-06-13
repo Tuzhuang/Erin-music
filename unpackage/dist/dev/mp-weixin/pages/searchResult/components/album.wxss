@@ -32,8 +32,7 @@
   height: 100%;
 }
 .album .album-item {
-  padding: 20rpx;
-  padding-bottom: 10rpx;
+  padding: 10rpx 20rpx 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -53,7 +52,7 @@
   background: #232827;
   border-radius: 50%;
   position: absolute;
-  top: -12rpx;
+  top: -10rpx;
   left: 8rpx;
 }
 .album .album-item .left-cover .cover {

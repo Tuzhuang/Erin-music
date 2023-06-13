@@ -81,7 +81,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.padcastList, function(item, __i0__) {
+  var l0 = _vm.__map(_vm.podcastList, function(item, __i0__) {
     var $orig = _vm.__get_orig(item)
 
     var g0 = (item.playCount / 10000).toFixed(1)
@@ -170,7 +170,7 @@ var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 
 {
   data: function data() {
     return {
-      padcastList: [],
+      podcastList: [],
       curPage: 0,
       isPending: false, // 是否正在请求中
       totalCount: 1 };
@@ -180,11 +180,11 @@ var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 
     loading: loading },
 
   mounted: function mounted() {
-    this.getpadcastList();
+    this.getpodcastList();
   },
   methods: {
-    getpadcastList: function getpadcastList() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                if (_this.padcastList.length == 0) {
+    getpodcastList: function getpodcastList() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                if (_this.podcastList.length == 0) {
                   _this.$refs.loading.show();
                 }
                 _this.isPending = true;_context.next = 4;return (
@@ -193,12 +193,12 @@ var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 
                     offset: _this.curPage,
                     type: 1009 }));case 4:res = _context.sent;
 
-                if (_this.padcastList.length == 0) {
+                if (_this.podcastList.length == 0) {
                   _this.$refs.loading.hide();
                 }
                 _this.isPending = false;
                 if (res && res.code == 200) {
-                  _this.padcastList = res.result.djRadios;
+                  _this.podcastList = res.result.djRadios;
                   _this.totalCount = res.result.djRadiosCount;
                 }case 8:case "end":return _context.stop();}}}, _callee);}))();
     },
@@ -212,9 +212,9 @@ var _search = _interopRequireDefault(__webpack_require__(/*! @/api/search.js */ 
     },
     // 加载更多
     moreLoad: function moreLoad() {
-      if (this.isPending || this.totalCount == this.padcastList.length) return;
+      if (this.isPending || this.totalCount == this.podcastList.length) return;
       this.curPage += 30;
-      this.getpadcastList();
+      this.getpodcastList();
     } } };exports.default = _default;
 
 /***/ }),

@@ -1,6 +1,10 @@
 {
   "component": true,
   "usingComponents": {
-    "loading": "/components/loading"
+    "loading": "/components/loading",
+    "single": "/pages/searchResult/components/single",
+    "song-list": "/pages/searchResult/components/songList",
+    "album": "/pages/searchResult/components/album",
+    "singer": "/pages/searchResult/components/singer"
   }
 }

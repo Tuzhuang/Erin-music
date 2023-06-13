@@ -3745,9 +3745,9 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.request = void 0;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} // 封装接口
 
 // const baseUrl = "http://192.168.1.160:3000"; // cmcc-8888
-var baseUrl = "http://192.168.31.176:3000"; // 张小海1000M
+// const baseUrl = "http://192.168.31.176:3000"; // 张小海1000M
 // const baseUrl = "http://192.168.1.100:3000"; // 茂德家
-// const baseUrl = "http://localhost:3000";
+var baseUrl = "http://localhost:3000";
 // const baseUrl = "http://pgn3c6.natappfree.cc";
 var request = function request(options) {
   return new Promise(function (resolve, reject) {
@@ -10465,6 +10465,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   mvUrl: function mvUrl(data) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
                 (0, _request.request)({
                   url: "/mv/url?id=".concat(data.id, "&r=").concat(data.r || 720) }));case 2:return _context6.abrupt("return", _context6.sent);case 3:case "end":return _context6.stop();}}}, _callee6);}))();
+
+  },
+  // 搜索当前歌曲的相似歌曲
+  curSongResem: function curSongResem(id) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:_context7.next = 2;return (
+                (0, _request.request)({
+                  url: "/simi/song?id=".concat(id) }));case 2:return _context7.abrupt("return", _context7.sent);case 3:case "end":return _context7.stop();}}}, _callee7);}))();
 
   } };exports.default = _default;
 

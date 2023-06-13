@@ -13,7 +13,6 @@
 			@transition="menuContTrans" @animationfinish="transEnd">
 			<swiper-item class="menu-con-swiper-item" v-for="(item,index) in menuNames" :key="index">
 				<view class="menu-content">
-					<!-- <p>{{item.label}}</p> -->
 					<slot :name="item.value"></slot>
 				</view>
 			</swiper-item>
@@ -28,6 +27,10 @@
 	export default {
 		name: "menu-scroll-tab",
 		props: {
+			value: {
+				type: Number,
+				default: 0
+			},
 			menuNames: {
 				type: Array,
 				default: () => [{
@@ -41,7 +44,7 @@
 		},
 		data() {
 			return {
-				curMenuNameI: 0, // 当前选中tabs
+				curMenuNameI: this.value, // 当前选中tabs, 因为子组件不能直接修改父组件传过来的值，所以需要声明一个变量来接收父组件传过来的值
 				scrollLeft: 0,
 				slideWidth: 16, // 滑块宽度
 			};
@@ -57,7 +60,7 @@
 						this.scrollLeft = 0;
 					}
 					// 把值传给父组件
-					this.$emit('curMenuIndex', val);
+					this.$emit('input', val);
 				},
 				immediate: true
 			}
@@ -65,7 +68,6 @@
 		methods: {
 			// 轮播图内容改变时
 			menuContChange(e) {
-				console.log('current改变了');
 				this.curMenuNameI = e.detail.current;
 			},
 			// 轮播图滑动中
